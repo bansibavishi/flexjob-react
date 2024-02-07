@@ -1,0 +1,25 @@
+{
+
+        "_id": "65c20b63e8994b65056dce0a",
+        "firstName": "user",
+        "lastName": "user",
+        "email": "user@gmail.com",
+        "mobile": 1234567890,
+        "expertise": [
+            "communication skills",
+            "DSA"
+        ],
+        "language": [],
+        "title": "qwertyuiop",
+        "description": "qwtdycvbhdhhd",
+        "workHistory": [
+            "fdfdfdf",
+            "fdfdffdff"
+        ],
+        "location": "fdfgdf",
+        "savedJob": [
+            "sdd",
+            "sff"
+        ],
+        "rate": 8
+}

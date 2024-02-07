@@ -1,17 +1,56 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../layout/navbar'
 import Footer from '../../layout/footer'
 import { Helmet } from 'react-helmet'
+import axios from 'axios'
+axios.defaults.withCredentials = true
 
 export default function Profilesetting() {
+
+const [user, setUser] = useState({
+    type: "employeer",
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    mobile: "",
+    expertise: ["communication skills", "DSA"],
+    title: "qwertyuiop",
+    description: "qwtdycvbhdhhd",
+    workHistory: ["fdfdfdf", "fdfdffdff"],
+    location: "fdfgdf",
+    savedJob: ["sdd", "sff"],
+    rate: "8"
+})
+    function getUser() {
+
+
+        // axios.get(process.env.REACT_APP_API + "/profile")
+        axios.get("/profile")
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+
+    useEffect(() => {
+        getUser()
+
+
+    }, [])
+
+
     return (
         <>
 
-        <Helmet>
-            <body className='dashboard show'/>
-            <title>Profile Setting</title>
-        </Helmet>
-            
+            <Helmet>
+                <body className='dashboard show' />
+                <title>Profile Setting</title>
+            </Helmet>
+
             <div className="left-menu">
                 <div id="sidebar-menu">
 
@@ -152,11 +191,11 @@ export default function Profilesetting() {
                                             <div className="info-box info-wd">
                                                 <fieldset>
                                                     <label className="title-user fw-7">Full Name</label>
-                                                    <input type="text" className="input-form" value="Tony Nguyen " required />
+                                                    <input type="text" className="input-form"   required />
                                                 </fieldset>
                                                 <fieldset>
                                                     <label className="title-user fw-7">Phone Number</label>
-                                                    <input type="tel" className="input-form" value="123  456  7890" required />
+                                                    <input type="tel" className="input-form"  required />
                                                 </fieldset>
                                                 <div id="item_date" className="dropdown titles-dropdown">
                                                     <label className="title-user fw-7">Gender</label>
@@ -168,7 +207,7 @@ export default function Profilesetting() {
                                                 </div>
                                                 <fieldset>
                                                     <label className="title-user fw-7">Offered Salary ($)</label>
-                                                    <input type="text" className="input-form" value="2000" required />
+                                                    <input type="text" className="input-form"  required />
                                                 </fieldset>
                                                 <div id="item_1" className="dropdown titles-dropdown">
                                                     <label className="title-user fw-7">Experience time</label>
@@ -182,21 +221,21 @@ export default function Profilesetting() {
                                                 </div>
                                                 <fieldset>
                                                     <label className="title-user fw-7">Location</label>
-                                                    <input type="text" className="input-form" value="Tokyo, Japan" required />
+                                                    <input type="text" className="input-form" required />
                                                 </fieldset>
                                                 <fieldset>
                                                     <label className="title-user fw-7">Job Title</label>
-                                                    <input type="text" className="input-form" value="UI UX Designer" required />
+                                                    <input type="text" className="input-form"  required />
                                                 </fieldset>
                                             </div>
                                             <div className="info-box info-wd">
                                                 <fieldset>
                                                     <label className="title-user fw-7">Date Of Birth</label>
-                                                    <input type="text" className="input-form" value="April 8, 1997" required />
+                                                    <input type="text" className="input-form"  required />
                                                 </fieldset>
                                                 <fieldset>
                                                     <label className="title-user fw-7">Email</label>
-                                                    <input type="email" className="input-form" value="hi.avitex@gmail.com" required />
+                                                    <input type="email" className="input-form"  required />
                                                 </fieldset>
 
                                                 <div id="item_size" className="dropdown titles-dropdown ">
@@ -238,7 +277,7 @@ export default function Profilesetting() {
                                                 </div>
                                                 <fieldset>
                                                     <label className="title-user fw-7">Categories</label>
-                                                    <input type="text" className="input-form" value="Design" required />
+                                                    <input type="text" className="input-form"  required />
                                                 </fieldset>
                                             </div>
                                         </div>
