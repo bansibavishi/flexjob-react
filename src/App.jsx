@@ -10,6 +10,11 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import ForgetPass from "./pages/forgetPass";
 import Profilesetting from "./pages/dashboard/profilesetting";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import Createjob from "./pages/createjob";
+
+
 function App() {
 	return (
 		<>
@@ -27,12 +32,14 @@ function App() {
 						<Route path="/register" element={<Register/>}/>
 						<Route path="/forgetpass" element={<ForgetPass/>}/>
 						<Route path="/profile" element={<Profilesetting/>}/>
+						<Route path="/createjob" element={<Createjob/>}/>
 					</Route>
 
 				
 				</Routes>
 
 			</BrowserRouter>
+			<ToastContainer />
 
 			{/* <JobList /> */}
 			{/* <JobSingle/> */}

@@ -3,33 +3,101 @@ import Navbar from '../../layout/navbar'
 import Footer from '../../layout/footer'
 import { Helmet } from 'react-helmet'
 import axios from 'axios'
+import react from 'react'
+import Select from 'react-select'
+import { toast } from 'react-toastify'
 axios.defaults.withCredentials = true
 
 export default function Profilesetting() {
 
-const [user, setUser] = useState({
-    type: "employeer",
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    mobile: "",
-    expertise: ["communication skills", "DSA"],
-    title: "qwertyuiop",
-    description: "qwtdycvbhdhhd",
-    workHistory: ["fdfdfdf", "fdfdffdff"],
-    location: "fdfgdf",
-    savedJob: ["sdd", "sff"],
-    rate: "8"
-})
+    const [user, setUser] = useState({
+        type: "employeer",
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        mobile: "",
+        expertise: ["communication skills", "DSA"],
+        title: "qwertyuiop",
+        description: "qwtdycvbhdhhd",
+        workHistory: ["fdfdfdf", "fdfdffdff"],
+        location: "fdfgdf",
+        savedJob: ["sdd", "sff"],
+        rate: "8"
+    })
+    const [expertise, setExpertise] = useState([])
+    const options = [
+        { value: 'Communication Skills', label: 'Communication Skills' },
+        { value: 'DSA', label: 'DSA' }
+    ]
     function getUser() {
 
+        var token = localStorage.getItem('token')
 
-        // axios.get(process.env.REACT_APP_API + "/profile")
-        axios.get("/profile")
-            .then(res => {
-                console.log(res.data);
+        fetch(process.env.REACT_APP_API + "/profile", {
+            // method: "post",
+            // body: JSON.stringify(user),
+            headers: {
+                Authorization: 'Bearer ' + token
+                // "content-type": "application/json"
+            }
+        }).then(e => e.json()).then(res => {
+            console.log(res);
+            setUser(res.userData)
+        })
+            .catch(err => {
+                console.log(err);
             })
+    }
+
+    function exper() {
+        fetch(process.env.REACT_APP_API + "/expertise-data", {
+
+        }).then(e => e.json()).then(res => {
+            if (res.data.length) {
+                var ex = res.data.map(e => {
+                    return {
+                        value: e.technology,
+                        label: e.technology
+                    }
+                })
+                // console.log(ex); 
+                setExpertise(ex)
+            }
+            console.log(res);
+
+        })
+
+            .catch(err => {
+                console.log(err);
+            })
+
+    }
+
+    function update(e) {
+        e.preventDefault();
+
+
+
+        var token = localStorage.getItem('token')
+
+        fetch(process.env.REACT_APP_API + "/profile-update", {
+            method: "post",
+            body: JSON.stringify(user),
+            headers: {
+                "content-type": "application/json",
+                Authorization: 'Bearer ' + token
+            }
+        }).then(e => e.json()).then(res => {
+            console.log(res);
+            if (res?.status) {
+                toast.success(res?.message)
+            }
+            if (res?.error) {
+                toast.error(res?.error)
+            }
+
+        })
             .catch(err => {
                 console.log(err);
             })
@@ -38,7 +106,7 @@ const [user, setUser] = useState({
 
     useEffect(() => {
         getUser()
-
+        exper()
 
     }, [])
 
@@ -187,243 +255,99 @@ const [user, setUser] = useState({
 
                                     <div className="form-infor-profile">
                                         <h3 className="title-info">Information</h3>
-                                        <div className="form-infor flex flat-form">
-                                            <div className="info-box info-wd">
-                                                <fieldset>
-                                                    <label className="title-user fw-7">Full Name</label>
-                                                    <input type="text" className="input-form"   required />
-                                                </fieldset>
-                                                <fieldset>
-                                                    <label className="title-user fw-7">Phone Number</label>
-                                                    <input type="tel" className="input-form"  required />
-                                                </fieldset>
-                                                <div id="item_date" className="dropdown titles-dropdown">
-                                                    <label className="title-user fw-7">Gender</label>
-                                                    <a className="btn-selector nolink input-form"> Male</a>
-                                                    <ul>
-                                                        <li><span>Male</span></li>
-                                                        <li><span>Female</span></li>
-                                                    </ul>
-                                                </div>
-                                                <fieldset>
-                                                    <label className="title-user fw-7">Offered Salary ($)</label>
-                                                    <input type="text" className="input-form"  required />
-                                                </fieldset>
-                                                <div id="item_1" className="dropdown titles-dropdown">
-                                                    <label className="title-user fw-7">Experience time</label>
-                                                    <a className="btn-selector nolink input-form">5 Years</a>
-                                                    <ul>
-                                                        <li><span>1 Years</span></li>
-                                                        <li><span>3 Years</span></li>
-                                                        <li><span>5 Years</span></li>
-                                                        <li><span>8 Years</span></li>
-                                                    </ul>
-                                                </div>
-                                                <fieldset>
-                                                    <label className="title-user fw-7">Location</label>
-                                                    <input type="text" className="input-form" required />
-                                                </fieldset>
-                                                <fieldset>
-                                                    <label className="title-user fw-7">Job Title</label>
-                                                    <input type="text" className="input-form"  required />
-                                                </fieldset>
-                                            </div>
-                                            <div className="info-box info-wd">
-                                                <fieldset>
-                                                    <label className="title-user fw-7">Date Of Birth</label>
-                                                    <input type="text" className="input-form"  required />
-                                                </fieldset>
-                                                <fieldset>
-                                                    <label className="title-user fw-7">Email</label>
-                                                    <input type="email" className="input-form"  required />
-                                                </fieldset>
-
-                                                <div id="item_size" className="dropdown titles-dropdown ">
-                                                    <label className="title-user fw-7">Age</label>
-                                                    <a className="btn-selector nolink input-form"> 18 - 24</a>
-                                                    <ul>
-                                                        <li><span>18 - 24</span></li>
-                                                        <li><span>24 - 30</span></li>
-                                                        <li><span>30 - 40</span></li>
-                                                    </ul>
-                                                </div>
-                                                <div id="item_2" className="dropdown titles-dropdown">
-                                                    <label className="title-user fw-7">Salary Type</label>
-                                                    <a className="btn-selector nolink input-form">Month</a>
-                                                    <ul>
-                                                        <li><span>1</span></li>
-                                                        <li><span>6</span></li>
-                                                        <li><span>12</span></li>
-                                                    </ul>
-                                                </div>
-
-                                                <div id="item_3" className="dropdown titles-dropdown">
-                                                    <label className="title-user fw-7">Qualification</label>
-                                                    <a className="btn-selector nolink input-form">Master Degree</a>
-                                                    <ul>
-                                                        <li><span>Master Bachelor</span></li>
-                                                        <li><span>Master Degree</span></li>
-                                                    </ul>
-                                                </div>
-                                                <div id="item_4" className="dropdown titles-dropdown">
-                                                    <label className="title-user fw-7">Language</label>
-                                                    <a className="btn-selector nolink input-form">English</a>
-                                                    <ul>
-                                                        <li><span>English</span></li>
-                                                        <li><span>Vietnamese</span></li>
-                                                        <li><span>French</span></li>
-                                                        <li><span>Japanese</span></li>
-                                                    </ul>
-                                                </div>
-                                                <fieldset>
-                                                    <label className="title-user fw-7">Categories</label>
-                                                    <input type="text" className="input-form"  required />
-                                                </fieldset>
-                                            </div>
-                                        </div>
-                                        <div className="show-wrap ">
-                                            <h5 className=" fw-7">Show my profile</h5>
-                                            <div className="show-box flex">
-                                                <div className="show-inner flex2">
-                                                    <input type="radio" id="r1" name="rr" />
-                                                    <label for="r1"><span></span>Show</label>
-                                                </div>
-                                                <div className="show-inner flex2">
-                                                    <input type="radio" id="r2" name="rr" />
-                                                    <label for="r2"><span></span>Hidden</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="tag-wrap border-bt">
-                                            <h5 className="title-tag fw-7">Tag Skill </h5>
-                                            <div className="tag-area">
-                                                <ul>
-                                                    <li className="tag"></li>
-                                                    <li><input type="text" className="tag-input" /></li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <div className="text-editor-wrap border-bt">
-                                            <h3>About Company</h3>
-                                            <div className="text-editor-main">
-                                                <div className="options">
-                                                    <button className="my-text-btn" data-command="undo"><i className="fas fa-undo"></i></button>
-                                                    <button className="my-text-btn" data-command="redo"><i className="fas fa-redo"></i></button>
-                                                    <button className="my-text-btn" data-command="bold"><i className="fas fa-bold"></i></button>
-                                                    <button className="my-text-btn" data-command="italic"><i className="fas fa-italic"></i></button>
-                                                    <button className="my-text-btn" data-command="underline"><i className="fas fa-underline"></i></button>
-                                                    <button className="my-text-btn" data-command="strikeThrough"><i
-                                                        className="fas fa-strikethrough"></i></button>
-                                                    <button className="my-text-btn" data-command="formatBlock" data-block="H1">H1</button>
-                                                    <button className="my-text-btn" data-command="formatBlock" data-block="H2">H2</button>
-                                                    <button className="my-text-btn" data-command="formatBlock" data-block="H3">H3</button>
-                                                    <button className="my-text-btn" data-command="justifyLeft"><i className="fas fa-align-left"></i></button>
-                                                    <button className="my-text-btn" data-command="justifyCenter"><i
-                                                        className="fas fa-align-center"></i></button>
-                                                    <button className="my-text-btn" data-command="justifyRight"><i
-                                                        className="fas fa-align-right"></i></button>
-                                                    <button className="my-text-btn" data-command="justifyFull"><i
-                                                        className="fas fa-align-justify"></i></button>
-                                                    <button className="my-text-btn" data-command="insertImage"><i className="fas fa-images"></i></button>
-                                                    <button className="my-text-btn" data-command="createLink"><i className="fas fa-link"></i></button>
-                                                </div>
-                                                <div className="contentOutput" contenteditable="true"></div>
-
-                                            </div>
-                                        </div>
-
-                                        <div className="social-wrap border-bt">
-                                            <h3>Social Network</h3>
-                                            <div className="form-social form-wg flex flat-form">
-                                                <div className="form-box info-wd wg-box">
-                                                    <fieldset className="flex2">
-                                                        <span className="icon-facebook"></span>
-                                                        <input type="url" className="input-form" value="http://www.facebook.com/avitex" />
+                                        <form onSubmit={update}>
+                                            <div className="form-infor flex flat-form">
+                                                <div className="info-box info-wd">
+                                                    <fieldset>
+                                                        <label className="title-user fw-7">First Name</label>
+                                                        <input type="text" className="input-form" onChange={e => setUser({ ...user, firstName: e.target.value })} value={user.firstName} required />
                                                     </fieldset>
-                                                    <fieldset className="flex2">
-                                                        <span className="icon-twitter"></span>
-                                                        <input type="url" className="input-form2" placeholder="URL" required />
+                                                    <fieldset>
+                                                        <label className="title-user fw-7">Phone Number</label>
+                                                        <input type="text" className="input-form" onChange={e => setUser({ ...user, mobile: e.target.value })} value={user.mobile} required />
                                                     </fieldset>
-                                                    <fieldset className="flex2">
-                                                        <span className="icon-instagram1"></span>
-                                                        <input type="url" className="input-form2" placeholder="URL" required />
-                                                    </fieldset>
-                                                </div>
-                                                <div className="form-box info-wd wg-box">
-                                                    <fieldset className="flex2">
-                                                        <span className="icon-linkedin2"></span>
-                                                        <input type="url" className="input-form2" placeholder="URL" required />
-                                                    </fieldset>
-                                                    <fieldset className="flex2">
-                                                        <span className="icon-pinterest"></span>
-                                                        <input type="url" className="input-form2" placeholder="URL" required />
-                                                    </fieldset>
-                                                    <fieldset className="flex2">
-                                                        <span className="icon-youtube"></span>
-                                                        <input type="url" className="input-form2" placeholder="URL" required />
-                                                    </fieldset>
+                                                    <div id="item_date" >
+                                                        <label className="title-user fw-7">Title</label>
+                                                        <input type='text' className='input-form' onChange={e => setUser({ ...user, title: e.target.value })} value={user.title} required />
+                                                        {/* <a className="btn-selector nolink input-form"> Male</a> */}
 
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="contact-wrap info-wd">
-                                            <h3>Contact Information</h3>
-
-                                            <fieldset className="address-box">
-                                                <label className="title-user fw-7">Address</label>
-                                                <input type="text" className="input-form input-style" value="71  St. Takayamio, Tokyo" />
-                                            </fieldset>
-                                            <div className="form-social form-wg flex flat-form">
-                                                <div className="form-box  wg-box">
-                                                    <div id="item_category2" className="dropdown titles-dropdow">
-                                                        <label className="title-user color-1 fw-7">Location</label>
-                                                        <a className="btn-selector nolink input-form"> Tokyo </a>
-                                                        <ul>
-                                                            <li><span>VietNam</span></li>
-                                                            <li><span>Tokyo</span></li>
-                                                            <li><span>USA</span></li>
-                                                            <li><span>England</span></li>
-                                                        </ul>
                                                     </div>
+                                                    <fieldset>
+                                                        <label className="title-user fw-7">Offered Salary ($)</label>
+                                                        <input type="text" className="input-form" required />
+                                                    </fieldset>
+                                                    <div id="item_1" className="dropdown titles-dropdown">
+                                                        <label className="title-user fw-7">Expertise</label>
+
+                                                        <Select
+                                                            defaultValue={{ value: 'Communication Skills', label: 'Communication Skills' }}
+                                                            isMulti
+                                                            options={expertise} />
+
+                                                        {/* <select multiple>
+                                                    <option>communication skills</option>
+                                                    <option>DSA</option>
+                                                   </select> */}
+
+                                                    </div>
+                                                    <fieldset>
+                                                        <label className="title-user fw-7">Location</label>
+                                                        <input type="text" className="input-form" onChange={e => setUser({ ...user, location: e.target.value })} value={user.location} required />
+                                                    </fieldset>
+                                                    <fieldset>
+                                                        <label className="title-user fw-7">Job Title</label>
+                                                        <input type="text" className="input-form" required />
+                                                    </fieldset>
                                                 </div>
-                                                <div className="form-box  wg-box">
-                                                    <fieldset className="">
-                                                        <label className="title-user fw-7">Map Location</label>
-                                                        <input type="text" className="input-form input-style" value="243- 235  St. Takayamio, Tokyo" />
+                                                <div className="info-box info-wd">
+                                                    <fieldset>
+                                                        <label className="title-user fw-7">LastName</label>
+                                                        <input type="text" className="input-form" onChange={e => setUser({ ...user, lastName: e.target.value })} value={user.lastName} required />
+                                                    </fieldset>
+                                                    <fieldset>
+                                                        <label className="title-user fw-7">Email</label>
+                                                        <input type="email" className="input-form" onChange={e => setUser({ ...user, email: e.target.value })} value={user.email} required />
+                                                    </fieldset>
+                                                    {/* 
+                                                <div id="item_size" className="dropdown titles-dropdown ">
+                                                    <label className="title-user fw-7">WorkHistory</label>
+
+                                                    <select>
+                                                        <option>abc</option>
+                                                        <option>xyz</option>
+
+                                                    </select>
+                                                </div> */}
+                                                    {/* <div id="item_2" className="dropdown titles-dropdown">
+                                                    <label className="title-user fw-7">Save Job</label>
+
+
+                                                    <select>
+                                                        <option>aaa</option>
+                                                        <option>bbb</option>
+                                                    </select>
+                                                </div> */}
+
+
+                                                    <fieldset>
+                                                        <label className="title-user fw-7">Rate</label>
+                                                        <input type="number" className="input-form" onChange={e => setUser({ ...user, rate: e.target.value })} value={user.rate} required />
                                                     </fieldset>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="map-content">
-                                            <iframe className="map-box"
-                                                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7302.453092836291!2d90.47477022812872!3d23.77494577893369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1627293157601!5m2!1svi!2s"
-                                                allowfullscreen="" loading="lazy"></iframe>
-                                        </div>
-                                        <div className="area-wrap info-wd">
-                                            <div className="form-social form-wg flex flat-form">
-                                                <div className="form-box  wg-box">
-                                                    <fieldset className="">
-                                                        <input type="text" className="input-form " value="40.69499198068389" />
-                                                    </fieldset>
-                                                </div>
-                                                <div className="form-box  wg-box">
-                                                    <fieldset className="">
-                                                        <input type="text" className="input-form " value="-73.9959976171989" />
-                                                    </fieldset>
+
+                                            <div className="tag-wrap border-bt">
+                                                <h5 className="title-tag fw-7">Description </h5>
+                                                <div className="tag-area " >
+                                                    <ul>
+                                                        <li className="tag"></li>
+                                                        <li><input type="text" className="tag-input" onChange={e => setUser({ ...user, description: e.target.value })} value={user.description} required /></li>
+
+                                                    </ul>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="wrap-video">
-                                            <fieldset className="info-wd">
-                                                <label className="title-url fw-7">Introduction Video</label>
-                                                <input type="url" className="input-form input-style"
-                                                    value="https://www.youtube.com/watch?v=I6ZLgk_bq90" />
-                                            </fieldset>
-                                        </div>
+                                            <button type='submit'>Submit</button>
+                                        </form>
                                     </div>
 
                                 </div>

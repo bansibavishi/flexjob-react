@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 export default function Register() {
 
@@ -26,18 +27,31 @@ export default function Register() {
     function register(e) {
         e.preventDefault();
 
-        axios.post(process.env.REACT_APP_API + "/register", user)
-            .then(res => {
-                console.log(res);
-                if (res.data.status == true) {
-                    send("/login")
-                }
-            })
+        // axios.post()
+
+
+        fetch(process.env.REACT_APP_API + "/register", {
+            method: "post",
+            body: JSON.stringify(user),
+            headers: {
+                "content-type": "application/json"
+            }
+        }).then(e => e.json()).then(res => {
+            console.log(res);
+            if (res.status == true) {
+                toast.success(res.message)
+                send("/login")
+            } else {
+                toast.error(res.message)
+            }
+        })
             .catch(err => {
                 console.log(err);
             })
 
     }
+
+
 
     return (
         <>
@@ -100,33 +114,7 @@ export default function Register() {
                                         <div className="sign-up">Already have an account ?<Link to={"/login"}>Login Here</Link></div>
                                     </form>
                                 </div>
-                                {/* <div className="inner">
-                            <form action="https://themesflat.co/html/jobtex/get">
-                                <div className="ip">
-                                    <label >Username or email address<span>*</span></label>
-                                    <input type="text"   value="Tony Nguyen" placeholder="Name"/>
-                                </div>
-                                <div className="ip">
-                                    <label >Password<span>*</span></label>
-                                    <div className="inputs-group auth-pass-inputgroup">
-                                        <input type="password" className="input-form password-input" value="userabcdefg123" placeholder="Password" required=""/>
-                                        <a className="icon-eye-off password-addon"></a>
-                                    </div>
-                                </div>
-                                <div className="ip">
-                                    <label >Confirm Password<span>*</span></label>
-                                    <div className="inputs-group auth-pass-inputgroup">
-                                        <input type="password" className="input-form password-input" value="userabcdefg123" placeholder="Password" required=""/>
-                                        <a className="icon-eye-off password-addon"></a>
-                                    </div>
-                                </div>
-                                <div className="group-ant-choice st">
-                                  <div className="sub-ip"><input type="checkbox"/>I agree to the <a href="#">Terms of User</a></div>
-                                </div>
-                                <button>Register</button>
-                                <div className="sign-up">Already have an account?<a href="#">Login Here</a></div>
-                            </form>
-                        </div> */}
+                            
                             </div>
 
                         </div>
