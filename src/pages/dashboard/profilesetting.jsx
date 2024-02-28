@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import Navbar from '../../layout/navbar'
-import Footer from '../../layout/footer'
+import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import axios from 'axios'
-import react from 'react'
 import Select from 'react-select'
 import { toast } from 'react-toastify'
 axios.defaults.withCredentials = true

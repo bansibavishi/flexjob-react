@@ -95,7 +95,7 @@ export default function Login() {
 								</div>
 								<div className="group-ant-choice">
 									<div className="sub-ip"><input type="checkbox" />Remember me</div>
-									<Link to="/forgetpass" className="forgot">Fogot password?</Link>
+									<Link to="/forget-pass" className="forgot">Forgot password?</Link>
 								</div>
 
 								<button type="submit">Login</button>

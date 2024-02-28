@@ -3,7 +3,7 @@ import Select from 'react-select'
 import { toast } from 'react-toastify'
 
 
-export default function Createjob() {
+export default function JobCreate() {
 
     const [job, setJob] = useState(
         {
