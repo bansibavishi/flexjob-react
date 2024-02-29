@@ -55,9 +55,6 @@ export default function Register() {
 
     return (
         <>
-
-
-
             <section className="bg-f5">
                 <div className="tf-container">
                     <div className="row">
@@ -114,15 +111,13 @@ export default function Register() {
                                         <div className="sign-up">Already have an account ?<Link to={"/login"}>Login Here</Link></div>
                                     </form>
                                 </div>
-                            
+
                             </div>
 
                         </div>
                     </div>
                 </div>
             </section>
-
-
         </>
     )
 }

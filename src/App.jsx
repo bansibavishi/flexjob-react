@@ -9,54 +9,58 @@ import Layout from "./layout/layout";
 import Login from "./pages/auth/login";
 import Register from "./pages/auth/register";
 import ForgetPass from "./pages/auth/forgetPass";
-import Profilesetting from "./pages/dashboard/profilesetting";
+import Profile from "./pages/dashboard/profilesetting";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import JobCreate from "./pages/job/jobCreate";
 import { Navigate } from "react-router-dom/dist";
+import Dashboard from "./layout/dashboard";
 
 
 function RequireAuth({ children }) {
-	return true ? children : <Navigate to="/login" replace />;
+    return true ? children : <Navigate to="/login" replace />;
 }
 
 
 function App() {
-	return (
-		<>
+    return (
+        <>
 
-			<BrowserRouter>
-				<Routes>
+            <BrowserRouter>
+                <Routes>
 
-					<Route path="/" element={<Layout />}>
-						<Route path="/" element={<Home />} />
-						<Route path="/employers" element={<EmployersSingle />} />
-						<Route path="/employers-review" element={<EmployersReview />} />
-						<Route path="/candidate" element={<Candidate />} />
-						<Route path="/login" element={<Login />} />
-						<Route path="/register" element={<Register />} />
-						<Route path="/forget-pass" element={<ForgetPass />} />
-						<Route path="/profile" element={<Profilesetting />} />
+                    <Route path="/" element={<Layout />}>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/employers" element={<EmployersSingle />} />
+                        <Route path="/employers-review" element={<EmployersReview />} />
+                        <Route path="/candidate" element={<Candidate />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/forget-pass" element={<ForgetPass />} />
 
-						<Route path="/job" element={<JobList />} />
-						<Route path="/job/create" element={<JobCreate />} />
-						{/* <Route path="/job/:id" element={<JobSingle />} /> */}
-					</Route>
+                        <Route path="/job" element={<JobList />} />
+                        <Route path="/job/create" element={<JobCreate />} />
+                        {/* <Route path="/job/:id" element={<JobSingle />} /> */}
+                    </Route>
 
-				</Routes>
+                    <Route path="/" element={<Dashboard />} >
+                        <Route path="/profile" element={<Profile />} />
+                    </Route>
 
-			</BrowserRouter>
-			<ToastContainer />
+                </Routes>
 
-			{/* <JobList /> */}
-			{/* <JobSingle/> */}
-			{/* <EmployersSingle/> */}
-			{/* <EmployersReview/> */}
-			{/* <Candidate/> */}
+            </BrowserRouter>
+            <ToastContainer />
+
+            {/* <JobList /> */}
+            {/* <JobSingle/> */}
+            {/* <EmployersSingle/> */}
+            {/* <EmployersReview/> */}
+            {/* <Candidate/> */}
 
 
-		</>
-	);
+        </>
+    );
 }
 
 export default App;

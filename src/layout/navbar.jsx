@@ -1,18 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Navbar() {
+
+    const [activeMenu, setActiveMenu] = useState('home')
+
     return (
-        <header id="header" className="header header-default">
+        <header id="header" className="header header-default style-absolute header-fixed is-fixed is-small">
             <div className="tf-container ct2">
                 <div className="row">
                     <div className="col-md-12">
                         <div className="sticky-area-wrap">
                             <div className="header-ct-left">
                                 <div id="logo" className="logo">
-                                    <a href="home-01.html">
-                                        <img className="site-logo" id="trans-logo" src="images/logo-white.png" alt="Image" />
-                                    </a>
+                                    <Link to="/">
+                                        <img className="site-logo" id="trans-logo" src="/images/logo-white.png" alt="Image" />
+                                    </Link>
                                 </div>
                                 {/* <div className="categories">
                                     <a href="#"><span className="icon-grid"></span>Categories</a>
@@ -219,258 +222,20 @@ export default function Navbar() {
                                 <div className="nav-wrap">
                                     <nav id="main-nav" className="main-nav">
                                         <ul id="menu-primary-menu" className="menu">
-                                            <li className="menu-item current-item">
+                                            <li className={"menu-item" + (activeMenu == "home" ? " current-item" : "")} onClick={e => setActiveMenu("home")}>
                                                 <Link to="/">Home </Link>
-
-
                                             </li>
-                                            <li className="menu-item menu-item">
-                                                <Link to = "/job">JobList </Link>
-                                                {/* <a href="#">Find jobs </a> */}
-                                                {/* <ul className="sub-menu st1">
-                                                    <li className="nav-sub">
-                                                        <a href="find-jobs-list.html">Jobs Listing <span className="icon-keyboard_arrow_right"></span> </a>
-                                                        <ul className="nav-sub-menu">
-
-                                                            <li className="nav-menu-item">
-                                                                <a href="find-jobs-list.html">List Layout</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="find-jobs-list-sidebar.html">List Sidebar</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="find-jobs-grid.html">Grid Layout</a>
-                                                            </li>
-
-                                                            <li className="nav-menu-item">
-                                                                <a href="find-jobs-grid-sidebar.html">Grid Sidebar</a>
-                                                            </li>
-
-                                                            <li className="nav-menu-item">
-                                                                <a href="find-jobs-list-sidebar-fullwidth.html">List Sidebar Fullwidth</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="find-jobs-grid-sidebar-fullwidth.html">Grid Sidebar Fullwidth</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="find-jobs-topmap.html">Top Map</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="find-jobs-topmap-sidebar.html">Top Map Sidebar</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="find-jobs-half-map.html">Half Map - V1</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="find-jobs-half-map2.html">Half Map - V2</a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li className="nav-sub">
-                                                        <a href="jobs-single.html">Jobs Single - V1</a>
-
-                                                    </li>
-                                                    <li className="nav-sub">
-                                                        <a href="jobs-single2.html">Jobs Single - V2</a>
-                                                    </li>
-                                                </ul> */}
+                                            <li className={"menu-item" + (activeMenu == "job" ? " current-item" : "")} onClick={e => setActiveMenu("job")} >
+                                                <Link to="/job">JobList </Link>
                                             </li>
-
-                                            <li className="menu-item menu-item">
-                                            <Link to = "/employers">EmployersSingle</Link>                                                
-                                                {/* <ul className="sub-menu st1">
-                                                    <li className="nav-sub">
-                                                        <a href="employers-list.html">Employers Listing <span className="icon-keyboard_arrow_right"></span> </a>
-                                                        <ul className="nav-sub-menu">
-
-                                                            <li className="nav-menu-item">
-                                                                <a href="employers-list.html">List Layout</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="employers_grid.html">Grid Layout</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="employers-list-sidebar.html">List Sidebar</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="employers-grid-sidebar.html">Grid Sidebar</a>
-                                                            </li>
-
-                                                            <li className="nav-menu-item">
-                                                                <a href="employers-grid-fullwidth.html">Grid Fullwidth</a>
-                                                            </li>
-
-                                                            <li className="nav-menu-item">
-                                                                <a href="employers-topmap.html">Top Map</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="employers-half-map.html">Half Map</a>
-                                                            </li>
-
-                                                        </ul>
-                                                    </li>
-                                                    <li className="nav-sub">
-                                                        <a href="employers-single.html">Employers Single - V1</a>
-
-
-                                                    </li>
-                                                    <li className="nav-sub">
-                                                        <a href="employers-single2.html">Employers Single - V2</a>
-                                                    </li>
-
-                                                    <li className="nav-sub">
-                                                        <a href="employers-review.html">Employers Reviews</a>
-                                                    </li>
-                                                    <li className="nav-sub">
-                                                        <a href="employers-not-pound.html">Employers Not Found</a>
-                                                    </li>
-                                                    <li className="nav-sub">
-                                                        <a href="dashboard/employer-dashboard.html">Employer Dashboard</a>
-                                                    </li>
-                                                </ul> */}
+                                            <li className={"menu-item" + (activeMenu == "employers" ? " current-item" : "")} onClick={e => setActiveMenu("employers")}>
+                                                <Link to="/employers">EmployersSingle</Link>
                                             </li>
-                                            <li className="menu-item menu-item">
-                                            <Link to ="/employers-review">EmployersReview</Link>
-                                                {/* <ul className="sub-menu st1">
-                                                    <li className="nav-sub">
-                                                        <a href="candidate.html">Candidates Listing <span className="icon-keyboard_arrow_right"></span> </a>
-                                                        <ul className="nav-sub-menu">
-
-                                                            <li className="nav-menu-item">
-                                                                <a href="candidate.html">List Layout</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="candidate-grid.html">Grid Layout</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="candidate-list-sidebar.html">List Sidebar</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="candidate-top-map.html">Top Map</a>
-                                                            </li>
-
-                                                            <li className="nav-menu-item">
-                                                                <a href="candidate-half-map.html">Half Map</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="candidate-no-available.html">No Available - V1</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="candidate-no-available2.html">No Available - V2</a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li className="nav-sub">
-                                                        <a href="#">Sample CV <span className="icon-keyboard_arrow_right"></span> </a>
-                                                        <ul className="nav-sub-menu">
-
-                                                            <li className="nav-menu-item">
-                                                                <a href="sample-cv.html">Sample CV</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="cv-details.html">CV Details</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="sample-cv-sidebar.html">Sample CV Sidebar</a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li className="nav-sub">
-                                                        <a href="candidate-single.html">Candidate Single - V1</a>
-                                                    </li>
-                                                    <li className="nav-sub">
-                                                        <a href="candidate-single2.html">Candidate Single - V2</a>
-                                                    </li>
-                                                    <li className="nav-sub">
-                                                        <a href="dashboard/candidates-dashboard.html">Candidates Dashboard</a>
-                                                    </li>
-                                                </ul> */}
+                                            <li className={"menu-item" + (activeMenu == "" ? " current-item" : "")}>
+                                                <Link to="/employers-review">EmployersReview</Link>
                                             </li>
-                                            <li className="menu-item menu-item">
-                                                <a href="#">Blog</a>
-                                                {/* <ul className="sub-menu st1">
-                                                    <li className="nav-sub">
-                                                        <a href="#">Blog Listing <span className="icon-keyboard_arrow_right"></span> </a>
-                                                        <ul className="nav-sub-menu">
-
-                                                            <li className="nav-menu-item">
-                                                                <a href="blog.html">Blog List </a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="blog-grid.html">Blog Grid</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="blog-masonry.html">Blog Masonry</a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li className="nav-sub">
-                                                        <a href="#">Blog Details <span className="icon-keyboard_arrow_right"></span> </a>
-                                                        <ul className="nav-sub-menu">
-
-                                                            <li className="nav-menu-item">
-                                                                <a href="blog-detail.html">Blog Details - V1</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="blog-detail-01.html">Blog Details - V2</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="blog-detail-side-bar.html">Blog Details Sidebar</a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-
-                                                </ul> */}
-
-                                            </li>
-                                            <li className="menu-item menu-item  ">
-                                                <a href="#">Pages</a>
-                                                {/* <ul className="sub-menu st1">
-                                                    <li className="nav-sub">
-                                                        <a href="#">Shop<span className="icon-keyboard_arrow_right"></span> </a>
-                                                        <ul className="nav-sub-menu">
-
-                                                            <li className="nav-menu-item">
-                                                                <a href="shop.html">Shop List</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="shop-details.html">Shop Single</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="shopping-cart.html">Shopping Cart</a>
-                                                            </li>
-                                                            <li className="nav-menu-item">
-                                                                <a href="checkout.html">Checkout</a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li className="nav-sub">
-                                                        <a href="about-us.html">About Us</a>
-
-                                                    </li>
-                                                    <li className="nav-sub">
-                                                        <a href="accordion-page.html">FAQS</a>
-                                                    </li>
-                                                    <li className="nav-sub">
-                                                        <a href="term-of-use.html">Terms Of Use</a>
-                                                    </li>
-                                                    <li className="nav-sub">
-                                                        <a href="pricing.html">Pricing</a>
-                                                    </li>
-                                                    <li className="nav-sub">
-                                                        <a href="login.html">Login</a>
-                                                    </li>
-                                                    <li className="nav-sub">
-                                                        <a href="create-account.html">Create Account</a>
-                                                    </li>
-                                                    <li className="nav-sub">
-                                                        <a href="contact-us.html">Contact Us</a>
-                                                    </li>
-                                                    <li className="nav-sub">
-                                                        <a href="modal.html">Modal</a>
-                                                    </li>
-                                                </ul> */}
-
+                                            <li className={"menu-item" + (activeMenu == "" ? " current-item" : "")}>
+                                                <a href="#">About</a>
                                             </li>
                                         </ul>
                                     </nav>
@@ -480,7 +245,7 @@ export default function Navbar() {
                                 <div className="header-customize-item help">
                                     {/* <a href="term-of-use.html"><span className="icon-help-circle"></span></a> */}
                                 </div>
-                               
+
                                 <div className="header-customize-item account">
                                     <img src="images/user/avatar/image-01.jpg" alt="" />
                                     <div className="name">

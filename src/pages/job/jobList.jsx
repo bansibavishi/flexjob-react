@@ -120,7 +120,7 @@ export default function JobList() {
                                             <option value="">All Location 2</option>
                                             <option value="">All Location 3</option>
                                         </select>
-                                        <div className="nice-select select-location" tabindex="0">
+                                        <div className="nice-select select-location" tabIndex="0">
                                             <span className="current">All Location</span>
                                             <ul className="list">
                                                 <li data-value="" className="option selected focus">All Location</li>
@@ -144,15 +144,15 @@ export default function JobList() {
                                                 <h6>On-site/Remote</h6>
                                                 <ul>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-1" /><label for="checkbox-1"></label></div>
+                                                        <div className="round"><input type="checkbox" id="checkbox-1" /><label htmlFor="checkbox-1"></label></div>
                                                         <label>On-site (1,675)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-2" /><label for="checkbox-2"></label></div>
+                                                        <div className="round"><input type="checkbox" id="checkbox-2" /><label htmlFor="checkbox-2"></label></div>
                                                         <label>Remote (5,675)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-3" /><label for="checkbox-3"></label></div>
+                                                        <div className="round"><input type="checkbox" id="checkbox-3" /><label htmlFor="checkbox-3"></label></div>
                                                         <label>Hybrid (6,675)</label>
                                                     </li>
                                                 </ul>
@@ -161,27 +161,27 @@ export default function JobList() {
                                                 <h6>All Job Types</h6>
                                                 <ul>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-4" /><label for="checkbox-4"></label></div>
+                                                        <div className="round"><input type="checkbox" id="checkbox-4" /><label htmlFor="checkbox-4"></label></div>
                                                         <label>All Job Types (1,675)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-5" /><label for="checkbox-5"></label></div>
+                                                        <div className="round"><input type="checkbox" id="checkbox-5" /><label htmlFor="checkbox-5"></label></div>
                                                         <label>Full-time (623)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-6" /><label for="checkbox-6"></label></div>
+                                                        <div className="round"><input type="checkbox" id="checkbox-6" /><label htmlFor="checkbox-6"></label></div>
                                                         <label>Part-time (45)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-7" /><label for="checkbox-7"></label></div>
+                                                        <div className="round"><input type="checkbox" id="checkbox-7" /><label htmlFor="checkbox-7"></label></div>
                                                         <label>Contract (65)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-8" /><label for="checkbox-8"></label></div>
+                                                        <div className="round"><input type="checkbox" id="checkbox-8" /><label htmlFor="checkbox-8"></label></div>
                                                         <label>Internship (9)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-9" /><label for="checkbox-9"></label></div>
+                                                        <div className="round"><input type="checkbox" id="checkbox-9" /><label htmlFor="checkbox-9"></label></div>
                                                         <label>Temporary (4)</label>
                                                     </li>
                                                 </ul>
@@ -190,27 +190,27 @@ export default function JobList() {
                                                 <h6>All Salary</h6>
                                                 <ul>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-10" /><label for="checkbox-10"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-10" /><label htmlFor="checkbox-10"></label>
                                                         </div><label>All Salaries (6,277)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-11" /><label for="checkbox-11"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-11" /><label htmlFor="checkbox-11"></label>
                                                         </div><label>$50,000+ (2,277)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-12" /><label for="checkbox-12"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-12" /><label htmlFor="checkbox-12"></label>
                                                         </div><label>$70,000+ (1,627)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-13" /><label for="checkbox-13"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-13" /><label htmlFor="checkbox-13"></label>
                                                         </div><label>$90,000+ (7,627)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-14" /><label for="checkbox-14"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-14" /><label htmlFor="checkbox-14"></label>
                                                         </div><label>$110,000+ (227)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-15" /><label for="checkbox-15"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-15" /><label htmlFor="checkbox-15"></label>
                                                         </div><label>$130,000+ (527)</label>
                                                     </li>
                                                 </ul>
@@ -219,27 +219,27 @@ export default function JobList() {
                                                 <h6>Any Distance</h6>
                                                 <ul>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-16" /><label for="checkbox-16"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-16" /><label htmlFor="checkbox-16"></label>
                                                         </div><label>Any Distance (227)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-17" /><label for="checkbox-17"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-17" /><label htmlFor="checkbox-17"></label>
                                                         </div><label>within 5 miles (227)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-18" /><label for="checkbox-18"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-18" /><label htmlFor="checkbox-18"></label>
                                                         </div><label>within 10 miles (227)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-19" /><label for="checkbox-19"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-19" /><label htmlFor="checkbox-19"></label>
                                                         </div><label>within 25 miles (227)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-20" /><label for="checkbox-20"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-20" /><label htmlFor="checkbox-20"></label>
                                                         </div><label>within 50 miles (227)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-21" /><label for="checkbox-21"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-21" /><label htmlFor="checkbox-21"></label>
                                                         </div><label>within 100 miles (227)</label>
                                                     </li>
                                                 </ul>
@@ -248,23 +248,23 @@ export default function JobList() {
                                                 <h6>Posted Anytime</h6>
                                                 <ul>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-22" /><label for="checkbox-22"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-22" /><label htmlFor="checkbox-22"></label>
                                                         </div><label>Posted Anytime</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-23" /><label for="checkbox-23"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-23" /><label htmlFor="checkbox-23"></label>
                                                         </div><label>Last 1 days (227)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-24" /><label for="checkbox-24"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-24" /><label htmlFor="checkbox-24"></label>
                                                         </div><label>Last 3 days (227)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-25" /><label for="checkbox-25"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-25" /><label htmlFor="checkbox-25"></label>
                                                         </div><label>Last 7 days (227)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-26" /><label for="checkbox-26"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-26" /><label htmlFor="checkbox-26"></label>
                                                         </div><label>Last 14 days (227)</label>
                                                     </li>
                                                 </ul>
@@ -273,19 +273,19 @@ export default function JobList() {
                                                 <h6>All Seniority Levels</h6>
                                                 <ul>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-27" /><label for="checkbox-27"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-27" /><label htmlFor="checkbox-27"></label>
                                                         </div><label>All Seniority Levels</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-28" /><label for="checkbox-28"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-28" /><label htmlFor="checkbox-28"></label>
                                                         </div><label>Entry Level (24)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-29" /><label for="checkbox-29"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-29" /><label htmlFor="checkbox-29"></label>
                                                         </div><label>Mid Senior Level (34)</label>
                                                     </li>
                                                     <li>
-                                                        <div className="round"><input type="checkbox" id="checkbox-30" /><label for="checkbox-30"></label>
+                                                        <div className="round"><input type="checkbox" id="checkbox-30" /><label htmlFor="checkbox-30"></label>
                                                         </div><label>Executive (12)</label>
                                                     </li>
                                                 </ul>
@@ -359,7 +359,7 @@ export default function JobList() {
                                         <div className="group-col-2">
                                             {job.map(e =>  {
 
-                                            return <div className="features-job cl2">
+                                            return <div className="features-job cl2" key={Math.random()}>
                                                 <div className="job-archive-header">
                                                     <div className="inner-box">
                                                         <div className="logo-company">
@@ -410,8 +410,8 @@ export default function JobList() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            })} 
-                                            
+                                            })}
+
 
                                         </div>
 
