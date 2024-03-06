@@ -15,6 +15,7 @@ import { ToastContainer } from 'react-toastify';
 import JobCreate from "./pages/job/jobCreate";
 import { Navigate } from "react-router-dom/dist";
 import Dashboard from "./layout/dashboard";
+import Employerlist from "./pages/employers/employerList";
 
 
 function RequireAuth({ children }) {
@@ -33,18 +34,19 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/employers" element={<EmployersSingle />} />
                         <Route path="/employers-review" element={<EmployersReview />} />
-                        <Route path="/candidate" element={<Candidate />} />
+                       <Route path="employers-list" element={<Employerlist/>} />
+                         <Route path="/candidate" element={<Candidate />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
-                        <Route path="/forget-pass" element={<ForgetPass />} />
+                        <Route path="/forget-pass" element={<ForgetPass />} />s
 
                         <Route path="/job" element={<JobList />} />
-                        <Route path="/job/create" element={<JobCreate />} />
                         {/* <Route path="/job/:id" element={<JobSingle />} /> */}
                     </Route>
 
                     <Route path="/" element={<Dashboard />} >
-                        <Route path="/profile" element={<Profile />} />
+                        <Route path="/profile" element={<RequireAuth> <Profile /></RequireAuth>} />
+                        <Route path="/job/create" element={<JobCreate />} />
                     </Route>
 
                 </Routes>

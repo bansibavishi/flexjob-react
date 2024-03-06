@@ -39,6 +39,9 @@ export default function Login() {
                 toast.success(res.message)
                 localStorage.setItem('token', res.token)
                 send("/profile")
+            } else {
+                toast.error(res.message)
+
             }
         }).catch(err => {
             console.log(err);

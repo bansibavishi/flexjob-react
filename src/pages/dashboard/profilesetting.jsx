@@ -17,10 +17,11 @@ export default function Profile() {
         expertise: ["communication skills", "DSA"],
         title: "qwertyuiop",
         description: "qwtdycvbhdhhd",
-        workHistory: ["fdfdfdf", "fdfdffdff"],
+        // workHistory: ["fdfdfdf", "fdfdffdff"],
         location: "fdfgdf",
-        savedJob: ["sdd", "sff"],
-        rate: "8"
+        // savedJob: ["sdd", "sff"],
+        rate: "8",
+        image: ""
     })
     const [expertise, setExpertise] = useState([])
     const options = [
@@ -74,15 +75,25 @@ export default function Profile() {
     function update(e) {
         e.preventDefault();
 
+        var pData = new FormData()
+        for (const k in user) {
+            if(k != '_id' && k !='email'  &&k != 'savedJob' && k != 'workHistory') 
+            if (k == "expertise") {
+                user[k].map(e => {
+                    pData.append(k, e)
+                })
+            } else
+                pData.append(k, user[k])
+        }
 
 
         var token = localStorage.getItem('token')
 
         fetch(process.env.REACT_APP_API + "/profile-update", {
             method: "post",
-            body: JSON.stringify(user),
+            body: pData,
             headers: {
-                "content-type": "application/json",
+                "content-type": "multipart/form-data",
                 Authorization: 'Bearer ' + token
             }
         }).then(e => e.json()).then(res => {
@@ -140,7 +151,7 @@ export default function Profile() {
                                         <div id="upload-profile">
                                             <h5 className="fw-6">Upload a new avatar: </h5>
                                             <h6>JPG 80x80px</h6>
-                                            <input className="up-file" id="tf-upload-img" type="file" name="profile" required="" />
+                                            <input className="up-file" id="tf-upload-img" type="file" name="profile" onChange={e => setUser({ ...user, image: e.target.files[0] })} required="" />
                                         </div>
                                     </div>
 
@@ -180,10 +191,10 @@ export default function Profile() {
                                                         defaultValue={{ value: 'Communication Skills', label: 'Communication Skills' }}
                                                         isMulti styles={{
                                                             control: (baseStyles, state) => ({
-                                                              ...baseStyles,
-                                                              borderColor: state.isFocused  ? 'green' : 'gray',
+                                                                ...baseStyles,
+                                                                borderColor: state.isFocused ? 'green' : 'gray',
                                                             }),
-                                                          }}
+                                                        }}
                                                         options={expertise} />
 
                                                     {/* <select multiple>

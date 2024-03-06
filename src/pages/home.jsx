@@ -1,8 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../layout/navbar'
 import Footer from '../layout/footer'
 
 export default function Home() {
+
+    const [jobList, setJobList] = useState([])
+
+    function getJobList() {
+        fetch(process.env.REACT_APP_API + "/post-list").then(e => e.json()).then(res => {
+            setJobList(res.data)
+            console.log(res);
+        })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+    useEffect(() => {
+        getJobList()
+    }, [])
 
     return (
         <>
@@ -166,330 +181,70 @@ export default function Home() {
                         </div>
                     </div>
                     <div className="row wow fadeInUp">
-                        <div className="col-lg-6 ">
-                            <div className="features-job">
-                                <div className="job-archive-header">
-                                    <div className="inner-box">
-                                        <div className="logo-company">
-                                            <img src="images/logo-company/cty8.png" alt="images/logo-company/cty8.png" />
+
+                        {
+                            jobList.map(e =>
+                                <div className="col-lg-6 " key={Math.random()}>
+                                    <div className="features-job">
+                                        <div className="job-archive-header">
+                                            <div className="inner-box">
+                                                <div className="logo-company">
+                                                    <img src={ process.env.REACT_APP_API + e.user[0].img} className='rounded-circle' alt=""/>
+                                                </div>
+                                                <div className="box-content">
+                                                    <h4>
+                                                        <a href="jobs-single.html">{e.userId}</a>
+                                                    </h4>
+                                                    <h3>
+                                                        <a href="jobs-single.html"> {e.title} </a>
+                                                        <span className="icon-bolt"></span>
+                                                    </h3>
+                                                    <ul>
+                                                        <li>
+                                                            <span className="icon-map-pin"></span>
+                                                            {e.description}
+                                                        </li>
+                                                        <li>
+                                                            <span className="icon-calendar"></span>
+                                                            {e.formattedTime}
+                                                        </li>
+                                                    </ul>
+                                                    <span className="icon-heart"></span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="box-content">
-                                            <h4>
-                                                <a href="jobs-single.html">Rockstar Games New York</a>
-                                            </h4>
-                                            <h3>
-                                                <a href="jobs-single.html"> Project manager </a>
-                                                <span className="icon-bolt"></span>
-                                            </h3>
-                                            <ul>
-                                                <li>
-                                                    <span className="icon-map-pin"></span>
-                                                    Las Vegas, NV 89107, USA
-                                                </li>
-                                                <li>
-                                                    <span className="icon-calendar"></span>
-                                                    2 days ago
-                                                </li>
-                                            </ul>
-                                            <span className="icon-heart"></span>
+                                        <div className="job-archive-footer">
+                                            <div className="job-footer-left">
+                                                <ul className="job-tag">
+                                                    {e.expertise.map(i =>
+                                                        <li key={Math.random}><a href="#">{i.technology}</a></li>
+                                                    )}
+                                                </ul>
+                                                <div className="star">
+                                                    <span className="icon-star-full"></span>
+                                                    <span className="icon-star-full"></span>
+                                                    <span className="icon-star-full"></span>
+                                                    <span className="icon-star-full"></span>
+                                                    <span className="icon-star-full"></span>
+                                                </div>
+                                            </div>
+                                            <div className="job-footer-right">
+                                                <div className="price">
+                                                    <span className="icon-dolar1"></span>
+                                                    <p>$83,000 - $110,000 <span className="year">/year</span></p>
+                                                </div>
+                                                <p className="days">22 days left to apply</p>
+                                            </div>
                                         </div>
+                                        <a href="jobs-single.html" className="jobtex-link-item" tabIndex="0"></a>
                                     </div>
                                 </div>
-                                <div className="job-archive-footer">
-                                    <div className="job-footer-left">
-                                        <ul className="job-tag">
-                                            <li><a href="#">Full-time</a></li>
-                                            <li><a href="#">Remote</a></li>
-                                        </ul>
-                                        <div className="star">
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                        </div>
-                                    </div>
-                                    <div className="job-footer-right">
-                                        <div className="price">
-                                            <span className="icon-dolar1"></span>
-                                            <p>$83,000 - $110,000 <span className="year">/year</span></p>
-                                        </div>
-                                        <p className="days">22 days left to apply</p>
-                                    </div>
-                                </div>
-                                <a href="jobs-single.html" className="jobtex-link-item" tabIndex="0"></a>
-                            </div>
-                        </div>
-                        <div className="col-lg-6">
-                            <div className="features-job">
-                                <div className="job-archive-header">
-                                    <div className="inner-box">
-                                        <div className="logo-company">
-                                            <img src="images/logo-company/cty11.png" alt="images/logo-company/cty11.png" />
-                                        </div>
-                                        <div className="box-content">
-                                            <h4>
-                                                <a href="jobs-single.html">Rockstar Games New York</a>
-                                            </h4>
-                                            <h3>
-                                                <a href="jobs-single.html">Senior UI/UX Designer</a>
-                                                <span className="icon-bolt"></span>
-                                            </h3>
-                                            <ul>
-                                                <li>
-                                                    <span className="icon-map-pin"></span>
-                                                    Las Vegas, NV 89107, USA
-                                                </li>
-                                                <li>
-                                                    <span className="icon-calendar"></span>
-                                                    2 days ago
-                                                </li>
-                                            </ul>
-                                            <span className="icon-heart"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="job-archive-footer">
-                                    <div className="job-footer-left">
-                                        <ul className="job-tag">
-                                            <li><a href="#">Temporary</a> </li>
-                                            <li><a href="#">Remote</a></li>
-                                        </ul>
-                                        <div className="star">
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                        </div>
-                                    </div>
-                                    <div className="job-footer-right">
-                                        <div className="price">
-                                            <span className="icon-dolar1"></span>
-                                            <p>$83,000 - $110,000 <span className="year">/year</span></p>
-                                        </div>
-                                        <p className="days">22 days left to apply</p>
-                                    </div>
-                                </div>
-                                <a href="jobs-single.html" className="jobtex-link-item" tabIndex="0"></a>
-                            </div>
-                        </div>
-                        <div className="col-lg-6">
-                            <div className="features-job">
-                                <div className="job-archive-header">
-                                    <div className="inner-box">
-                                        <div className="logo-company">
-                                            <img src="images/logo-company/cty4.png" alt="images/logo-company/cty4.png" />
-                                        </div>
-                                        <div className="box-content">
-                                            <h4>
-                                                <a href="jobs-single.html">Rockstar Games New York</a>
-                                            </h4>
-                                            <h3>
-                                                <a href="jobs-single.html">Full Stack Development</a>
-                                                <span className="icon-bolt"></span>
-                                            </h3>
-                                            <ul>
-                                                <li>
-                                                    <span className="icon-map-pin"></span>
-                                                    Las Vegas, NV 89107, USA
-                                                </li>
-                                                <li>
-                                                    <span className="icon-calendar"></span>
-                                                    2 days ago
-                                                </li>
-                                            </ul>
-                                            <span className="icon-heart"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="job-archive-footer">
-                                    <div className="job-footer-left">
-                                        <ul className="job-tag">
-                                            <li><a href="#">Temporary</a> </li>
-                                            <li><a href="#">Remote</a></li>
-                                        </ul>
-                                        <div className="star">
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                        </div>
-                                    </div>
-                                    <div className="job-footer-right">
-                                        <div className="price">
-                                            <span className="icon-dolar1"></span>
-                                            <p>$83,000 - $110,000 <span className="year">/year</span></p>
-                                        </div>
-                                        <p className="days">22 days left to apply</p>
-                                    </div>
-                                </div>
-                                <a href="jobs-single.html" className="jobtex-link-item" tabIndex="0"></a>
-                            </div>
-                        </div>
-                        <div className="col-lg-6">
-                            <div className="features-job">
-                                <div className="job-archive-header">
-                                    <div className="inner-box">
-                                        <div className="logo-company">
-                                            <img src="images/logo-company/cty7.png" alt="images/logo-company/cty7.png" />
-                                        </div>
-                                        <div className="box-content">
-                                            <h4>
-                                                <a href="jobs-single.html">Rockstar Games New York</a>
-                                            </h4>
-                                            <h3>
-                                                <a href="jobs-single.html">Senior DevOps Engineer</a>
-                                                <span className="icon-bolt"></span>
-                                            </h3>
-                                            <ul>
-                                                <li>
-                                                    <span className="icon-map-pin"></span>
-                                                    Las Vegas, NV 89107, USA
-                                                </li>
-                                                <li>
-                                                    <span className="icon-calendar"></span>
-                                                    2 days ago
-                                                </li>
-                                            </ul>
-                                            <span className="icon-heart"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="job-archive-footer">
-                                    <div className="job-footer-left">
-                                        <ul className="job-tag">
-                                            <li><a href="#">Contract</a></li>
-                                            <li><a href="#">Remote</a></li>
-                                        </ul>
-                                        <div className="star">
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                        </div>
-                                    </div>
-                                    <div className="job-footer-right">
-                                        <div className="price">
-                                            <span className="icon-dolar1"></span>
-                                            <p>$83,000 - $110,000 <span className="year">/year</span></p>
-                                        </div>
-                                        <p className="days">22 days left to apply</p>
-                                    </div>
-                                </div>
-                                <a href="jobs-single.html" className="jobtex-link-item" tabIndex="0"></a>
-                            </div>
-                        </div>
-                        <div className="col-lg-6">
-                            <div className="features-job">
-                                <div className="job-archive-header">
-                                    <div className="inner-box">
-                                        <div className="logo-company">
-                                            <img src="images/logo-company/cty2.png" alt="images/logo-company/cty2.png" />
-                                        </div>
-                                        <div className="box-content">
-                                            <h4>
-                                                <a href="jobs-single.html">Rockstar Games New York</a>
-                                            </h4>
-                                            <h3>
-                                                <a href="jobs-single.html"> Project manager </a>
-                                                <span className="icon-bolt"></span>
-                                            </h3>
-                                            <ul>
-                                                <li>
-                                                    <span className="icon-map-pin"></span>
-                                                    Las Vegas, NV 89107, USA
-                                                </li>
-                                                <li>
-                                                    <span className="icon-calendar"></span>
-                                                    2 days ago
-                                                </li>
-                                            </ul>
-                                            <span className="icon-heart"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="job-archive-footer">
-                                    <div className="job-footer-left">
-                                        <ul className="job-tag">
-                                            <li><a href="#">Full-time</a></li>
-                                            <li><a href="#">Remote</a></li>
-                                        </ul>
-                                        <div className="star">
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                        </div>
-                                    </div>
-                                    <div className="job-footer-right">
-                                        <div className="price">
-                                            <span className="icon-dolar1"></span>
-                                            <p>$83,000 - $110,000 <span className="year">/year</span></p>
-                                        </div>
-                                        <p className="days">22 days left to apply</p>
-                                    </div>
-                                </div>
-                                <a href="jobs-single.html" className="jobtex-link-item" tabIndex="0"></a>
-                            </div>
-                        </div>
-                        <div className="col-lg-6">
-                            <div className="features-job">
-                                <div className="job-archive-header">
-                                    <div className="inner-box">
-                                        <div className="logo-company">
-                                            <img src="images/logo-company/cty9.png" alt="images/logo-company/cty9.png" />
-                                        </div>
-                                        <div className="box-content">
-                                            <h4>
-                                                <a href="jobs-single.html">Rockstar Games New York</a>
-                                            </h4>
-                                            <h3>
-                                                <a href="jobs-single.html">Social Media Marketing </a>
-                                                <span className="icon-bolt"></span>
-                                            </h3>
-                                            <ul>
-                                                <li>
-                                                    <span className="icon-map-pin"></span>
-                                                    Las Vegas, NV 89107, USA
-                                                </li>
-                                                <li>
-                                                    <span className="icon-calendar"></span>
-                                                    2 days ago
-                                                </li>
-                                            </ul>
-                                            <span className="icon-heart"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="job-archive-footer">
-                                    <div className="job-footer-left">
-                                        <ul className="job-tag">
-                                            <li><a href="#">Part-time</a></li>
-                                            <li><a href="#">Remote</a></li>
-                                        </ul>
-                                        <div className="star">
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                            <span className="icon-star-full"></span>
-                                        </div>
-                                    </div>
-                                    <div className="job-footer-right">
-                                        <div className="price">
-                                            <span className="icon-dolar1"></span>
-                                            <p>$83,000 - $110,000 <span className="year">/year</span></p>
-                                        </div>
-                                        <p className="days">22 days left to apply</p>
-                                    </div>
-                                </div>
-                                <a href="jobs-single.html" className="jobtex-link-item" tabIndex="0"></a>
-                            </div>
-                        </div>
+
+                            )
+
+                        }
+
+
                         <div className="col-md-12">
                             <div className="wrap-button">
                                 <a href="find-jobs-list.html" className="tf-button style-1">
@@ -501,7 +256,7 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section >
             <section className="wd-iconbox flat-row background1">
                 <div className="tf-container">
                     <div className="title-iconbox">

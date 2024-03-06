@@ -256,7 +256,7 @@ export default function Navbar() {
                                             <a href="dashboard/candidates-dashboard.html"><span className="icon-dashboard"></span>Dashboard</a>
                                         </div>
                                         <div className="sub-account-item">
-                                            <a href="dashboard/candidates-profile-setting.html"><span className="icon-profile"></span> Profile</a>
+                                            <Link to="/profile"><span className="icon-profile"></span> Profile</Link>
                                         </div>
                                         <div className="sub-account-item">
                                             <a href="dashboard/candidates-resumes.html"><span className="icon-resumes"></span> Resumes</a>

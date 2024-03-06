@@ -9,7 +9,7 @@ export default function Register() {
     const send = useNavigate();
 
     const [user, setUser] = useState({
-        type: "employeer",
+        type: "",
         firstName: "",
         lastName: "",
         email: "",
@@ -79,8 +79,8 @@ export default function Register() {
                         <div className="wd-form-login tf-tab">
                             <h4>Create a free account</h4>
                             <ul className="menu-tab">
-                                <li className="ct-tab active">Candidate</li>
-                                <li className="ct-tab">Employer</li>
+                                <li className="ct-tab active" onClick={e => setUser({...user, type: "candidate"})}>Candidate</li>
+                                <li className="ct-tab" onClick={e => setUser({...user, type: "employer"})}>Employer</li>
                             </ul>
                             <div className="content-tab">
                                 <div className="inner">
