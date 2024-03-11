@@ -1,8 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../layout/navbar'
 import Footer from '../../layout/footer'
 
 export default function EmployersSingle() {
+
+    const [employer, setEmployer] = useState({})
+
+    function getSingleEmployer() {
+
+        fetch(process.env.REACT_APP_API + "/user-by-id/65e8333a38fad95b47bfb2cd", {
+
+        }).then(e => e.json()).then(res => {
+            setEmployer(res.data)
+        })
+            .catch(err => {
+                console.log(err);
+            })
+
+    }
+    useEffect(() => {
+        getSingleEmployer()
+    }, [])
     return (
         <>
             <div className="wd-popup-job-apply style2">
@@ -55,270 +73,6 @@ export default function EmployersSingle() {
 
                         <div className="content-tab">
 
-                            <div className="header-ct-center menu-moblie">
-                                <div className="nav-wrap">
-                                    <nav className="main-nav mobile">
-                                        <ul id="menu-primary-menu" className="menu">
-                                            <li className="menu-item menu-item-has-children-mobile">
-                                                <a className="iteam-menu">Home</a>
-                                                <ul className="sub-menu-mobile">
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="home-01.html">Home Page 01 </a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="Home-02.html">Home Page 02 </a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="home-03.html">Home Page 03 </a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="home-04.html">Home Page 04 </a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="home-05.html">Home Page 05 </a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="home-06.html">Home Page 06 </a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="home-07.html">Home Page 07 </a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="home-08.html">Home Page 08 </a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="home-09.html">Home Page 09 </a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="home-10.html">Home Page 10 </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li className="menu-item menu-item-has-children-mobile">
-                                                <a className="iteam-menu">Find jobs </a>
-                                                <ul className="sub-menu-mobile">
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="find-jobs-list.html">List Layout</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="find-jobs-grid.html">Grid Layout</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="find-jobs-list-sidebar.html">List Sidebar</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="find-jobs-grid-sidebar.html">Grid Sidebar</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="find-jobs-list-sidebar-fullwidth.html">List Sidebar FullWidth</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="find-jobs-grid-sidebar-fullwidth.html">Grid Sidebar FullWidth</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="find-jobs-topmap.html">Top Map</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="find-jobs-topmap-sidebar.html">Top Map Sidebar</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="find-jobs-half-map.html">Half Map - V1</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="find-jobs-half-map2.html">Half Map - V2</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="jobs-single.html">Jobs Single - V1</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="jobs-single2.html">Jobs Single - V2</a>
-
-                                                    </li>
-                                                </ul>
-                                            </li>
-
-                                            <li className="menu-item menu-item-has-children-mobile current-item">
-                                                <a className="iteam-menu">Employers</a>
-                                                <ul className="sub-menu-mobile">
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="employers-list.html">List Layout</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="employers_grid.html">Grid Layout</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="employers-list-sidebar.html">List Sidebar</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="employers-grid-sidebar.html">Grid Sidebar</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="employers-grid-fullwidth.html">Grid Fullwidth</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="employers-topmap.html">Top Map</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="employers-half-map.html">Half Map</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile current-item">
-                                                        <a href="employers-single.html">Employers Single - V1</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="employers-single2.html">Employers Single - V2</a>
-
-                                                    </li>
-
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="employers-review.html">Employers Reviews</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="employers-not-pound.html">Employers Not Found</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="dashboard/employer-dashboard.html">Employer Dashboard</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li className="menu-item menu-item-has-children-mobile">
-                                                <a className="iteam-menu">Candidates</a>
-                                                <ul className="sub-menu-mobile">
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="candidate.html">List Layout</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="candidate-grid.html">Grid Layout</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="candidate-list-sidebar.html">List Sidebar</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="candidate-top-map.html">Top Map</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="candidate-half-map.html">Half Map</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="candidate-no-available.html">No Available - V1</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="candidate-no-available2.html">No Available - V2</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="candidate-single.html">Candidate Single - V1</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="candidate-single2.html">Candidate Single - V2</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="sample-cv.html">Sample CV</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="sample-cv-sidebar.html">Sample CV Sidebar</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="cv-details.html">CV Details</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="dashboard/candidates-dashboard.html">Candidates Dashboard</a>
-
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li className="menu-item menu-item-has-children-mobile">
-                                                <a className="iteam-menu">Blog</a>
-                                                <ul className="sub-menu-mobile">
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="blog.html">Blog List </a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="blog-grid.html">Blog Grid</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="blog-masonry.html">Blog Masonry</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="blog-detail.html">Blog Details- V1</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="blog-detail-01.html">Blog Details- V2</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="blog-detail-side-bar.html">Blog Details Sidebar</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li className="menu-item menu-item-has-children-mobile">
-                                                <a className="iteam-menu">Pages</a>
-                                                <ul className="sub-menu-mobile">
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="about-us.html">About Us</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="accordion-page.html">FAQS</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="term-of-use.html">Terms Of Use</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="pricing.html">Pricing</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="shop.html">Shop List</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="shopping-cart.html">Shopping Cart</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="shop-details.html">Shop Single</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="checkout.html">Checkout</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="login.html">Login</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="create-account.html">Create Account</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="contact-us.html">Contact Us</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="modal.html">Modal</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
 
                             <div className="categories">
                                 <div className="sub-categorie-mobile">
@@ -542,7 +296,6 @@ export default function EmployersSingle() {
 
             </div>
             <div className="boxed">
-                <Navbar />
 
                 <section className="single-job-thumb">
                     <img src="images/review/singlejob.jpg" alt="images" />
@@ -554,12 +307,12 @@ export default function EmployersSingle() {
                             <div className="col-lg-12">
                                 <div className="wd-job-author stc-em">
                                     <div className="inner-job-left">
-                                        <img src="images/logo-company/cty4.png" alt="images/logo-company/cty4.png" className="logo-company" />
+                                        <img src={process.env.REACT_APP_API + employer.img}alt="" className="logo-company" />
                                         <div className="content">
-                                            <h3><a href="#">Avitex Agency</a><span className="icon-bolt"></span></h3>
+                                            <h3><a href="#">{employer?.title}</a><span className="icon-bolt"></span></h3>
                                             <div className="job-info">
                                                 <span className="icon-map-pin"></span>
-                                                <span>Las Vegas, NV 89107, USA</span>
+                                                <span>{employer?.location}</span>
                                             </div>
                                             <div className="group-btn">
                                                 <button className="tf-btn">Follow</button>
@@ -1080,7 +833,6 @@ export default function EmployersSingle() {
                     </div>
                 </section>
 
-                <Footer />
 
             </div>
         </>

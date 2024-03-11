@@ -1,539 +1,125 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../layout/navbar'
 import Footer from '../../layout/footer'
+import { IoClose } from "react-icons/io5";
+import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+
 export default function JobSingle() {
+
+    const [job, setJob] = useState({})
+
+    const [modal, setModal] = useState(false)
+
+    let { postId } = useParams();
+
+    const [applyJob, setApplyJob] = useState(
+        {
+            postId: postId,
+            description: "",
+            bidAmount: ""
+        }
+    )
+
+
+
+    function getjob() {
+        var token = localStorage.getItem('token')
+        fetch(process.env.REACT_APP_API + "/post-by-id/" + postId, {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        }).then(e => e.json()).then(res => {
+            setJob(res.data)
+        })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    function apply(e) {
+        e.preventDefault();
+        var token = localStorage.getItem('token')
+        fetch(process.env.REACT_APP_API + "/proposal", {
+            method: "post",
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        }).then(e => e.json()).then(res => {
+            console.log(res);
+
+            if (res.status == true) {
+                toast.success(res.message)
+                setModal(false)
+            }
+            else {
+                toast.error(res.message)
+            }
+
+        })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    function like(likeId, es) {
+        console.log(es);
+        var token = localStorage.getItem('token')
+        fetch(process.env.REACT_APP_API + "/like", {
+            method: "post",
+            headers: {
+                "content-type": "application/json",
+                Authorization: 'Bearer ' + token
+            },
+            body: JSON.stringify({ postId: likeId })
+        }).then(e => e.json()).then(res => {
+            if (res.like == true) {
+                es.target.classList.add('text-danger')
+            } else {
+                es.target.classList.remove('text-danger')
+            }
+            console.log(res);
+        }).catch(err => {
+            console.log(err);
+        })
+
+    }
+
+    function save(saveId, es) {
+        console.log(es);
+
+        var token = localStorage.getItem('token')
+        fetch(process.env.REACT_APP_API + "/save-post", {
+            method: "post",
+            headers: {
+                "content-type": "application/json",
+                Authorization: 'Bearer ' + token
+            },
+            body: JSON.stringify({ postId: saveId })
+        }).then(e => e.json()).then(res => {
+            console.log(es.target);
+            if (res.save == true) {
+                es.target.classList.add('text-primary')
+            } else {
+                es.target.classList.remove('text-primary')
+            }
+            console.log(res);
+        }).catch(err => {
+            console.log(err);
+        })
+
+    }
+
+
+    useEffect(() => {
+        getjob()
+    }, [])
     return (
         <>
-            <div className="wd-popup-job-apply">
-                <div className="modal-menu__backdrop"></div>
-                <div className="content">
-                    <h6>Apply For This Job</h6>
-                    <form action="https://themesflat.co/html/jobtex/get">
-                        <label className="label-text">Email<span>*</span></label>
-                        <input type="text" placeholder="Email" required />
-                        <div className="group-radio">
-                            <input type="radio" /><label>You accept our <a href="#">Terms</a>  and <a href="#">Conditions</a>  and <a href="#">Privacy Policy</a> </label>
-                        </div>
-                        <button>Login</button>
-                    </form>
-                </div>
-            </div>
-
-
-            <div className="menu-mobile-popup">
-                <div className="modal-menu__backdrop"></div>
-                <div className="widget-filter">
-
-
-                    <div className="mobile-header">
-                        <div id="logo" className="logo">
-                            <a href="home-01.html">
-                                <img className="site-logo" src="images/logo.png" alt="Image" />
-                            </a>
-                        </div>
-                        <a className="title-button-group"><i className="icon-close"></i></a>
-
-                    </div>
-
-                    <div className="tf-tab">
-                        <div className="menu-tab">
-                            <div className="user-tag active">Menu</div>
-                            <div className="user-tag">Categories</div>
-                        </div>
-
-                        <div className="content-tab">
-
-                            <div className="header-ct-center menu-moblie">
-                                <div className="nav-wrap">
-                                    <nav className="main-nav mobile">
-                                        <ul id="menu-primary-menu" className="menu">
-                                            <li className="menu-item menu-item-has-children-mobile">
-                                                <a className="iteam-menu">Home</a>
-                                                <ul className="sub-menu-mobile">
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="home-01.html">Home Page 01 </a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="Home-02.html">Home Page 02 </a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="home-03.html">Home Page 03 </a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="home-04.html">Home Page 04 </a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="home-05.html">Home Page 05 </a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="home-06.html">Home Page 06 </a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="home-07.html">Home Page 07 </a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="home-08.html">Home Page 08 </a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="home-09.html">Home Page 09 </a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="home-10.html">Home Page 10 </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li className="menu-item menu-item-has-children-mobile  current-item">
-                                                <a className="iteam-menu">Find jobs </a>
-                                                <ul className="sub-menu-mobile">
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="find-jobs-list.html">List Layout</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="find-jobs-grid.html">Grid Layout</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="find-jobs-list-sidebar.html">List Sidebar</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="find-jobs-grid-sidebar.html">Grid Sidebar</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="find-jobs-list-sidebar-fullwidth.html">List Sidebar FullWidth</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="find-jobs-grid-sidebar-fullwidth.html">Grid Sidebar FullWidth</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="find-jobs-topmap.html">Top Map</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="find-jobs-topmap-sidebar.html">Top Map Sidebar</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="find-jobs-half-map.html">Half Map - V1</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="find-jobs-half-map2.html">Half Map - V2</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile current-item">
-                                                        <a href="jobs-single.html">Jobs Single - V1</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="jobs-single2.html">Jobs Single - V2</a>
-
-                                                    </li>
-                                                </ul>
-                                            </li>
-
-                                            <li className="menu-item menu-item-has-children-mobile">
-                                                <a className="iteam-menu">Employers</a>
-                                                <ul className="sub-menu-mobile">
-                                                    <li className="menu-item">
-                                                        <a href="employers-list.html">List Layout</a>
-
-                                                    </li>
-                                                    <li className="menu-item">
-                                                        <a href="employers_grid.html">Grid Layout</a>
-
-                                                    </li>
-                                                    <li className="menu-item">
-                                                        <a href="employers-list-sidebar.html">List Sidebar</a>
-
-                                                    </li>
-                                                    <li className="menu-item">
-                                                        <a href="employers-grid-sidebar.html">Grid Sidebar</a>
-
-                                                    </li>
-                                                    <li className="menu-item">
-                                                        <a href="employers-grid-fullwidth.html">Grid Fullwidth</a>
-
-                                                    </li>
-                                                    <li className="menu-item">
-                                                        <a href="employers-topmap.html">Top Map</a>
-
-                                                    </li>
-                                                    <li className="menu-item">
-                                                        <a href="employers-half-map.html">Half Map</a>
-
-                                                    </li>
-                                                    <li className="menu-item">
-                                                        <a href="employers-single.html">Employers Single - V1</a>
-
-                                                    </li>
-                                                    <li className="menu-item">
-                                                        <a href="employers-single2.html">Employers Single - V2</a>
-
-                                                    </li>
-
-                                                    <li className="menu-item">
-                                                        <a href="employers-review.html">Employers Reviews</a>
-
-                                                    </li>
-                                                    <li className="menu-item">
-                                                        <a href="employers-not-pound.html">Employers Not Found</a>
-                                                    </li>
-                                                    <li className="menu-item">
-                                                        <a href="dashboard/employer-dashboard.html">Employer Dashboard</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li className="menu-item menu-item-has-children-mobile">
-                                                <a className="iteam-menu">Candidates</a>
-                                                <ul className="sub-menu-mobile">
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="candidate.html">List Layout</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="candidate-grid.html">Grid Layout</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="candidate-list-sidebar.html">List Sidebar</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="candidate-top-map.html">Top Map</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="candidate-half-map.html">Half Map</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="candidate-no-available.html">No Available - V1</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="candidate-no-available2.html">No Available - V2</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="candidate-single.html">Candidate Single - V1</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="candidate-single2.html">Candidate Single - V2</a>
-
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="sample-cv.html">Sample CV</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="sample-cv-sidebar.html">Sample CV Sidebar</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="cv-details.html">CV Details</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="dashboard/candidates-dashboard.html">Candidates Dashboard</a>
-
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li className="menu-item menu-item-has-children-mobile">
-                                                <a className="iteam-menu">Blog</a>
-                                                <ul className="sub-menu-mobile">
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="blog.html">Blog List </a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="blog-grid.html">Blog Grid</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="blog-masonry.html">Blog Masonry</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="blog-detail.html">Blog Details- V1</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="blog-detail-01.html">Blog Details- V2</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="blog-detail-side-bar.html">Blog Details Sidebar</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li className="menu-item menu-item-has-children-mobile">
-                                                <a className="iteam-menu">Pages</a>
-                                                <ul className="sub-menu-mobile">
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="about-us.html">About Us</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="accordion-page.html">FAQS</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="term-of-use.html">Terms Of Use</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="pricing.html">Pricing</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="shop.html">Shop List</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="shopping-cart.html">Shopping Cart</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="shop-details.html">Shop Single</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="checkout.html">Checkout</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="login.html">Login</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="create-account.html">Create Account</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="contact-us.html">Contact Us</a>
-                                                    </li>
-                                                    <li className="menu-item menu-item-mobile">
-                                                        <a href="modal.html">Modal</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </div>
-
-                            <div className="categories">
-                                <div className="sub-categorie-mobile">
-                                    <ul className="pop-up">
-                                        <li className="categories-mobile">
-                                            <a href="#"><span className="icon-categorie-1"></span>Design & Creative</a>
-                                            <div className="group-menu-category-mobile">
-                                                <div className="menu left">
-                                                    <ul>
-                                                        <li><a href="find-jobs-list.html">Design & Creative</a></li>
-                                                        <li><a href="find-jobs-list.html">Digital marketing</a></li>
-                                                        <li><a href="find-jobs-list.html">Development & IT</a></li>
-                                                        <li><a href="find-jobs-list.html">Music & Audio</a></li>
-                                                        <li><a href="find-jobs-list.html">Finance & Accounting</a></li>
-                                                        <li><a href="find-jobs-list.html">Programming & Tech</a></li>
-                                                        <li><a href="find-jobs-list.html">video & Animation</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div className="menu right">
-                                                    <ul>
-                                                        <li><a href="jobs-single.html">Adobe Photoshop</a></li>
-                                                        <li><a href="jobs-single.html">adobe XD</a></li>
-                                                        <li><a href="jobs-single.html">Android Developer</a></li>
-                                                        <li><a href="jobs-single.html">Figma</a></li>
-                                                        <li><a href="jobs-single.html">CSS, Html</a></li>
-                                                        <li><a href="jobs-single.html">BA</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li className="categories-mobile">
-                                            <a href="#"><span className="icon-categorie-8"></span>Digital Marketing</a>
-                                            <div className="group-menu-category-mobile">
-                                                <div className="menu left">
-                                                    <ul>
-                                                        <li><a href="find-jobs-list.html">Digital marketing</a></li>
-                                                        <li><a href="find-jobs-list.html">Design & Creative</a></li>
-                                                        <li><a href="find-jobs-list.html">Finance & Accounting</a></li>
-                                                        <li><a href="find-jobs-list.html">Development & IT</a></li>
-                                                        <li><a href="find-jobs-list.html">Programming & Tech</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div className="menu right">
-                                                    <ul>
-                                                        <li><a href="jobs-single.html">adobe XD</a></li>
-                                                        <li><a href="jobs-single.html">Figma</a></li>
-                                                        <li><a href="jobs-single.html">BA</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li className="categories-mobile">
-                                            <a href="#"><span className="icon-categorie-2"></span>Development & IT</a>
-                                            <div className="group-menu-category-mobile">
-                                                <div className="menu left">
-                                                    <ul>
-                                                        <li><a href="find-jobs-list.html">Design & Creative</a></li>
-                                                        <li><a href="find-jobs-list.html">Development & IT</a></li>
-                                                        <li><a href="find-jobs-list.html">Music & Audio</a></li>
-                                                        <li><a href="find-jobs-list.html">video & Animation</a></li>
-                                                        <li><a href="find-jobs-list.html">Finance & Accounting</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div className="menu right">
-                                                    <ul>
-                                                        <li><a href="jobs-single.html">adobe XD</a></li>
-                                                        <li><a href="jobs-single.html">Android Developer</a></li>
-                                                        <li><a href="jobs-single.html">Adobe Photoshop</a></li>
-                                                        <li><a href="jobs-single.html">CSS, Html</a></li>
-                                                        <li><a href="jobs-single.html">BA</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li className="categories-mobile">
-                                            <a href="#"><span className="icon-categorie-3"></span>Music & Audio</a>
-                                            <div className="group-menu-category-mobile">
-                                                <div className="menu left">
-                                                    <ul>
-                                                        <li><a href="find-jobs-list.html">Digital marketing</a></li>
-                                                        <li><a href="find-jobs-list.html">Design & Creative</a></li>
-                                                        <li><a href="find-jobs-list.html">video & Animation</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div className="menu right">
-                                                    <ul>
-                                                        <li><a href="jobs-single.html">Android Developer</a></li>
-                                                        <li><a href="jobs-single.html">Adobe Photoshop</a></li>
-                                                        <li><a href="jobs-single.html">adobe XD</a></li>
-                                                        <li><a href="jobs-single.html">Figma</a></li>
-                                                        <li><a href="jobs-single.html">BA</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li className="categories-mobile">
-                                            <a href="#"><span className="icon-categorie-4"></span>Finance &
-                                                Accounting</a>
-                                            <div className="group-menu-category-mobile">
-                                                <div className="menu left">
-                                                    <ul>
-                                                        <li><a href="find-jobs-list.html">Development & IT</a></li>
-                                                        <li><a href="find-jobs-list.html">Design & Creative</a></li>
-                                                        <li><a href="find-jobs-list.html">Programming & Tech</a></li>
-                                                        <li><a href="find-jobs-list.html">Music & Audio</a></li>
-                                                        <li><a href="find-jobs-list.html">Finance & Accounting</a></li>
-                                                        <li><a href="find-jobs-list.html">video & Animation</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div className="menu right">
-                                                    <ul>
-                                                        <li><a href="jobs-single.html">adobe XD</a></li>
-                                                        <li><a href="jobs-single.html">Figma</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li className="categories-mobile">
-                                            <a href="#"><span className="icon-categorie-5"></span>Programming & Tech</a>
-                                            <div className="group-menu-category-mobile">
-                                                <div className="menu left">
-                                                    <ul>
-                                                        <li><a href="find-jobs-list.html">Design & Creative</a></li>
-                                                        <li><a href="find-jobs-list.html">Digital marketing</a></li>
-                                                        <li><a href="find-jobs-list.html">Music & Audio</a></li>
-                                                        <li><a href="find-jobs-list.html">Finance & Accounting</a></li>
-                                                        <li><a href="find-jobs-list.html">Programming & Tech</a></li>
-                                                        <li><a href="find-jobs-list.html">video & Animation</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div className="menu right">
-                                                    <ul>
-                                                        <li><a href="jobs-single.html">Adobe Photoshop</a></li>
-                                                        <li><a href="jobs-single.html">adobe XD</a></li>
-                                                        <li><a href="jobs-single.html">Figma</a></li>
-                                                        <li><a href="jobs-single.html">CSS, Html</a></li>
-                                                        <li><a href="jobs-single.html">BA</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li className="categories-mobile">
-                                            <a href="#"><span className="icon-categorie-6"></span>Video & Animation</a>
-                                            <div className="group-menu-category-mobile">
-                                                <div className="menu left">
-                                                    <ul>
-                                                        <li><a href="find-jobs-list.html">Design & Creative</a></li>
-                                                        <li><a href="find-jobs-list.html">Digital marketing</a></li>
-                                                        <li><a href="find-jobs-list.html">Programming & Tech</a></li>
-                                                        <li><a href="find-jobs-list.html">video & Animation</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div className="menu right">
-                                                    <ul>
-                                                        <li><a href="jobs-single.html">Adobe Photoshop</a></li>
-                                                        <li><a href="jobs-single.html">CSS, Html</a></li>
-                                                        <li><a href="jobs-single.html">BA</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li className="categories-mobile">
-                                            <a href="#"><span className="icon-categorie-7"></span>Writing &
-                                                translation</a>
-                                            <div className="group-menu-category-mobile">
-                                                <div className="menu left">
-                                                    <ul>
-                                                        <li><a href="find-jobs-list.html">Finance & Accounting</a></li>
-                                                        <li><a href="find-jobs-list.html">Programming & Tech</a></li>
-                                                        <li><a href="find-jobs-list.html">video & Animation</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div className="menu right">
-                                                    <ul>
-                                                        <li><a href="jobs-single.html">Figma</a></li>
-                                                        <li><a href="jobs-single.html">CSS, Html</a></li>
-                                                        <li><a href="jobs-single.html">BA</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div className="header-customize-item button">
-                        <a href="dashboard/candidates-resumes.html">Upload Resume</a>
-                    </div>
-
-                    <div className="mobile-footer">
-                        <div className="icon-infor d-flex aln-center">
-                            <div className="icon">
-                                <span className="icon-call-calling"><span className="path1"></span><span className="path2"></span><span className="path3"></span><span className="path4"></span></span>
-                            </div>
-                            <div className="content">
-                                <p>Need help? 24/7</p>
-                                <h6><a href="tel:0123456678">001-1234-88888</a></h6>
-                            </div>
-                        </div>
-                        <div className="wd-social d-flex aln-center">
-                            <ul className="list-social d-flex aln-center">
-                                <li><a href="#"><i className="icon-facebook"></i></a></li>
-                                <li><a href="#"><i className="icon-linkedin2"></i></a></li>
-                                <li><a href="#"><i className="icon-twitter"></i></a></li>
-                                <li><a href="#"><i className="icon-pinterest"></i></a></li>
-                                <li><a href="#"><i className="icon-instagram1"></i></a></li>
-                                <li><a href="#"><i className="icon-youtube"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
             <div className="boxed">
-
-                <Navbar />
                 <section className="single-job-thumb">
-                    <img src="images/review/singlejob.jpg" alt="images" />
+                    <img src="/images/review/singlejob.jpg" alt="images" />
                 </section>
 
                 <section className="form-sticky fixed-space">
@@ -543,28 +129,31 @@ export default function JobSingle() {
                                 <div className="wd-job-author2">
                                     <div className="content-left">
                                         <div className="thumb">
-                                            <img src="images/logo-company/cty4.png" alt="logo" />
+                                            <img src={process.env.REACT_APP_API + (job?.user &&  job?.user[0]?.img)} alt="logo" />
                                         </div>
                                         <div className="content">
-                                            <a href="#" className="category">Rockstar Games New York</a>
-                                            <h6><a href="#">Senior UI/UX Designer <span className="icon-bolt"></span></a></h6>
+                                            <a href="#" className="category">{job?.user && job?.user[0]?.firstName}</a>
+                                            <h6><a href="#">{job.title}<span className="icon-bolt"></span></a></h6>
                                             <ul className="job-info">
                                                 <li><span className="icon-map-pin"></span>
-                                                    <span>Las Vegas, NV 89107, USA</span></li>
+                                                    <span>{job?.user && job?.user[0]?.location}</span></li>
                                                 <li><span className="icon-calendar"></span>
                                                     <span>2 days ago</span></li>
                                             </ul>
                                             <ul className="tags">
-                                                <li><a href="#">Full-time</a></li>
-                                                <li><a href="#">Remote</a></li>
+                                                {job.expertise && job.expertise?.map(i =>
+                                                    <li key={Math.random()}><a href="#">{i.technology}</a></li>
+                                                )}
                                             </ul>
                                         </div>
                                     </div>
                                     <div className="content-right">
                                         <div className="top">
-                                            <a href="#" className="share"><i className="icon-share2"></i></a>
-                                            <a href="#" className="wishlist"><i className="icon-heart"></i></a>
-                                            <a className="btn btn-popup"><i className="icon-send"></i>Apply Now</a>
+                                        <span onClick={(se) => save(job._id, se)} className={"icon-save-candidate wishlist" + (job?.saved ? " text-danger" : "")}></span>
+                                            <span onClick={(se) => like(job._id, se)} className={"icon-heart wishlist" + (job?.liked ? " text-danger" : "")}></span>
+
+                                            <a className="btn btn-popup" onClick={e => { setModal(true); }}><i className="icon-send"></i>Apply Now</a>
+
                                         </div>
                                         <div className="bottom">
 
@@ -580,7 +169,7 @@ export default function JobSingle() {
                                             </div>
                                             <div className="price">
                                                 <span className="icon-dollar"></span>
-                                                <p>$83,000 - $110,000 <span className="year">/year</span></p>
+                                                <p>{job.budget} <span className="year">/year</span></p>
                                             </div>
                                         </div>
 
@@ -604,74 +193,11 @@ export default function JobSingle() {
                                     <div className="content-tab">
                                         <div className="inner-content">
                                             <h5>Full Job Description</h5>
-                                            <p>Are you a User Experience Designer with a track record of delivering intuitive digital experiences that
-                                                drive results? Are you a strategic storyteller and systems thinker who can concept and craft smart,
-                                                world-class campaigns across a variety of mediums?
+
+                                            <p className="mg-19">{job.description}
                                             </p>
-                                            <p className="mg-19">Deloitte's Green Dot Agency is looking to add a Lead User Experience Designer to our
-                                                experience design team. We want a passionate creative who's inspired by new trends and emerging
-                                                technologies, and is able to integrate them into memorable user experiences. A problem solver who is
-                                                entrepreneurial, collaborative, hungry, and humble; can deliver beautifully designed, leading-edge
-                                                experiences under tight deadlines; and who has demonstrated proven expertise.
-                                            </p>
-                                            <h6>The Work You'll Do:</h6>
-                                            <ul className="list-dot">
-                                                <li> Support the Creative Directors and Associate Creative Directors of experience design to concept and
-                                                    oversee the production of bold, innovative, award-winning campaigns and digital experiences.</li>
-                                                <li> Make strategic and tactical UX decisions related to design and usability as well as features and
-                                                    functions.</li>
-                                                <li> Creates low- and high-fidelity wireframes that represent a user's journey.</li>
-                                                <li> Effectively pitch wireframes to and solutions to stakeholders. You'll be the greatest advocate for
-                                                    our work, but you'll also listen and internalize feedback so that we can come back with creative that
-                                                    exceeds expectations.</li>
-                                            </ul>
-                                            <h6>What you'll bring:</h6>
-                                            <ul className="list-dot mg-bt-15">
-                                                <li>Passion for Human-Centered Design-a drive to make interactive technology better for people.</li>
-                                                <li>Thorough knowledge of UX/UI best practices.</li>
-                                                <li>Understanding of brand identity and working within a defined design system as well as contributing
-                                                    to it.</li>
-                                                <li>A mastery of craft. You dream about color, typography, and interaction design every day. You are
-                                                    proficient using tools like Figma and Adobe XD. You can efficiently use your skill set to develop new
-                                                    designs within existing and new visual systems and design languages.</li>
-                                                <li>A portfolio which highlights strong understanding of UX design including but not limited to: user
-                                                    flows, IA, and translating customer research, analytics, and insights into wireframes and
-                                                    high-fidelity designs.</li>
-                                                <li>Possess problem-solving skills, an investigative mentality, and a proactive nature-committed to
-                                                    delivering solutions.</li>
-                                                <li>Possess problem-solving skills</li>
-                                            </ul>
-                                            <h6>Qualifications:</h6>
-                                            <ul className="list-dot mg-bt-15">
-                                                <li>Bachelor's degree preferred, or equivalent experience.</li>
-                                                <li>At least 5-8 years of experience with UX and UI design.</li>
-                                                <li>2 years of experience with design thinking or similar framework that focuses on defining users'
-                                                    needs early.</li>
-                                                <li>Strong portfolio showing expert concept, layout, and typographic skills, as well as creativity and
-                                                    ability to adhere to brand standards.</li>
-                                                <li>Expertise in Figma, Adobe Creative Cloud suite, Microsoft suite.</li>
-                                                <li>Ability to collaborate well with cross-disciplinary agency team and stakeholders at all levels.</li>
-                                                <li>Forever learning: Relentless desire to learn and leverage the latest web technologies.</li>
-                                                <li>Detail-oriented: You must be highly organized, be able to multi-task, and meet tight deadlines.</li>
-                                                <li>Independence: The ability to make things happen with limited direction. Excellent proactive
-                                                    attitude, take-charge personality, and "can-do" demeanor.</li>
-                                                <li>Proficiency with Front-End UI technologies a bonus but not necessary (such as HTML, CSS,
-                                                    JavaScript).</li>
-                                            </ul>
-                                            <p>For individuals assigned and/or hired to work in Colorado or Nevada, Deloitte is required by law to
-                                                include a reasonable estimate of the compensation range for this role. This compensation range is
-                                                specific to the State of Colorado and the State of Nevada and takes into account the wide range of
-                                                factors that are considered in making compensation decisions including but not limited to skill sets;
-                                                experience and training; licensure and certifications; and other business and organizational needs. The
-                                                disclosed range estimate has not been adjusted for the applicable geographic differential associated
-                                                with the location at which the position may be filled. At Deloitte, it is not typical for an individual
-                                                to be hired at or near the top of the range for their role and compensation decisions are dependent on
-                                                the facts and circumstances of each case. A reasonable estimate of the current range is $86425- $177470.
-                                            </p>
-                                            <p>You may also be eligible to participate in a discretionary annual incentive program, subject to the
-                                                rules governing the program, whereby an award, if any, depends on various factors, including, without
-                                                limitation, individual and organizational performance.
-                                            </p>
+
+
                                             <div className="post-navigation d-flex aln-center">
                                                 <div className="wd-social d-flex aln-center">
                                                     <span>Social Profiles:</span>
@@ -695,7 +221,7 @@ export default function JobSingle() {
                                                 <div className="content-tab2">
                                                     <div className="inner">
                                                         <div className="thumb">
-                                                            <img src="images/review/thumbv3.jpg" alt="images" />
+                                                            <img src="/images/review/thumbv3.jpg" alt="images" />
                                                             <a href="https://www.youtube.com/watch?v=MLpWrANjFbI" className="lightbox-image">
                                                                 <svg width="56" height="56" viewBox="0 0 56 56" fill="none"
                                                                     xmlns="http://www.w3.org/2000/svg">
@@ -711,9 +237,9 @@ export default function JobSingle() {
                                                     </div>
                                                 </div>
                                                 <ul className="thumb-menu menu-tab2">
-                                                    <li className="ct-tab2"> <a className="lightbox-gallery" href="images/review/thumbv4.jpg"><img src="images/review/thumbv4.jpg" alt="images" /></a> </li>
-                                                    <li className="ct-tab2"> <a className="lightbox-gallery" href="images/review/thumbv1.jpg"><img src="images/review/thumbv1.jpg" alt="images" /></a></li>
-                                                    <li className="ct-tab2"><a className="lightbox-gallery" href="images/review/thumbv2.jpg"><img src="images/review/thumbv2.jpg" alt="images" /></a></li>
+                                                    <li className="ct-tab2"> <a className="lightbox-gallery" href="images/review/thumbv4.jpg"><img src="/images/review/thumbv4.jpg" alt="images" /></a> </li>
+                                                    <li className="ct-tab2"> <a className="lightbox-gallery" href="images/review/thumbv1.jpg"><img src="/images/review/thumbv1.jpg" alt="images" /></a></li>
+                                                    <li className="ct-tab2"><a className="lightbox-gallery" href="images/review/thumbv2.jpg"><img src="/images/review/thumbv2.jpg" alt="images" /></a></li>
                                                 </ul>
                                             </div>
 
@@ -787,7 +313,7 @@ export default function JobSingle() {
                                                             <div className="top-content">
                                                                 <div className="avatar">
                                                                     <div className="avt">
-                                                                        <img src="images/review/avt.jpg" alt="images" />
+                                                                        <img src="/images/review/avt.jpg" alt="images" />
                                                                     </div>
                                                                     <div className="infor">
                                                                         <h5><a href="#">Dianne Russell</a><svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
@@ -817,7 +343,7 @@ export default function JobSingle() {
                                                             <div className="top-content">
                                                                 <div className="avatar">
                                                                     <div className="avt">
-                                                                        <img src="images/review/avt.jpg" alt="images" />
+                                                                        <img src="/images/review/avt.jpg" alt="images" />
                                                                     </div>
                                                                     <div className="infor">
                                                                         <h5><a href="#">Dianne Russell</a><svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
@@ -847,7 +373,7 @@ export default function JobSingle() {
                                                             <div className="top-content">
                                                                 <div className="avatar">
                                                                     <div className="avt">
-                                                                        <img src="images/review/avt.jpg" alt="images" />
+                                                                        <img src="/images/review/avt.jpg" alt="images" />
                                                                     </div>
                                                                     <div className="infor">
                                                                         <h5><a href="#">Dianne Russell</a><svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
@@ -881,7 +407,7 @@ export default function JobSingle() {
                                                     <div className="job-archive-header">
                                                         <div className="inner-box">
                                                             <div className="logo-company">
-                                                                <img src="images/logo-company/cty2.png"
+                                                                <img src="/images/logo-company/cty2.png"
                                                                     alt="images/logo-company/cty2.png" />
                                                             </div>
                                                             <div className="box-content">
@@ -933,7 +459,7 @@ export default function JobSingle() {
                                                     <div className="job-archive-header">
                                                         <div className="inner-box">
                                                             <div className="logo-company">
-                                                                <img src="images/logo-company/cty7.png"
+                                                                <img src="/images/logo-company/cty7.png"
                                                                     alt="images/logo-company/cty7.png" />
                                                             </div>
                                                             <div className="box-content">
@@ -985,7 +511,7 @@ export default function JobSingle() {
                                                     <div className="job-archive-header">
                                                         <div className="inner-box">
                                                             <div className="logo-company">
-                                                                <img src="images/logo-company/cty8.png"
+                                                                <img src="/images/logo-company/cty8.png"
                                                                     alt="images/logo-company/cty8.png" />
                                                             </div>
                                                             <div className="box-content">
@@ -1096,9 +622,36 @@ export default function JobSingle() {
                         </div>
                     </div>
                 </section>
-                <Footer />
 
+            </div>
+
+            <div className={"wd-popup-job-apply" + (modal ? " modal-menu--open" : "")}>
+                <div className="modal-menu__backdrop"></div>
+                <div className="content">
+                    <div className='row'>
+
+                        <h6 className='col-10 text-start' >Apply For This Job</h6>
+                        <IoClose className='col-2' fontSize={30} onClick={e => setModal(false)} />
+                    </div>
+
+                    <form onSubmit={e => apply(e)}>
+                        <div>
+
+                            <label className="label-text">Description<span>*</span></label>
+                            <input type="text" placeholder="Description" onChange={e => setApplyJob({ ...applyJob, description: e.target.value })} value={applyJob.description} required="" />
+                        </div>
+                        <div>
+
+                            <label className="label-text">Bid-Amount<span>*</span></label>
+                            <input type="text" placeholder="Bid-Amount" onChange={e => setApplyJob({ ...applyJob, bidAmount: e.target.value })} value={applyJob.bidAmount} required="" />
+                        </div>
+
+                        <button>Apply</button>
+                    </form>
+                </div>
             </div>
         </>
     )
 }
+
+// modal-menu--close

@@ -1,10 +1,30 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 export default function Navbar() {
 
     const [activeMenu, setActiveMenu] = useState('home')
-
+    const send = useNavigate();
+   function logout() {
+    var token = localStorage.getItem('token')
+   fetch(process.env.REACT_APP_API + "/logout" , {
+    method:"post",
+    headers:{
+        Authorization:'Bearer ' + token
+    }
+   }).then(e => e.json()).then(res => {
+    if(res.status == true){
+        localStorage.removeItem('token')
+        toast.success(res.message)
+        send("/login")
+    }
+    console.log(res);
+   })
+    .catch(err => {
+        console.log(err);
+    })
+   }
     return (
         <header id="header" className="header header-default style-absolute header-fixed is-fixed is-small">
             <div className="tf-container ct2">
@@ -17,206 +37,7 @@ export default function Navbar() {
                                         <img className="site-logo" id="trans-logo" src="/images/logo-white.png" alt="Image" />
                                     </Link>
                                 </div>
-                                {/* <div className="categories">
-                                    <a href="#"><span className="icon-grid"></span>Categories</a>
-                                    <div className="sub-categorie">
-                                        <ul className="pop-up">
-                                            <li>
-                                                <a href="#"><span className="icon-categorie-1"></span>Design & Creative</a>
-                                                <div className="group-menu-category">
-                                                    <div className="menu left">
-                                                        <h6>Top Categories</h6>
-                                                        <ul>
-                                                            <li><a href="find-jobs-list.html">Design & Creative</a></li>
-                                                            <li><a href="find-jobs-list.html">Digital marketing</a></li>
-                                                            <li><a href="find-jobs-list.html">Development & IT</a></li>
-                                                            <li><a href="find-jobs-list.html">Music & Audio</a></li>
-                                                            <li><a href="find-jobs-list.html">Finance & Accounting</a></li>
-                                                            <li><a href="find-jobs-list.html">Programming & Tech</a></li>
-                                                            <li><a href="find-jobs-list.html">video & Animation</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div className="menu right">
-                                                        <h6>Top Skills</h6>
-                                                        <ul>
-                                                            <li><a href="jobs-single.html">Adobe Photoshop</a></li>
-                                                            <li><a href="jobs-single.html">adobe XD</a></li>
-                                                            <li><a href="jobs-single.html">Android Developer</a></li>
-                                                            <li><a href="jobs-single.html">Figma</a></li>
-                                                            <li><a href="jobs-single.html">CSS, Html</a></li>
-                                                            <li><a href="jobs-single.html">BA</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#"><span className="icon-categorie-8"></span>Digital Marketing</a>
-                                                <div className="group-menu-category">
-                                                    <div className="menu left">
-                                                        <h6>Top Categories</h6>
-                                                        <ul>
-                                                            <li><a href="find-jobs-list.html">Digital marketing</a></li>
-                                                            <li><a href="find-jobs-list.html">Design & Creative</a></li>
-                                                            <li><a href="find-jobs-list.html">Finance & Accounting</a></li>
-                                                            <li><a href="find-jobs-list.html">Development & IT</a></li>
-                                                            <li><a href="find-jobs-list.html">Programming & Tech</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div className="menu right">
-                                                        <h6>Top Skills</h6>
-                                                        <ul>
-                                                            <li><a href="jobs-single.html">adobe XD</a></li>
-                                                            <li><a href="jobs-single.html">Figma</a></li>
-                                                            <li><a href="jobs-single.html">BA</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#"><span className="icon-categorie-2"></span>Development & IT</a>
-                                                <div className="group-menu-category">
-                                                    <div className="menu left">
-                                                        <h6>Top Categories</h6>
-                                                        <ul>
-                                                            <li><a href="find-jobs-list.html">Design & Creative</a></li>
-                                                            <li><a href="find-jobs-list.html">Development & IT</a></li>
-                                                            <li><a href="find-jobs-list.html">Music & Audio</a></li>
-                                                            <li><a href="find-jobs-list.html">video & Animation</a></li>
-                                                            <li><a href="find-jobs-list.html">Finance & Accounting</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div className="menu right">
-                                                        <h6>Top Skills</h6>
-                                                        <ul>
-                                                            <li><a href="jobs-single.html">adobe XD</a></li>
-                                                            <li><a href="jobs-single.html">Android Developer</a></li>
-                                                            <li><a href="jobs-single.html">Adobe Photoshop</a></li>
-                                                            <li><a href="jobs-single.html">CSS, Html</a></li>
-                                                            <li><a href="jobs-single.html">BA</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#"><span className="icon-categorie-3"></span>Music & Audio</a>
-                                                <div className="group-menu-category">
-                                                    <div className="menu left">
-                                                        <h6>Top Categories</h6>
-                                                        <ul>
-                                                            <li><a href="find-jobs-list.html">Digital marketing</a></li>
-                                                            <li><a href="find-jobs-list.html">Design & Creative</a></li>
-                                                            <li><a href="find-jobs-list.html">video & Animation</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div className="menu right">
-                                                        <h6>Top Skills</h6>
-                                                        <ul>
-                                                            <li><a href="jobs-single.html">Android Developer</a></li>
-                                                            <li><a href="jobs-single.html">Adobe Photoshop</a></li>
-                                                            <li><a href="jobs-single.html">adobe XD</a></li>
-                                                            <li><a href="jobs-single.html">Figma</a></li>
-                                                            <li><a href="jobs-single.html">BA</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#"><span className="icon-categorie-4"></span>Finance &
-                                                    Accounting</a>
-                                                <div className="group-menu-category">
-                                                    <div className="menu left">
-                                                        <h6>Top Categories</h6>
-                                                        <ul>
-                                                            <li><a href="find-jobs-list.html">Development & IT</a></li>
-                                                            <li><a href="find-jobs-list.html">Design & Creative</a></li>
-                                                            <li><a href="find-jobs-list.html">Programming & Tech</a></li>
-                                                            <li><a href="find-jobs-list.html">Music & Audio</a></li>
-                                                            <li><a href="find-jobs-list.html">Finance & Accounting</a></li>
-                                                            <li><a href="find-jobs-list.html">video & Animation</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div className="menu right">
-                                                        <h6>Top Skills</h6>
-                                                        <ul>
-                                                            <li><a href="jobs-single.html">adobe XD</a></li>
-                                                            <li><a href="jobs-single.html">Figma</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#"><span className="icon-categorie-5"></span>Programming & Tech</a>
-                                                <div className="group-menu-category">
-                                                    <div className="menu left">
-                                                        <h6>Top Categories</h6>
-                                                        <ul>
-                                                            <li><a href="find-jobs-list.html">Design & Creative</a></li>
-                                                            <li><a href="find-jobs-list.html">Digital marketing</a></li>
-                                                            <li><a href="find-jobs-list.html">Music & Audio</a></li>
-                                                            <li><a href="find-jobs-list.html">Finance & Accounting</a></li>
-                                                            <li><a href="find-jobs-list.html">Programming & Tech</a></li>
-                                                            <li><a href="find-jobs-list.html">video & Animation</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div className="menu right">
-                                                        <h6>Top Skills</h6>
-                                                        <ul>
-                                                            <li><a href="jobs-single.html">Adobe Photoshop</a></li>
-                                                            <li><a href="jobs-single.html">adobe XD</a></li>
-                                                            <li><a href="jobs-single.html">Figma</a></li>
-                                                            <li><a href="jobs-single.html">CSS, Html</a></li>
-                                                            <li><a href="jobs-single.html">BA</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#"><span className="icon-categorie-6"></span>Video & Animation</a>
-                                                <div className="group-menu-category">
-                                                    <div className="menu left">
-                                                        <h6>Top Categories</h6>
-                                                        <ul>
-                                                            <li><a href="find-jobs-list.html">Design & Creative</a></li>
-                                                            <li><a href="find-jobs-list.html">Digital marketing</a></li>
-                                                            <li><a href="find-jobs-list.html">Programming & Tech</a></li>
-                                                            <li><a href="find-jobs-list.html">video & Animation</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div className="menu right">
-                                                        <h6>Top Skills</h6>
-                                                        <ul>
-                                                            <li><a href="jobs-single.html">Adobe Photoshop</a></li>
-                                                            <li><a href="jobs-single.html">CSS, Html</a></li>
-                                                            <li><a href="jobs-single.html">BA</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="#"><span className="icon-categorie-7"></span>Writing &
-                                                    translation</a>
-                                                <div className="group-menu-category">
-                                                    <div className="menu left">
-                                                        <h6>Top Categories</h6>
-                                                        <ul>
-                                                            <li><a href="find-jobs-list.html">Finance & Accounting</a></li>
-                                                            <li><a href="find-jobs-list.html">Programming & Tech</a></li>
-                                                            <li><a href="find-jobs-list.html">video & Animation</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div className="menu right">
-                                                        <h6>Top Skills</h6>
-                                                        <ul>
-                                                            <li><a href="jobs-single.html">Figma</a></li>
-                                                            <li><a href="jobs-single.html">CSS, Html</a></li>
-                                                            <li><a href="jobs-single.html">BA</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div> */}
+                               
                             </div>
                             <div className="header-ct-center">
                                 <div className="nav-wrap">
@@ -287,7 +108,7 @@ export default function Navbar() {
                                             <a href="dashboard/candidates-delete-profile.html"><span className="icon-trash"></span> Delete Profile</a>
                                         </div>
                                         <div className="sub-account-item">
-                                            <a href="#"><span className="icon-log-out"></span> Log Out</a>
+                                            <a href="#" onClick={logout}><span className="icon-log-out"></span> Log Out</a>
                                         </div>
                                     </div>
                                 </div>

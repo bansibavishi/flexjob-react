@@ -1,15 +1,51 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../layout/navbar'
 import Footer from '../layout/footer'
+import { Link } from 'react-router-dom'
 
 export default function Home() {
 
     const [jobList, setJobList] = useState([])
+    const [expertise, setExpertise] = useState([])
+    const [employer, setEmployer] = useState([])
 
+
+    console.log(jobList);
     function getJobList() {
-        fetch(process.env.REACT_APP_API + "/post-list").then(e => e.json()).then(res => {
-            setJobList(res.data)
+        var token = localStorage.getItem('token')
+        fetch(process.env.REACT_APP_API + "/post-list?limit=4", {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        }).then(e => e.json()).then(res => {
+
+            if (res.status == true) {
+                console.log(res.data);
+                setJobList(res.data)
+            }
+        })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    function getExpertise() {
+        fetch(process.env.REACT_APP_API + "/expertise-data", {
+
+        }).then(e => e.json()).then(res => {
             console.log(res);
+            setExpertise(res.data)
+        })
+            .catch(err => {
+                console.log(err);
+            })
+
+    }
+    function getEmployerData() {
+        fetch(process.env.REACT_APP_API + "/employer-data?limit=12", {
+
+        }).then(e => e.json()).then(res => {
+            setEmployer(res.users)
         })
             .catch(err => {
                 console.log(err);
@@ -17,6 +53,8 @@ export default function Home() {
     }
     useEffect(() => {
         getJobList()
+        getExpertise()
+        getEmployerData()
     }, [])
 
     return (
@@ -95,84 +133,25 @@ export default function Home() {
                                 </a>
                             </div>
                         </div>
-                        <div className="col-md-12">
-                            <div className="group-category-job wow fadeInUp">
-                                <div className="job-category-box">
-                                    <div className="job-category-header">
-                                        <h1><a href="find-jobs-list.html">Human Resource</a></h1>
-                                        <p>120 Jobs available</p>
+                        <div className="col-md-12" >
+                            <div className="group-category-job wow fadeInUp " >
+                                {expertise.map(e =>
+                                    <div className="job-category-box" key={Math.random()}>
+                                        <div className="job-category-header">
+                                            <h1><a href="find-jobs-list.html">{e.technology}</a></h1>
+                                            <p>120 Jobs available</p>
+                                        </div>
+                                        <a href="#" className="btn-category-job">Explore Jobs <span className="icon-keyboard_arrow_right"></span></a>
                                     </div>
-                                    <a href="jobs-single.html" className="btn-category-job">Explore Jobs <span className="icon-keyboard_arrow_right"></span></a>
-                                </div>
-                                <div className="job-category-box active">
-                                    <div className="job-category-header">
-                                        <h1><a href="find-jobs-list.html">Project Manager</a></h1>
-                                        <p>120 Jobs available</p>
-                                    </div>
-                                    <a href="jobs-single.html" className="btn-category-job">Explore Jobs <span className="icon-keyboard_arrow_right"></span></a>
-                                </div>
-                                <div className="job-category-box">
-                                    <div className="job-category-header">
-                                        <h1><a href="find-jobs-list.html">Delivery Driver</a></h1>
-                                        <p>120 Jobs available</p>
-                                    </div>
-                                    <a href="jobs-single.html" className="btn-category-job">Explore Jobs <span className="icon-keyboard_arrow_right"></span></a>
-                                </div>
-                                <div className="job-category-box">
-                                    <div className="job-category-header">
-                                        <h1><a href="find-jobs-list.html">Accounting</a></h1>
-                                        <p>120 Jobs available</p>
-                                    </div>
-                                    <a href="jobs-single.html" className="btn-category-job">Explore Jobs <span className="icon-keyboard_arrow_right"></span></a>
-                                </div>
-                                <div className="job-category-box">
-                                    <div className="job-category-header">
-                                        <h1><a href="find-jobs-list.html">Customer Service</a></h1>
-                                        <p>120 Jobs available</p>
-                                    </div>
-                                    <a href="jobs-single.html" className="btn-category-job">Explore Jobs <span className="icon-keyboard_arrow_right"></span></a>
-                                </div>
-                                <div className="job-category-box">
-                                    <div className="job-category-header">
-                                        <h1><a href="find-jobs-list.html">Data Science</a></h1>
-                                        <p>120 Jobs available</p>
-                                    </div>
-                                    <a href="jobs-single.html" className="btn-category-job">Explore Jobs <span className="icon-keyboard_arrow_right"></span></a>
-                                </div>
-                                <div className="job-category-box">
-                                    <div className="job-category-header">
-                                        <h1><a href="find-jobs-list.html">Engineering</a></h1>
-                                        <p>120 Jobs available</p>
-                                    </div>
-                                    <a href="jobs-single.html" className="btn-category-job">Explore Jobs <span className="icon-keyboard_arrow_right"></span></a>
-                                </div>
-                                <div className="job-category-box">
-                                    <div className="job-category-header">
-                                        <h1><a href="find-jobs-list.html">IT & Networking</a></h1>
-                                        <p>120 Jobs available</p>
-                                    </div>
-                                    <a href="jobs-single.html" className="btn-category-job">Explore Jobs <span className="icon-keyboard_arrow_right"></span></a>
-                                </div>
-                                <div className="job-category-box">
-                                    <div className="job-category-header">
-                                        <h1><a href="find-jobs-list.html">Sales & Marketing</a></h1>
-                                        <p>120 Jobs available</p>
-                                    </div>
-                                    <a href="jobs-single.html" className="btn-category-job">Explore Jobs <span className="icon-keyboard_arrow_right"></span></a>
-                                </div>
-                                <div className="job-category-box">
-                                    <div className="job-category-header">
-                                        <h1><a href="find-jobs-list.html">Writing</a></h1>
-                                        <p>120 Jobs available</p>
-                                    </div>
-                                    <a href="jobs-single.html" className="btn-category-job">Explore Jobs <span className="icon-keyboard_arrow_right"></span></a>
-                                </div>
+                                )}
+
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
             <section className="jobs-section-three">
+
                 <div className="tf-container">
                     <div className="tf-title style-2">
                         <div className="group-title ">
@@ -182,67 +161,65 @@ export default function Home() {
                     </div>
                     <div className="row wow fadeInUp">
 
-                        {
-                            jobList.map(e =>
-                                <div className="col-lg-6 " key={Math.random()}>
-                                    <div className="features-job">
-                                        <div className="job-archive-header">
-                                            <div className="inner-box">
-                                                <div className="logo-company">
-                                                    <img src={ process.env.REACT_APP_API + e.user[0].img} className='rounded-circle' alt=""/>
-                                                </div>
-                                                <div className="box-content">
+                        {jobList.map(e => (
+                            <div className="col-lg-6 " key={Math.random()}>
+                                <div className="features-job">
+                                    <div className="job-archive-header">
+                                        <div className="inner-box">
+                                            <div className="logo-company">
+                                                <img src={process.env.REACT_APP_API + e.user[0].img} className='rounded-circle' alt="" />
+                                            </div>
+                                            <div className="box-content">
+                                                <Link to={'/job/' + e._id} >
                                                     <h4>
-                                                        <a href="jobs-single.html">{e.userId}</a>
+                                                        <a>{e.userId}</a>
                                                     </h4>
                                                     <h3>
-                                                        <a href="jobs-single.html"> {e.title} </a>
+                                                          <a> {e.title} </a>
                                                         <span className="icon-bolt"></span>
                                                     </h3>
-                                                    <ul>
-                                                        <li>
-                                                            <span className="icon-map-pin"></span>
-                                                            {e.description}
-                                                        </li>
-                                                        <li>
-                                                            <span className="icon-calendar"></span>
-                                                            {e.formattedTime}
-                                                        </li>
-                                                    </ul>
-                                                    <span className="icon-heart"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="job-archive-footer">
-                                            <div className="job-footer-left">
-                                                <ul className="job-tag">
-                                                    {e.expertise.map(i =>
-                                                        <li key={Math.random}><a href="#">{i.technology}</a></li>
-                                                    )}
+                                                </Link>
+                                                <ul>
+                                                    <li>
+                                                        <span className="icon-map-pin"></span>
+                                                        {e.description}
+                                                    </li>
+                                                    <li>
+                                                        <span className="icon-calendar"></span>
+                                                        {e.formattedTime}
+                                                    </li>
                                                 </ul>
-                                                <div className="star">
-                                                    <span className="icon-star-full"></span>
-                                                    <span className="icon-star-full"></span>
-                                                    <span className="icon-star-full"></span>
-                                                    <span className="icon-star-full"></span>
-                                                    <span className="icon-star-full"></span>
-                                                </div>
-                                            </div>
-                                            <div className="job-footer-right">
-                                                <div className="price">
-                                                    <span className="icon-dolar1"></span>
-                                                    <p>$83,000 - $110,000 <span className="year">/year</span></p>
-                                                </div>
-                                                <p className="days">22 days left to apply</p>
+                                                <span className="icon-heart"></span>
                                             </div>
                                         </div>
-                                        <a href="jobs-single.html" className="jobtex-link-item" tabIndex="0"></a>
                                     </div>
+                                    <div className="job-archive-footer">
+                                        <div className="job-footer-left">
+                                            <ul className="job-tag">
+                                                {e.expertise.map(i =>
+                                                    <li key={Math.random}><a href="#">{i.technology}</a></li>
+                                                )}
+                                            </ul>
+                                            <div className="star">
+                                                <span className="icon-star-full"></span>
+                                                <span className="icon-star-full"></span>
+                                                <span className="icon-star-full"></span>
+                                                <span className="icon-star-full"></span>
+                                                <span className="icon-star-full"></span>
+                                            </div>
+                                        </div>
+                                        <div className="job-footer-right">
+                                            <div className="price">
+                                                <span className="icon-dolar1"></span>
+                                                <p>$83,000 - $110,000 <span className="year">/year</span></p>
+                                            </div>
+                                            <p className="days">22 days left to apply</p>
+                                        </div>
+                                    </div>
+                                    {/* <a href="" className="jobtex-link-item" tabIndex="0"></a> */}
                                 </div>
-
-                            )
-
-                        }
+                            </div>
+                        ))}
 
 
                         <div className="col-md-12">
@@ -536,334 +513,45 @@ export default function Home() {
                             </a>
                         </div>
                         <div className="row wow fadeInUp">
-                            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                                <div className="employer-block">
-                                    <div className="inner-box">
-                                        <div className="logo-company">
-                                            <img src="images/logo-company/cty16.png" alt="images/logo-company/cty16.png" />
-                                        </div>
-                                        <div className="box-content">
-                                            <div className="star">
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
+                            {
+                                employer.map(e =>
+
+                                    <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6" key={Math.random()}>
+                                        <div className="employer-block">
+                                            <div className="inner-box">
+                                                <div className="logo-company">
+                                                    <img src="images/logo-company/cty16.png" alt="images/logo-company/cty16.png" />
+                                                </div>
+                                                <div className="box-content">
+                                                    <div className="star">
+                                                        <span className="icon-star-full"></span>
+                                                        <span className="icon-star-full"></span>
+                                                        <span className="icon-star-full"></span>
+                                                        <span className="icon-star-full"></span>
+                                                        <span className="icon-star-full"></span>
+                                                    </div>
+                                                    <Link to={'/employers/' + e._id}>
+                                                    <h3>
+                                                        {e.title}
+                                                        <span className="icon-bolt"></span>
+                                                    </h3>
+                                                    <p className="info">
+                                                        <span className="icon-map-pin"></span>
+                                                        Las Vegas, NV 89107, USA
+                                                    </p>
+                                                    </Link>
                                             </div>
-                                            <h3>
-                                                <a href="employers-single.html">Samsung</a>
-                                                <span className="icon-bolt"></span>
-                                            </h3>
-                                            <p className="info">
-                                                <span className="icon-map-pin"></span>
-                                                Las Vegas, NV 89107, USA
-                                            </p>
                                         </div>
+                                        {/* <a href="employers-single.html" className="jobtex-link-item" tabIndex="0"></a> */}
                                     </div>
-                                    <a href="employers-single.html" className="jobtex-link-item" tabIndex="0"></a>
-                                </div>
-                            </div>
-                            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                                <div className="employer-block">
-                                    <div className="inner-box">
-                                        <div className="logo-company">
-                                            <img src="images/logo-company/cty17.png" alt="images/logo-company/cty17.png" />
-                                        </div>
-                                        <div className="box-content">
-                                            <div className="star">
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                            </div>
-                                            <h3>
-                                                <a href="employers-single.html">Utilitech</a>
-                                                <span className="icon-bolt"></span>
-                                            </h3>
-                                            <p className="info">
-                                                <span className="icon-map-pin"></span>
-                                                Las Vegas, NV 89107, USA
-                                            </p>
-                                        </div>
                                     </div>
-                                    <a href="employers-single.html" className="jobtex-link-item" tabIndex="0"></a>
-                                </div>
-                            </div>
-                            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                                <div className="employer-block">
-                                    <div className="inner-box">
-                                        <div className="logo-company">
-                                            <img src="images/logo-company/cty11.png" alt="images/logo-company/cty11.png" />
-                                        </div>
-                                        <div className="box-content">
-                                            <div className="star">
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                            </div>
-                                            <h3>
-                                                <a href="employers-single.html">Samsung</a>
-                                                <span className="icon-bolt"></span>
-                                            </h3>
-                                            <p className="info">
-                                                <span className="icon-map-pin"></span>
-                                                Las Vegas, NV 89107, USA
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <a href="employers-single.html" className="jobtex-link-item" tabIndex="0"></a>
-                                </div>
-                            </div>
-                            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                                <div className="employer-block">
-                                    <div className="inner-box">
-                                        <div className="logo-company">
-                                            <img src="images/logo-company/cty10.png" alt="images/logo-company/cty10.png" />
-                                        </div>
-                                        <div className="box-content">
-                                            <div className="star">
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                            </div>
-                                            <h3>
-                                                <a href="employers-single.html">Samsung</a>
-                                                <span className="icon-bolt"></span>
-                                            </h3>
-                                            <p className="info">
-                                                <span className="icon-map-pin"></span>
-                                                Las Vegas, NV 89107, USA
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <a href="employers-single.html" className="jobtex-link-item" tabIndex="0"></a>
-                                </div>
-                            </div>
-                            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                                <div className="employer-block">
-                                    <div className="inner-box">
-                                        <div className="logo-company">
-                                            <img src="images/logo-company/cty13.png" alt="images/logo-company/cty13.png" />
-                                        </div>
-                                        <div className="box-content">
-                                            <div className="star">
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                            </div>
-                                            <h3>
-                                                <a href="employers-single.html">Rigid</a>
-                                                <span className="icon-bolt"></span>
-                                            </h3>
-                                            <p className="info">
-                                                <span className="icon-map-pin"></span>
-                                                Las Vegas, NV 89107, USA
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <a href="employers-single.html" className="jobtex-link-item" tabIndex="0"></a>
-                                </div>
-                            </div>
-                            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                                <div className="employer-block">
-                                    <div className="inner-box">
-                                        <div className="logo-company">
-                                            <img src="images/logo-company/cty14.png" alt="images/logo-company/cty14.png" />
-                                        </div>
-                                        <div className="box-content">
-                                            <div className="star">
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                            </div>
-                                            <h3>
-                                                <a href="employers-single.html">Task Force</a>
-                                                <span className="icon-bolt"></span>
-                                            </h3>
-                                            <p className="info">
-                                                <span className="icon-map-pin"></span>
-                                                Las Vegas, NV 89107, USA
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <a href="employers-single.html" className="jobtex-link-item" tabIndex="0"></a>
-                                </div>
-                            </div>
-                            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                                <div className="employer-block">
-                                    <div className="inner-box">
-                                        <div className="logo-company">
-                                            <img src="images/logo-company/cty15.png" alt="images/logo-company/cty15.png" />
-                                        </div>
-                                        <div className="box-content">
-                                            <div className="star">
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                            </div>
-                                            <h3>
-                                                <a href="employers-single.html">Black & Decker</a>
-                                                <span className="icon-bolt"></span>
-                                            </h3>
-                                            <p className="info">
-                                                <span className="icon-map-pin"></span>
-                                                Las Vegas, NV 89107, USA
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <a href="employers-single.html" className="jobtex-link-item" tabIndex="0"></a>
-                                </div>
-                            </div>
-                            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                                <div className="employer-block">
-                                    <div className="inner-box">
-                                        <div className="logo-company">
-                                            <img src="images/logo-company/cty9.png" alt="images/logo-company/cty9.png" />
-                                        </div>
-                                        <div className="box-content">
-                                            <div className="star">
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                            </div>
-                                            <h3>
-                                                <a href="employers-single.html">Amanda</a>
-                                                <span className="icon-bolt"></span>
-                                            </h3>
-                                            <p className="info">
-                                                <span className="icon-map-pin"></span>
-                                                Las Vegas, NV 89107, USA
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <a href="employers-single.html" className="jobtex-link-item" tabIndex="0"></a>
-                                </div>
-                            </div>
-                            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                                <div className="employer-block">
-                                    <div className="inner-box">
-                                        <div className="logo-company">
-                                            <img src="images/logo-company/cty12.png" alt="images/logo-company/cty12.png" />
-                                        </div>
-                                        <div className="box-content">
-                                            <div className="star">
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                            </div>
-                                            <h3>
-                                                <a href="employers-single.html">Electrolux</a>
-                                                <span className="icon-bolt"></span>
-                                            </h3>
-                                            <p className="info">
-                                                <span className="icon-map-pin"></span>
-                                                Las Vegas, NV 89107, USA
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <a href="employers-single.html" className="jobtex-link-item" tabIndex="0"></a>
-                                </div>
-                            </div>
-                            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                                <div className="employer-block">
-                                    <div className="inner-box">
-                                        <div className="logo-company">
-                                            <img src="images/logo-company/cty6.png" alt="images/logo-company/cty6.png" />
-                                        </div>
-                                        <div className="box-content">
-                                            <div className="star">
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                            </div>
-                                            <h3>
-                                                <a href="employers-single.html">Whirlpool</a>
-                                                <span className="icon-bolt"></span>
-                                            </h3>
-                                            <p className="info">
-                                                <span className="icon-map-pin"></span>
-                                                Las Vegas, NV 89107, USA
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <a href="employers-single.html" className="jobtex-link-item" tabIndex="0"></a>
-                                </div>
-                            </div>
-                            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                                <div className="employer-block">
-                                    <div className="inner-box">
-                                        <div className="logo-company">
-                                            <img src="images/logo-company/cty7.png" alt="images/logo-company/cty7.png" />
-                                        </div>
-                                        <div className="box-content">
-                                            <div className="star">
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                            </div>
-                                            <h3>
-                                                <a href="employers-single.html">Bosch</a>
-                                                <span className="icon-bolt"></span>
-                                            </h3>
-                                            <p className="info">
-                                                <span className="icon-map-pin"></span>
-                                                Las Vegas, NV 89107, USA
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <a href="employers-single.html" className="jobtex-link-item" tabIndex="0"></a>
-                                </div>
-                            </div>
-                            <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                                <div className="employer-block">
-                                    <div className="inner-box">
-                                        <div className="logo-company">
-                                            <img src="images/logo-company/cty3.png" alt="images/logo-company/cty3.png" />
-                                        </div>
-                                        <div className="box-content">
-                                            <div className="star">
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                            </div>
-                                            <h3>
-                                                <a href="employers-single.html">Samsung</a>
-                                                <span className="icon-bolt"></span>
-                                            </h3>
-                                            <p className="info">
-                                                <span className="icon-map-pin"></span>
-                                                Las Vegas, NV 89107, USA
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <a href="employers-single.html" className="jobtex-link-item" tabIndex="0"></a>
-                                </div>
-                            </div>
-                        </div>
+                        )
+                            }
+
                     </div>
                 </div>
-            </section>
+            </div>
+        </section >
             <section className="testimonials-section">
                 <div className="wrap-testimonials over-flow-hidden">
                     <div className="tf-container">
@@ -1083,7 +771,7 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            {/* <section>
+    {/* <section>
 					<div className="wd-partner">
 						<div className="tf-container">
 							<h1 className="title-partner">
@@ -1158,9 +846,9 @@ export default function Home() {
 					</div>
 				</section> */}
 
-            {/* <Footer/> */}
+    {/* <Footer/> */ }
 
-            {/* </div> */}
+    {/* </div> */ }
         </>
     )
 }

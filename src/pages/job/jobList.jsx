@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../../layout/navbar'
 import Footer from '../../layout/footer'
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 export default function JobList() {
 
@@ -10,6 +11,8 @@ export default function JobList() {
 
     const [page, setPage] = useState(1) // current page
     const [totalPage, setTotalPage] = useState(1)
+
+
 
     console.log(jobList);
     function getJobList() {
@@ -35,6 +38,9 @@ export default function JobList() {
         var arr = Array.from({ length: pageNo }, (_, i) => i + 1) // [1,2]
         return arr.map((n) => <li className={n == page ? 'current' : ''}><a onClick={() => setPage(n)} href="#">{n}</a></li>)
     }
+
+
+
 
     useEffect(() => {
         getJobList()
@@ -90,6 +96,7 @@ export default function JobList() {
         })
 
     }
+
 
     return (
         <>
@@ -377,13 +384,15 @@ export default function JobList() {
                                                                 <img src="images/logo-company/cty8.png" alt="images/logo-company/cty8.png" />
                                                             </div>
                                                             <div className="box-content">
-                                                                <h4>
-                                                                    <a href="jobs-single.html">{e.userId}</a>
-                                                                </h4>
-                                                                <h3>
-                                                                    <a href="jobs-single.html">{e.title}</a>
-                                                                    <span className="icon-bolt"></span>
-                                                                </h3>
+                                                                <Link to={'/job/' + e._id} >
+                                                                    <h4>
+                                                                        {e.userId}
+                                                                    </h4>
+                                                                    <h3>
+                                                                        {e.title}
+                                                                        <span className="icon-bolt"></span>
+                                                                    </h3>
+                                                                </Link>
                                                                 <ul>
                                                                     <li>
                                                                         <span className="icon-map-pin"></span>
@@ -439,430 +448,7 @@ export default function JobList() {
                                         <li><a href="#"><i className="icon-keyboard_arrow_right"></i></a></li>
                                     </ul>
                                 </div>
-                                <div className="inner">
-                                    <div className="features-job style-3">
-                                        <div className="inner-box">
-                                            <div className="company">
-                                                <div className="logo-company">
-                                                    <img src="images/logo-company/cty8.png" alt="images/logo-company/cty8.png" />
-                                                </div>
-                                                <div className="box-content">
-                                                    <h4>
-                                                        <a href="jobs-single.html">Rockstar Games New York</a>
-                                                    </h4>
-                                                    <h3>
-                                                        <a href="jobs-single.html">Senior UI/UX Designer</a>
-                                                        <span className="icon-bolt"></span>
-                                                    </h3>
-                                                    <div className="star">
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <ul className="info">
-                                                <li>
-                                                    <span className="icon-map-pin"></span>
-                                                    Las Vegas, NV 89107, USA
-                                                </li>
-                                                <li>22 days left to apply</li>
-                                            </ul>
-                                            <div className="category">
-                                                <ul className="job-tag">
-                                                    <li><a href="#"> Full-time</a></li>
-                                                    <li><a href="#"> Hybrid</a></li>
-                                                </ul>
-                                            </div>
-                                            <div className="salary">
-                                                <span className="icon-dolar1"></span>
-                                                <p>$83,000 - $110,000 <span className="year">/year</span></p>
-                                            </div>
-                                            <div className="group-btn">
-                                                <span className="icon-heart"></span>
-                                                <button>Apply</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="features-job style-3">
-                                        <div className="inner-box">
-                                            <div className="company">
-                                                <div className="logo-company">
-                                                    <img src="images/logo-company/cty11.png" alt="images/logo-company/cty11.png" />
-                                                </div>
-                                                <div className="box-content">
-                                                    <h4>
-                                                        <a href="jobs-single.html">Rockstar Games New York</a>
-                                                    </h4>
-                                                    <h3>
-                                                        <a href="jobs-single.html">Project manager</a>
-                                                        <span className="icon-bolt"></span>
-                                                    </h3>
-                                                    <div className="star">
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <ul className="info">
-                                                <li>
-                                                    <span className="icon-map-pin"></span>
-                                                    Las Vegas, NV 89107, USA
-                                                </li>
-                                                <li>22 days left to apply</li>
-                                            </ul>
-                                            <div className="category">
-                                                <ul className="job-tag">
-                                                    <li><a href="#"> Full-time</a></li>
-                                                    <li><a href="#"> Hybrid</a></li>
-                                                </ul>
-                                            </div>
-                                            <div className="salary">
-                                                <span className="icon-dolar1"></span>
-                                                <p>$83,000 - $110,000 <span className="year">/year</span></p>
-                                            </div>
-                                            <div className="group-btn">
-                                                <span className="icon-heart"></span>
-                                                <button>Apply</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="features-job style-3">
-                                        <div className="inner-box">
-                                            <div className="company">
-                                                <div className="logo-company">
-                                                    <img src="images/logo-company/cty7.png" alt="images/logo-company/cty7.png" />
-                                                </div>
-                                                <div className="box-content">
-                                                    <h4>
-                                                        <a href="jobs-single.html">Rockstar Games New York</a>
-                                                    </h4>
-                                                    <h3>
-                                                        <a href="jobs-single.html">Senior UI/UX Designer</a>
-                                                        <span className="icon-bolt"></span>
-                                                    </h3>
-                                                    <div className="star">
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <ul className="info">
-                                                <li>
-                                                    <span className="icon-map-pin"></span>
-                                                    Las Vegas, NV 89107, USA
-                                                </li>
-                                                <li>22 days left to apply</li>
-                                            </ul>
-                                            <div className="category">
-                                                <ul className="job-tag">
-                                                    <li><a href="#"> Full-time</a></li>
-                                                    <li><a href="#"> Hybrid</a></li>
-                                                </ul>
-                                            </div>
-                                            <div className="salary">
-                                                <span className="icon-dolar1"></span>
-                                                <p>$83,000 - $110,000 <span className="year">/year</span></p>
-                                            </div>
-                                            <div className="group-btn">
-                                                <span className="icon-heart"></span>
-                                                <button>Apply</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="features-job style-3">
-                                        <div className="inner-box">
-                                            <div className="company">
-                                                <div className="logo-company">
-                                                    <img src="images/logo-company/cty4.png" alt="images/logo-company/cty4.png" />
-                                                </div>
-                                                <div className="box-content">
-                                                    <h4>
-                                                        <a href="jobs-single.html">Rockstar Games New York</a>
-                                                    </h4>
-                                                    <h3>
-                                                        <a href="jobs-single.html">Full Stack Development</a>
-                                                        <span className="icon-bolt"></span>
-                                                    </h3>
-                                                    <div className="star">
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <ul className="info">
-                                                <li>
-                                                    <span className="icon-map-pin"></span>
-                                                    Las Vegas, NV 89107, USA
-                                                </li>
-                                                <li>22 days left to apply</li>
-                                            </ul>
-                                            <div className="category">
-                                                <ul className="job-tag">
-                                                    <li><a href="#"> Full-time</a></li>
-                                                    <li><a href="#"> Hybrid</a></li>
-                                                </ul>
-                                            </div>
-                                            <div className="salary">
-                                                <span className="icon-dolar1"></span>
-                                                <p>$83,000 - $110,000 <span className="year">/year</span></p>
-                                            </div>
-                                            <div className="group-btn">
-                                                <span className="icon-heart"></span>
-                                                <button>Apply</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="features-job style-3">
-                                        <div className="inner-box">
-                                            <div className="company">
-                                                <div className="logo-company">
-                                                    <img src="images/logo-company/cty3.png" alt="images/logo-company/cty9.png" />
-                                                </div>
-                                                <div className="box-content">
-                                                    <h4>
-                                                        <a href="jobs-single.html">Rockstar Games New York</a>
-                                                    </h4>
-                                                    <h3>
-                                                        <a href="jobs-single.html">Full Stack Development</a>
-                                                        <span className="icon-bolt"></span>
-                                                    </h3>
-                                                    <div className="star">
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <ul className="info">
-                                                <li>
-                                                    <span className="icon-map-pin"></span>
-                                                    Las Vegas, NV 89107, USA
-                                                </li>
-                                                <li>22 days left to apply</li>
-                                            </ul>
-                                            <div className="category">
-                                                <ul className="job-tag">
-                                                    <li><a href="#"> Full-time</a></li>
-                                                    <li><a href="#"> Hybrid</a></li>
-                                                </ul>
-                                            </div>
-                                            <div className="salary">
-                                                <span className="icon-dolar1"></span>
-                                                <p>$83,000 - $110,000 <span className="year">/year</span></p>
-                                            </div>
-                                            <div className="group-btn">
-                                                <span className="icon-heart"></span>
-                                                <button>Apply</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="features-job style-3">
-                                        <div className="inner-box">
-                                            <div className="company">
-                                                <div className="logo-company">
-                                                    <img src="images/logo-company/cty7.png" alt="images/logo-company/cty2.png" />
-                                                </div>
-                                                <div className="box-content">
-                                                    <h4>
-                                                        <a href="jobs-single.html">Rockstar Games New York</a>
-                                                    </h4>
-                                                    <h3>
-                                                        <a href="jobs-single.html">Social Media Marketing </a>
-                                                        <span className="icon-bolt"></span>
-                                                    </h3>
-                                                    <div className="star">
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <ul className="info">
-                                                <li>
-                                                    <span className="icon-map-pin"></span>
-                                                    Las Vegas, NV 89107, USA
-                                                </li>
-                                                <li>22 days left to apply</li>
-                                            </ul>
-                                            <div className="category">
-                                                <ul className="job-tag">
-                                                    <li><a href="#"> Full-time</a></li>
-                                                    <li><a href="#"> Hybrid</a></li>
-                                                </ul>
-                                            </div>
-                                            <div className="salary">
-                                                <span className="icon-dolar1"></span>
-                                                <p>$83,000 - $110,000 <span className="year">/year</span></p>
-                                            </div>
-                                            <div className="group-btn">
-                                                <span className="icon-heart"></span>
-                                                <button>Apply</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="features-job style-3">
-                                        <div className="inner-box">
-                                            <div className="company">
-                                                <div className="logo-company">
-                                                    <img src="images/logo-company/cty9.png" alt="images/logo-company/cty2.png" />
-                                                </div>
-                                                <div className="box-content">
-                                                    <h4>
-                                                        <a href="jobs-single.html">Rockstar Games New York</a>
-                                                    </h4>
-                                                    <h3>
-                                                        <a href="jobs-single.html">Senior UI/UX Designer </a>
-                                                        <span className="icon-bolt"></span>
-                                                    </h3>
-                                                    <div className="star">
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <ul className="info">
-                                                <li>
-                                                    <span className="icon-map-pin"></span>
-                                                    Las Vegas, NV 89107, USA
-                                                </li>
-                                                <li>22 days left to apply</li>
-                                            </ul>
-                                            <div className="category">
-                                                <ul className="job-tag">
-                                                    <li><a href="#"> Full-time</a></li>
-                                                    <li><a href="#"> Hybrid</a></li>
-                                                </ul>
-                                            </div>
-                                            <div className="salary">
-                                                <span className="icon-dolar1"></span>
-                                                <p>$83,000 - $110,000 <span className="year">/year</span></p>
-                                            </div>
-                                            <div className="group-btn">
-                                                <span className="icon-heart"></span>
-                                                <button>Apply</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="features-job style-3">
-                                        <div className="inner-box">
-                                            <div className="company">
-                                                <div className="logo-company">
-                                                    <img src="images/logo-company/cty7.png" alt="images/logo-company/cty2.png" />
-                                                </div>
-                                                <div className="box-content">
-                                                    <h4>
-                                                        <a href="jobs-single.html">Rockstar Games New York</a>
-                                                    </h4>
-                                                    <h3>
-                                                        <a href="jobs-single.html">Senior DevOps Engineer</a>
-                                                        <span className="icon-bolt"></span>
-                                                    </h3>
-                                                    <div className="star">
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <ul className="info">
-                                                <li>
-                                                    <span className="icon-map-pin"></span>
-                                                    Las Vegas, NV 89107, USA
-                                                </li>
-                                                <li>22 days left to apply</li>
-                                            </ul>
-                                            <div className="category">
-                                                <ul className="job-tag">
-                                                    <li><a href="#"> Full-time</a></li>
-                                                    <li><a href="#"> Hybrid</a></li>
-                                                </ul>
-                                            </div>
-                                            <div className="salary">
-                                                <span className="icon-dolar1"></span>
-                                                <p>$83,000 - $110,000 <span className="year">/year</span></p>
-                                            </div>
-                                            <div className="group-btn">
-                                                <span className="icon-heart"></span>
-                                                <button>Apply</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="features-job style-3 mb1">
-                                        <div className="inner-box">
-                                            <div className="company">
-                                                <div className="logo-company">
-                                                    <img src="images/logo-company/cty2.png" alt="images/logo-company/cty2.png" />
-                                                </div>
-                                                <div className="box-content">
-                                                    <h4>
-                                                        <a href="jobs-single.html">Rockstar Games New York</a>
-                                                    </h4>
-                                                    <h3>
-                                                        <a href="jobs-single.html">HR Administration </a>
-                                                        <span className="icon-bolt"></span>
-                                                    </h3>
-                                                    <div className="star">
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                        <span className="icon-star-full"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <ul className="info">
-                                                <li>
-                                                    <span className="icon-map-pin"></span>
-                                                    Las Vegas, NV 89107, USA
-                                                </li>
-                                                <li>22 days left to apply</li>
-                                            </ul>
-                                            <div className="category">
-                                                <ul className="job-tag">
-                                                    <li><a href="#"> Full-time</a></li>
-                                                    <li><a href="#"> Hybrid</a></li>
-                                                </ul>
-                                            </div>
-                                            <div className="salary">
-                                                <span className="icon-dolar1"></span>
-                                                <p>$83,000 - $110,000 <span className="year">/year</span></p>
-                                            </div>
-                                            <div className="group-btn">
-                                                <span className="icon-heart"></span>
-                                                <button>Apply</button>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <ul className="pagination-job padding">
-                                        <li><a href="#"><i className="icon-keyboard_arrow_left"></i></a></li>
-                                        <li><a href="#">1</a></li>
-                                        <li className="current"><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#"><i className="icon-keyboard_arrow_right"></i></a></li>
-                                    </ul>
-                                </div>
 
                             </div>
                         </div>
