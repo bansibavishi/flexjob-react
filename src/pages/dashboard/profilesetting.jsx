@@ -221,25 +221,7 @@ export default function Profile() {
                                                     <label className="title-user fw-7">Email</label>
                                                     <input type="email" className="input-form" onChange={e => setUser({ ...user, email: e.target.value })} value={user.email} required />
                                                 </fieldset>
-                                                {/*
-                                                <div id="item_size" className="dropdown titles-dropdown ">
-                                                    <label className="title-user fw-7">WorkHistory</label>
-
-                                                    <select>
-                                                        <option>abc</option>
-                                                        <option>xyz</option>
-
-                                                    </select>
-                                                </div> */}
-                                                {/* <div id="item_2" className="dropdown titles-dropdown">
-                                                    <label className="title-user fw-7">Save Job</label>
-
-
-                                                    <select>
-                                                        <option>aaa</option>
-                                                        <option>bbb</option>
-                                                    </select>
-                                                </div> */}
+                                   
 
 
                                                 <fieldset>

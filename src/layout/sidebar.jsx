@@ -1,7 +1,32 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+
+import { toast } from 'react-toastify';
+
 
 export default function Sidebar() {
-
+    const send = useNavigate();
+    function logout() {
+        var token = localStorage.getItem('token')
+       fetch(process.env.REACT_APP_API + "/logout" , {
+        method:"post",
+        headers:{
+            Authorization:'Bearer ' + token
+        }
+       }).then(e => e.json()).then(res => {
+        if(res.status == true){
+            localStorage.removeItem('token')
+            toast.success(res.message)
+            send("/login")
+        }
+        console.log(res);
+       })
+        .catch(err => {
+            console.log(err);
+        })
+       }
+      
     return (
         <>
             <div className="left-menu">
@@ -91,9 +116,9 @@ export default function Sidebar() {
                         </li>
 
                         <li>
-                            <a href="../home-01.html" className="tf-effect">
+                            <a className="tf-effect">
                                 <span className="icon-log-out dash-icon"></span>
-                                <span className="dash-titles">Log out</span>
+                                <span className="dash-titles" onClick={logout}>Log out</span>  
                             </a>
                         </li>
 
