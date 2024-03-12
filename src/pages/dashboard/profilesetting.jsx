@@ -221,7 +221,11 @@ export default function Profile() {
                                                     <label className="title-user fw-7">Email</label>
                                                     <input type="email" className="input-form" onChange={e => setUser({ ...user, email: e.target.value })} value={user.email} required />
                                                 </fieldset>
+<<<<<<< HEAD
                                             
+=======
+                                   
+>>>>>>> 527ccd7c34b52d76e81bfa83c0c8d50ac333c974
 
 
                                                 <fieldset>
