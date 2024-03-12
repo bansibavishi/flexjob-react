@@ -356,7 +356,7 @@ export default function AboutUs() {
                                         </span>Hiring solutions & pricing that works with seasonal hiring changes</li>
                                     </ul>
                                 </div>
-                                <div className="wd-review-job contentbox1">
+                                {/* <div className="wd-review-job contentbox1">
                                     <h3>Get the job that's right for you</h3>
                                     <p>Search millions of jobs and get the inside scoop on companies with employee reviews, personalized salary
                                         tools, and more.</p>
@@ -397,8 +397,8 @@ export default function AboutUs() {
                                             </svg>
                                         </span>Hiring solutions & pricing that works with seasonal hiring changes</li>
                                     </ul>
-                                </div>
-                                <div className="wd-review-job contentbox1">
+                                </div> */}
+                                {/* <div className="wd-review-job contentbox1">
                                     <h3>Get the job that's right for you</h3>
                                     <p>Search millions of jobs and get the inside scoop on companies with employee reviews, personalized salary
                                         tools, and more.</p>
@@ -439,8 +439,8 @@ export default function AboutUs() {
                                             </svg>
                                         </span>Hiring solutions & pricing that works with seasonal hiring changes</li>
                                     </ul>
-                                </div>
-                                <div className="wd-review-job contentbox1">
+                                </div> */}
+                                {/* <div className="wd-review-job contentbox1">
                                     <h3>Get the job that's right for you</h3>
                                     <p>Search millions of jobs and get the inside scoop on companies with employee reviews, personalized salary
                                         tools, and more.</p>
@@ -481,7 +481,7 @@ export default function AboutUs() {
                                             </svg>
                                         </span>Hiring solutions & pricing that works with seasonal hiring changes</li>
                                     </ul>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
 
@@ -708,7 +708,7 @@ export default function AboutUs() {
                     </div>
                 </section>
 
-                <section>
+                {/* <section>
                     <div className="wd-partner style-1">
                         <div className="tf-container">
                             <h1 className="title-partner">
@@ -792,25 +792,8 @@ export default function AboutUs() {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
 
-                <section className="wd-banner-CTA">
-                    <div className="tf-container">
-                        <div className="row">
-                            <div className="col-lg-12  wow fadeInUp">
-                                <div className="group-banner-CTA">
-                                    <h3>Job Opportunities Are Always Open</h3>
-                                    <p>Aenean porta, eros lacus congue lorem, sit amet mollis magna velit ac erat.</p>
-                                    <div className="group-btn">
-                                        <button className="tf-btn">Search Job</button>
-                                        <button className="tf-btn">Find Candidates</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </section>
 
 
             </div>

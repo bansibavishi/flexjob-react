@@ -8,6 +8,9 @@ import "./css/shortcodes.css";
 import "./css/style.css";
 import "./css/responsive.css";
 import "./css/dashboard.css";
+import { Store } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux'
+import { store } from './helper/store';
 
 
 
@@ -15,8 +18,9 @@ import "./css/dashboard.css";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <App />
-        
+        <Provider store={store}>
+            <App />
+        </Provider>
     </React.StrictMode>
 );
 

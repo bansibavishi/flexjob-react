@@ -129,7 +129,7 @@ export default function JobSingle() {
                                 <div className="wd-job-author2">
                                     <div className="content-left">
                                         <div className="thumb">
-                                            <img src={process.env.REACT_APP_API + (job?.user &&  job?.user[0]?.img)} alt="logo" />
+                                            <img src={process.env.REACT_APP_API + (job?.user && job?.user[0]?.img)} alt="logo" />
                                         </div>
                                         <div className="content">
                                             <a href="#" className="category">{job?.user && job?.user[0]?.firstName}</a>
@@ -149,7 +149,7 @@ export default function JobSingle() {
                                     </div>
                                     <div className="content-right">
                                         <div className="top">
-                                        <span onClick={(se) => save(job._id, se)} className={"icon-save-candidate wishlist" + (job?.saved ? " text-danger" : "")}></span>
+                                            <span onClick={(se) => save(job._id, se)} className={"icon-save-candidate wishlist" + (job?.saved ? " text-danger" : "")}></span>
                                             <span onClick={(se) => like(job._id, se)} className={"icon-heart wishlist" + (job?.liked ? " text-danger" : "")}></span>
 
                                             <a className="btn btn-popup" onClick={e => { setModal(true); }}><i className="icon-send"></i>Apply Now</a>

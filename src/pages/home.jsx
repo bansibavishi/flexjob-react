@@ -172,10 +172,10 @@ export default function Home() {
                                             <div className="box-content">
                                                 <Link to={'/job/' + e._id} >
                                                     <h4>
-                                                        <a>{e.userId}</a>
+                                                        <a>{e.user[0].firstName}</a>
                                                     </h4>
                                                     <h3>
-                                                          <a> {e.title} </a>
+                                                        <a> {e.title} </a>
                                                         <span className="icon-bolt"></span>
                                                     </h3>
                                                 </Link>
@@ -211,7 +211,7 @@ export default function Home() {
                                         <div className="job-footer-right">
                                             <div className="price">
                                                 <span className="icon-dolar1"></span>
-                                                <p>$83,000 - $110,000 <span className="year">/year</span></p>
+                                                <p>${e.budget}</p>
                                             </div>
                                             <p className="days">22 days left to apply</p>
                                         </div>
@@ -224,16 +224,18 @@ export default function Home() {
 
                         <div className="col-md-12">
                             <div className="wrap-button">
-                                <a href="find-jobs-list.html" className="tf-button style-1">
+                                <Link to = {"/job"} className="tf-button style-1">See more Jobs
+                                <span className="icon-keyboard_arrow_right"></span>
+                                </Link>
+                            {/* <a href="find-jobs-list.html" className="tf-button style-1">
                                     See more Jobs
-                                    <span className="icon-keyboard_arrow_right"></span>
-                                </a>
-                            </div>
-
+                                </a> */}
                         </div>
+
                     </div>
                 </div>
-            </section >
+            </div>
+        </section >
             <section className="wd-iconbox flat-row background1">
                 <div className="tf-container">
                     <div className="title-iconbox">
@@ -531,322 +533,31 @@ export default function Home() {
                                                         <span className="icon-star-full"></span>
                                                     </div>
                                                     <Link to={'/employers/' + e._id}>
-                                                    <h3>
-                                                        {e.title}
-                                                        <span className="icon-bolt"></span>
-                                                    </h3>
-                                                    <p className="info">
-                                                        <span className="icon-map-pin"></span>
-                                                        Las Vegas, NV 89107, USA
-                                                    </p>
+                                                        <h3>
+                                                            {e.title}
+                                                            <span className="icon-bolt"></span>
+                                                        </h3>
+                                                        <p className="info">
+                                                            <span className="icon-map-pin"></span>
+                                                            Las Vegas, NV 89107, USA
+                                                        </p>
                                                     </Link>
+                                                </div>
                                             </div>
+                                            {/* <a href="employers-single.html" className="jobtex-link-item" tabIndex="0"></a> */}
                                         </div>
-                                        {/* <a href="employers-single.html" className="jobtex-link-item" tabIndex="0"></a> */}
                                     </div>
-                                    </div>
-                        )
+                                )
                             }
 
-                    </div>
-                </div>
-            </div>
-        </section >
-            <section className="testimonials-section">
-                <div className="wrap-testimonials over-flow-hidden">
-                    <div className="tf-container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className="tf-title style-2">
-                                    <div className="group-title">
-                                        <h1>What our clients are saying</h1>
-                                        <p>Showing companies based on reviews and recent job openings</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-12 wow fadeInUp">
-                                <div className="swiper-container tes-slider">
-                                    <div className="swiper-wrapper">
-                                        <div className="swiper-slide">
-                                            <div className="wd-testimonials">
-                                                <p className="description">“Jobtex is allowing us to go through a large number of candidates with
-                                                    internal limited resources. We are able to do a first screening of candidates so much easier than
-                                                    if we had to meet everyone. We can truly identify and assess a talent pool more efficiently and
-                                                    have our talent ready to start in their new role faster.”</p>
-                                                <div className="author-group">
-                                                    <div className="avatar">
-                                                        <img src="images/review/testimonials.jpg" alt="images" />
-                                                    </div>
-                                                    <div className="infor">
-                                                        <h6>Pete Jones</h6>
-                                                        <div className="position">Head of Marketing Build</div>
-                                                        <ul className="rating">
-                                                            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14"
-                                                                fill="none">
-                                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                                    d="M2.94418 8.42155L0.367213 6.2883C-0.11917 5.89933 0.094156 5.11714 0.711378 5.02896L4.36635 4.86612L5.92719 0.953019C6.03598 0.736138 6.25713 0.599609 6.49961 0.599609C6.74209 0.599609 6.96324 0.736849 7.07203 0.953019L8.63286 4.86612L12.2878 5.02896C12.9051 5.11714 13.1184 5.89933 12.632 6.2883L10.055 8.42155L10.7583 12.5864C10.8394 13.1545 10.2492 13.5798 9.73647 13.3231L6.49961 11.2659L3.26275 13.3224C2.74935 13.5791 2.15986 13.1538 2.24092 12.5857L2.94418 8.42155Z"
-                                                                    fill="#FFB321" />
-                                                            </svg></li>
-                                                            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14"
-                                                                fill="none">
-                                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                                    d="M2.94418 8.42155L0.367213 6.2883C-0.11917 5.89933 0.094156 5.11714 0.711378 5.02896L4.36635 4.86612L5.92719 0.953019C6.03598 0.736138 6.25713 0.599609 6.49961 0.599609C6.74209 0.599609 6.96324 0.736849 7.07203 0.953019L8.63286 4.86612L12.2878 5.02896C12.9051 5.11714 13.1184 5.89933 12.632 6.2883L10.055 8.42155L10.7583 12.5864C10.8394 13.1545 10.2492 13.5798 9.73647 13.3231L6.49961 11.2659L3.26275 13.3224C2.74935 13.5791 2.15986 13.1538 2.24092 12.5857L2.94418 8.42155Z"
-                                                                    fill="#FFB321" />
-                                                            </svg></li>
-                                                            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14"
-                                                                fill="none">
-                                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                                    d="M2.94418 8.42155L0.367213 6.2883C-0.11917 5.89933 0.094156 5.11714 0.711378 5.02896L4.36635 4.86612L5.92719 0.953019C6.03598 0.736138 6.25713 0.599609 6.49961 0.599609C6.74209 0.599609 6.96324 0.736849 7.07203 0.953019L8.63286 4.86612L12.2878 5.02896C12.9051 5.11714 13.1184 5.89933 12.632 6.2883L10.055 8.42155L10.7583 12.5864C10.8394 13.1545 10.2492 13.5798 9.73647 13.3231L6.49961 11.2659L3.26275 13.3224C2.74935 13.5791 2.15986 13.1538 2.24092 12.5857L2.94418 8.42155Z"
-                                                                    fill="#FFB321" />
-                                                            </svg></li>
-                                                            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14"
-                                                                fill="none">
-                                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                                    d="M2.94418 8.42155L0.367213 6.2883C-0.11917 5.89933 0.094156 5.11714 0.711378 5.02896L4.36635 4.86612L5.92719 0.953019C6.03598 0.736138 6.25713 0.599609 6.49961 0.599609C6.74209 0.599609 6.96324 0.736849 7.07203 0.953019L8.63286 4.86612L12.2878 5.02896C12.9051 5.11714 13.1184 5.89933 12.632 6.2883L10.055 8.42155L10.7583 12.5864C10.8394 13.1545 10.2492 13.5798 9.73647 13.3231L6.49961 11.2659L3.26275 13.3224C2.74935 13.5791 2.15986 13.1538 2.24092 12.5857L2.94418 8.42155Z"
-                                                                    fill="#FFB321" />
-                                                            </svg></li>
-                                                            <li className="inactive"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14"
-                                                                viewBox="0 0 13 14" fill="none">
-                                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                                    d="M2.94418 8.42155L0.367213 6.2883C-0.11917 5.89933 0.094156 5.11714 0.711378 5.02896L4.36635 4.86612L5.92719 0.953019C6.03598 0.736138 6.25713 0.599609 6.49961 0.599609C6.74209 0.599609 6.96324 0.736849 7.07203 0.953019L8.63286 4.86612L12.2878 5.02896C12.9051 5.11714 13.1184 5.89933 12.632 6.2883L10.055 8.42155L10.7583 12.5864C10.8394 13.1545 10.2492 13.5798 9.73647 13.3231L6.49961 11.2659L3.26275 13.3224C2.74935 13.5791 2.15986 13.1538 2.24092 12.5857L2.94418 8.42155Z"
-                                                                    fill="#FFB321" />
-                                                            </svg></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="swiper-slide">
-                                            <div className="wd-testimonials">
-                                                <p className="description">“Jobtex is allowing us to go through a large number of candidates with
-                                                    internal limited resources. We are able to do a first screening of candidates so much easier than
-                                                    if we had to meet everyone. We can truly identify and assess a talent pool more efficiently and
-                                                    have our talent ready to start in their new role faster.”</p>
-                                                <div className="author-group">
-                                                    <div className="avatar">
-                                                        <img src="images/review/testimonials.jpg" alt="images" />
-                                                    </div>
-                                                    <div className="infor">
-                                                        <h6>Pete Jones</h6>
-                                                        <div className="position">Head of Marketing Build</div>
-                                                        <ul className="rating">
-                                                            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14"
-                                                                fill="none">
-                                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                                    d="M2.94418 8.42155L0.367213 6.2883C-0.11917 5.89933 0.094156 5.11714 0.711378 5.02896L4.36635 4.86612L5.92719 0.953019C6.03598 0.736138 6.25713 0.599609 6.49961 0.599609C6.74209 0.599609 6.96324 0.736849 7.07203 0.953019L8.63286 4.86612L12.2878 5.02896C12.9051 5.11714 13.1184 5.89933 12.632 6.2883L10.055 8.42155L10.7583 12.5864C10.8394 13.1545 10.2492 13.5798 9.73647 13.3231L6.49961 11.2659L3.26275 13.3224C2.74935 13.5791 2.15986 13.1538 2.24092 12.5857L2.94418 8.42155Z"
-                                                                    fill="#FFB321" />
-                                                            </svg></li>
-                                                            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14"
-                                                                fill="none">
-                                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                                    d="M2.94418 8.42155L0.367213 6.2883C-0.11917 5.89933 0.094156 5.11714 0.711378 5.02896L4.36635 4.86612L5.92719 0.953019C6.03598 0.736138 6.25713 0.599609 6.49961 0.599609C6.74209 0.599609 6.96324 0.736849 7.07203 0.953019L8.63286 4.86612L12.2878 5.02896C12.9051 5.11714 13.1184 5.89933 12.632 6.2883L10.055 8.42155L10.7583 12.5864C10.8394 13.1545 10.2492 13.5798 9.73647 13.3231L6.49961 11.2659L3.26275 13.3224C2.74935 13.5791 2.15986 13.1538 2.24092 12.5857L2.94418 8.42155Z"
-                                                                    fill="#FFB321" />
-                                                            </svg></li>
-                                                            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14"
-                                                                fill="none">
-                                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                                    d="M2.94418 8.42155L0.367213 6.2883C-0.11917 5.89933 0.094156 5.11714 0.711378 5.02896L4.36635 4.86612L5.92719 0.953019C6.03598 0.736138 6.25713 0.599609 6.49961 0.599609C6.74209 0.599609 6.96324 0.736849 7.07203 0.953019L8.63286 4.86612L12.2878 5.02896C12.9051 5.11714 13.1184 5.89933 12.632 6.2883L10.055 8.42155L10.7583 12.5864C10.8394 13.1545 10.2492 13.5798 9.73647 13.3231L6.49961 11.2659L3.26275 13.3224C2.74935 13.5791 2.15986 13.1538 2.24092 12.5857L2.94418 8.42155Z"
-                                                                    fill="#FFB321" />
-                                                            </svg></li>
-                                                            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14"
-                                                                fill="none">
-                                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                                    d="M2.94418 8.42155L0.367213 6.2883C-0.11917 5.89933 0.094156 5.11714 0.711378 5.02896L4.36635 4.86612L5.92719 0.953019C6.03598 0.736138 6.25713 0.599609 6.49961 0.599609C6.74209 0.599609 6.96324 0.736849 7.07203 0.953019L8.63286 4.86612L12.2878 5.02896C12.9051 5.11714 13.1184 5.89933 12.632 6.2883L10.055 8.42155L10.7583 12.5864C10.8394 13.1545 10.2492 13.5798 9.73647 13.3231L6.49961 11.2659L3.26275 13.3224C2.74935 13.5791 2.15986 13.1538 2.24092 12.5857L2.94418 8.42155Z"
-                                                                    fill="#FFB321" />
-                                                            </svg></li>
-                                                            <li className="inactive"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14"
-                                                                viewBox="0 0 13 14" fill="none">
-                                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                                    d="M2.94418 8.42155L0.367213 6.2883C-0.11917 5.89933 0.094156 5.11714 0.711378 5.02896L4.36635 4.86612L5.92719 0.953019C6.03598 0.736138 6.25713 0.599609 6.49961 0.599609C6.74209 0.599609 6.96324 0.736849 7.07203 0.953019L8.63286 4.86612L12.2878 5.02896C12.9051 5.11714 13.1184 5.89933 12.632 6.2883L10.055 8.42155L10.7583 12.5864C10.8394 13.1545 10.2492 13.5798 9.73647 13.3231L6.49961 11.2659L3.26275 13.3224C2.74935 13.5791 2.15986 13.1538 2.24092 12.5857L2.94418 8.42155Z"
-                                                                    fill="#FFB321" />
-                                                            </svg></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="swiper-slide">
-                                            <div className="wd-testimonials">
-                                                <p className="description">“Jobtex is allowing us to go through a large number of candidates with
-                                                    internal limited resources. We are able to do a first screening of candidates so much easier than
-                                                    if we had to meet everyone. We can truly identify and assess a talent pool more efficiently and
-                                                    have our talent ready to start in their new role faster.”</p>
-                                                <div className="author-group">
-                                                    <div className="avatar">
-                                                        <img src="images/review/testimonials.jpg" alt="images" />
-                                                    </div>
-                                                    <div className="infor">
-                                                        <h6>Pete Jones</h6>
-                                                        <div className="position">Head of Marketing Build</div>
-                                                        <ul className="rating">
-                                                            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14"
-                                                                fill="none">
-                                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                                    d="M2.94418 8.42155L0.367213 6.2883C-0.11917 5.89933 0.094156 5.11714 0.711378 5.02896L4.36635 4.86612L5.92719 0.953019C6.03598 0.736138 6.25713 0.599609 6.49961 0.599609C6.74209 0.599609 6.96324 0.736849 7.07203 0.953019L8.63286 4.86612L12.2878 5.02896C12.9051 5.11714 13.1184 5.89933 12.632 6.2883L10.055 8.42155L10.7583 12.5864C10.8394 13.1545 10.2492 13.5798 9.73647 13.3231L6.49961 11.2659L3.26275 13.3224C2.74935 13.5791 2.15986 13.1538 2.24092 12.5857L2.94418 8.42155Z"
-                                                                    fill="#FFB321" />
-                                                            </svg></li>
-                                                            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14"
-                                                                fill="none">
-                                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                                    d="M2.94418 8.42155L0.367213 6.2883C-0.11917 5.89933 0.094156 5.11714 0.711378 5.02896L4.36635 4.86612L5.92719 0.953019C6.03598 0.736138 6.25713 0.599609 6.49961 0.599609C6.74209 0.599609 6.96324 0.736849 7.07203 0.953019L8.63286 4.86612L12.2878 5.02896C12.9051 5.11714 13.1184 5.89933 12.632 6.2883L10.055 8.42155L10.7583 12.5864C10.8394 13.1545 10.2492 13.5798 9.73647 13.3231L6.49961 11.2659L3.26275 13.3224C2.74935 13.5791 2.15986 13.1538 2.24092 12.5857L2.94418 8.42155Z"
-                                                                    fill="#FFB321" />
-                                                            </svg></li>
-                                                            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14"
-                                                                fill="none">
-                                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                                    d="M2.94418 8.42155L0.367213 6.2883C-0.11917 5.89933 0.094156 5.11714 0.711378 5.02896L4.36635 4.86612L5.92719 0.953019C6.03598 0.736138 6.25713 0.599609 6.49961 0.599609C6.74209 0.599609 6.96324 0.736849 7.07203 0.953019L8.63286 4.86612L12.2878 5.02896C12.9051 5.11714 13.1184 5.89933 12.632 6.2883L10.055 8.42155L10.7583 12.5864C10.8394 13.1545 10.2492 13.5798 9.73647 13.3231L6.49961 11.2659L3.26275 13.3224C2.74935 13.5791 2.15986 13.1538 2.24092 12.5857L2.94418 8.42155Z"
-                                                                    fill="#FFB321" />
-                                                            </svg></li>
-                                                            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14"
-                                                                fill="none">
-                                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                                    d="M2.94418 8.42155L0.367213 6.2883C-0.11917 5.89933 0.094156 5.11714 0.711378 5.02896L4.36635 4.86612L5.92719 0.953019C6.03598 0.736138 6.25713 0.599609 6.49961 0.599609C6.74209 0.599609 6.96324 0.736849 7.07203 0.953019L8.63286 4.86612L12.2878 5.02896C12.9051 5.11714 13.1184 5.89933 12.632 6.2883L10.055 8.42155L10.7583 12.5864C10.8394 13.1545 10.2492 13.5798 9.73647 13.3231L6.49961 11.2659L3.26275 13.3224C2.74935 13.5791 2.15986 13.1538 2.24092 12.5857L2.94418 8.42155Z"
-                                                                    fill="#FFB321" />
-                                                            </svg></li>
-                                                            <li className="inactive"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14"
-                                                                viewBox="0 0 13 14" fill="none">
-                                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                                    d="M2.94418 8.42155L0.367213 6.2883C-0.11917 5.89933 0.094156 5.11714 0.711378 5.02896L4.36635 4.86612L5.92719 0.953019C6.03598 0.736138 6.25713 0.599609 6.49961 0.599609C6.74209 0.599609 6.96324 0.736849 7.07203 0.953019L8.63286 4.86612L12.2878 5.02896C12.9051 5.11714 13.1184 5.89933 12.632 6.2883L10.055 8.42155L10.7583 12.5864C10.8394 13.1545 10.2492 13.5798 9.73647 13.3231L6.49961 11.2659L3.26275 13.3224C2.74935 13.5791 2.15986 13.1538 2.24092 12.5857L2.94418 8.42155Z"
-                                                                    fill="#FFB321" />
-                                                            </svg></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="swiper-slide">
-                                            <div className="wd-testimonials">
-                                                <p className="description">“Jobtex is allowing us to go through a large number of candidates with
-                                                    internal limited resources. We are able to do a first screening of candidates so much easier than
-                                                    if we had to meet everyone. We can truly identify and assess a talent pool more efficiently and
-                                                    have our talent ready to start in their new role faster.”</p>
-                                                <div className="author-group">
-                                                    <div className="avatar">
-                                                        <img src="images/review/testimonials.jpg" alt="images" />
-                                                    </div>
-                                                    <div className="infor">
-                                                        <h6>Pete Jones</h6>
-                                                        <div className="position">Head of Marketing Build</div>
-                                                        <ul className="rating">
-                                                            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14"
-                                                                fill="none">
-                                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                                    d="M2.94418 8.42155L0.367213 6.2883C-0.11917 5.89933 0.094156 5.11714 0.711378 5.02896L4.36635 4.86612L5.92719 0.953019C6.03598 0.736138 6.25713 0.599609 6.49961 0.599609C6.74209 0.599609 6.96324 0.736849 7.07203 0.953019L8.63286 4.86612L12.2878 5.02896C12.9051 5.11714 13.1184 5.89933 12.632 6.2883L10.055 8.42155L10.7583 12.5864C10.8394 13.1545 10.2492 13.5798 9.73647 13.3231L6.49961 11.2659L3.26275 13.3224C2.74935 13.5791 2.15986 13.1538 2.24092 12.5857L2.94418 8.42155Z"
-                                                                    fill="#FFB321" />
-                                                            </svg></li>
-                                                            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14"
-                                                                fill="none">
-                                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                                    d="M2.94418 8.42155L0.367213 6.2883C-0.11917 5.89933 0.094156 5.11714 0.711378 5.02896L4.36635 4.86612L5.92719 0.953019C6.03598 0.736138 6.25713 0.599609 6.49961 0.599609C6.74209 0.599609 6.96324 0.736849 7.07203 0.953019L8.63286 4.86612L12.2878 5.02896C12.9051 5.11714 13.1184 5.89933 12.632 6.2883L10.055 8.42155L10.7583 12.5864C10.8394 13.1545 10.2492 13.5798 9.73647 13.3231L6.49961 11.2659L3.26275 13.3224C2.74935 13.5791 2.15986 13.1538 2.24092 12.5857L2.94418 8.42155Z"
-                                                                    fill="#FFB321" />
-                                                            </svg></li>
-                                                            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14"
-                                                                fill="none">
-                                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                                    d="M2.94418 8.42155L0.367213 6.2883C-0.11917 5.89933 0.094156 5.11714 0.711378 5.02896L4.36635 4.86612L5.92719 0.953019C6.03598 0.736138 6.25713 0.599609 6.49961 0.599609C6.74209 0.599609 6.96324 0.736849 7.07203 0.953019L8.63286 4.86612L12.2878 5.02896C12.9051 5.11714 13.1184 5.89933 12.632 6.2883L10.055 8.42155L10.7583 12.5864C10.8394 13.1545 10.2492 13.5798 9.73647 13.3231L6.49961 11.2659L3.26275 13.3224C2.74935 13.5791 2.15986 13.1538 2.24092 12.5857L2.94418 8.42155Z"
-                                                                    fill="#FFB321" />
-                                                            </svg></li>
-                                                            <li><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14" viewBox="0 0 13 14"
-                                                                fill="none">
-                                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                                    d="M2.94418 8.42155L0.367213 6.2883C-0.11917 5.89933 0.094156 5.11714 0.711378 5.02896L4.36635 4.86612L5.92719 0.953019C6.03598 0.736138 6.25713 0.599609 6.49961 0.599609C6.74209 0.599609 6.96324 0.736849 7.07203 0.953019L8.63286 4.86612L12.2878 5.02896C12.9051 5.11714 13.1184 5.89933 12.632 6.2883L10.055 8.42155L10.7583 12.5864C10.8394 13.1545 10.2492 13.5798 9.73647 13.3231L6.49961 11.2659L3.26275 13.3224C2.74935 13.5791 2.15986 13.1538 2.24092 12.5857L2.94418 8.42155Z"
-                                                                    fill="#FFB321" />
-                                                            </svg></li>
-                                                            <li className="inactive"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="14"
-                                                                viewBox="0 0 13 14" fill="none">
-                                                                <path fillRule="evenodd" clipRule="evenodd"
-                                                                    d="M2.94418 8.42155L0.367213 6.2883C-0.11917 5.89933 0.094156 5.11714 0.711378 5.02896L4.36635 4.86612L5.92719 0.953019C6.03598 0.736138 6.25713 0.599609 6.49961 0.599609C6.74209 0.599609 6.96324 0.736849 7.07203 0.953019L8.63286 4.86612L12.2878 5.02896C12.9051 5.11714 13.1184 5.89933 12.632 6.2883L10.055 8.42155L10.7583 12.5864C10.8394 13.1545 10.2492 13.5798 9.73647 13.3231L6.49961 11.2659L3.26275 13.3224C2.74935 13.5791 2.15986 13.1538 2.24092 12.5857L2.94418 8.42155Z"
-                                                                    fill="#FFB321" />
-                                                            </svg></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="swiper-pagination tes-bullet"></div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
-    {/* <section>
-					<div className="wd-partner">
-						<div className="tf-container">
-							<h1 className="title-partner">
-								Over 100,000 recruiters use Jobtex to modernize their hiring
-							</h1>
-							<div className="swiper partner-type-6">
-								<div className="swiper-wrapper">
-									<div className="swiper-slide">
-										<a className="logo-partner" href="#">
-											<img src="images/partners/Logo.png" alt="images/partners/Logo.png" />
-										</a>
-									</div>
-									<div className="swiper-slide">
-										<a href="#" className="logo-partner">
-											<img src="images/partners/Logo-1.png" alt="images/partners/Logo.png" />
-										</a>
-									</div>
-									<div className="swiper-slide">
-										<a href="#" className="logo-partner">
-											<img src="images/partners/Logo-2.png" alt="images/partners/Logo.png" />
-										</a>
-									</div>
-									<div className="swiper-slide">
-										<a href="#" className="logo-partner">
-											<img src="images/partners/Logo-3.png" alt="images/partners/Logo.png" />
-										</a>
-									</div>
-									<div className="swiper-slide">
-										<a href="#" className="logo-partner">
-											<img src="images/partners/Logo-4.png" alt="images/partners/Logo.png" />
-										</a>
-									</div>
-									<div className="swiper-slide">
-										<a href="#" className="logo-partner">
-											<img src="images/partners/Logo-5.png" alt="images/partners/Logo.png" />
-										</a>
-									</div>
-									<div className="swiper-slide">
-										<a href="#" className="logo-partner">
-											<img src="images/partners/Logo.png" alt="images/partners/Logo.png" />
-										</a>
-									</div>
-									<div className="swiper-slide">
-										<a href="#" className="logo-partner">
-											<img src="images/partners/Logo-1.png" alt="images/partners/Logo.png" />
-										</a>
-									</div>
-									<div className="swiper-slide">
-										<a href="#" className="logo-partner">
-											<img src="images/partners/Logo-2.png" alt="images/partners/Logo.png" />
-										</a>
-									</div>
-									<div className="swiper-slide">
-										<a href="#" className="logo-partner">
-											<img src="images/partners/Logo-3.png" alt="images/partners/Logo.png" />
-										</a>
-									</div>
-									<div className="swiper-slide">
-										<a href="#" className="logo-partner">
-											<img src="images/partners/Logo-4.png" alt="images/partners/Logo.png" />
-										</a>
-									</div>
-									<div className="swiper-slide">
-										<a href="#" className="logo-partner">
-											<img src="images/partners/Logo-5.png" alt="images/partners/Logo.png" />
-										</a>
-									</div>
-								</div>
+            </section >
 
-							</div>
-						</div>
-					</div>
-				</section> */}
 
-    {/* <Footer/> */ }
+
+
 
     {/* </div> */ }
         </>

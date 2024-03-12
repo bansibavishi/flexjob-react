@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import Select from 'react-select'
 import { toast } from 'react-toastify'
 
 
 export default function JobCreate() {
+    const send = useNavigate();
 
     const [job, setJob] = useState(
         {
@@ -43,6 +45,7 @@ export default function JobCreate() {
 
                 setExpertise(ex)
             }
+
             console.log(res);
 
         })
@@ -72,6 +75,7 @@ export default function JobCreate() {
             console.log(res);
             if (res?.status) {
                 toast.success(res?.message)
+                send("/job")
             }
             if (res?.error) {
                 toast.error(res?.error)

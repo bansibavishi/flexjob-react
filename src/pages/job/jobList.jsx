@@ -386,7 +386,7 @@ export default function JobList() {
                                                             <div className="box-content">
                                                                 <Link to={'/job/' + e._id} >
                                                                     <h4>
-                                                                        {e.userId}
+                                                                        {e.user[0].firstName}
                                                                     </h4>
                                                                     <h3>
                                                                         {e.title}

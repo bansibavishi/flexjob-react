@@ -71,10 +71,7 @@ export default function Login() {
                     <div className="row">
                         <div className="wd-form-login">
                             <h4>Log In</h4>
-                            <div className="nofi-form">
-                                <p>Username: <span>candidate</span> or <span>employer</span> </p>
-                                <p>Password: <span>jobtex</span></p>
-                            </div>
+        
                             <form onSubmit={login}>
                                 <div className="ip">
                                     <label>Username or email address<span>*</span></label>

@@ -17,11 +17,13 @@ import { Navigate } from "react-router-dom/dist";
 import Dashboard from "./layout/dashboard";
 import EmployerList from "./pages/employers/employerList";
 import AboutUs from "./aboutUs";
+import ContactUs from "./contactUs";
 
 
 
 function RequireAuth({ children }) {
-    return true ? children : <Navigate to="/login" replace />;
+    var token = localStorage.getItem('token')
+    return token ? children : <Navigate to="/login" replace />;
 }
 
 
@@ -33,17 +35,18 @@ function App() {
                 <Routes>
 
                     <Route path="/" element={<Layout />}>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/employers/:userId" element={<EmployersSingle />} />
-                        <Route path="/employers-review" element={<EmployersReview />} />
-                        <Route path="/employers-list" element={<EmployerList/>} />
-                        <Route path="/candidate" element={<Candidate />} />
-                        <Route path="/login" element={<Login />} />
+                        <Route path="/" element={<RequireAuth><Home /></RequireAuth>} />
+                        <Route path="/employers/:userId" element={<RequireAuth> <EmployersSingle /></RequireAuth>} />
+                        <Route path="/employers-review" element={<RequireAuth><EmployersReview /></RequireAuth>} />
+                        <Route path="/employers-list" element={<RequireAuth><EmployerList/></RequireAuth>} />
+                        <Route path="/candidate" element={<RequireAuth><Candidate /></RequireAuth>} />
+                        <Route path="/login" element={<Login />}/>
                         <Route path="/register" element={<Register />} />
                         <Route path="/forget-pass" element={<ForgetPass />} />
-                        <Route path="/job" element={<JobList />} />
-                        <Route path="/job/:postId" element={<JobSingle/>} />
-                        <Route path="/about-us" element={<AboutUs/>} />
+                        <Route path="/job" element={<RequireAuth><JobList /></RequireAuth>} />
+                        <Route path="/job/:postId" element={<RequireAuth><JobSingle/></RequireAuth>} />
+                        <Route path="/about-us" element={<RequireAuth><AboutUs/></RequireAuth>} />
+                        <Route path="/contact-us" element={<RequireAuth><ContactUs/></RequireAuth>}/>
                     </Route>
 
                     <Route path="/" element={<Dashboard />} >

@@ -1,30 +1,57 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
+import { setUser } from '../helper/slice';
 
 export default function Navbar() {
 
     const [activeMenu, setActiveMenu] = useState('home')
     const send = useNavigate();
-   function logout() {
-    var token = localStorage.getItem('token')
-   fetch(process.env.REACT_APP_API + "/logout" , {
-    method:"post",
-    headers:{
-        Authorization:'Bearer ' + token
+
+    const run = useDispatch();
+    const cUser = useSelector(state => state.user)
+    console.log(cUser);
+
+    function logout() {
+        var token = localStorage.getItem('token')
+        fetch(process.env.REACT_APP_API + "/logout", {
+            method: "post",
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        }).then(e => e.json()).then(res => {
+            if (res.status == true) {
+                localStorage.removeItem('token')
+                toast.success(res.message)
+                send("/login")
+            }
+            console.log(res);
+        })
+            .catch(err => {
+                console.log(err);
+            })
     }
-   }).then(e => e.json()).then(res => {
-    if(res.status == true){
-        localStorage.removeItem('token')
-        toast.success(res.message)
-        send("/login")
+
+    function getUser() {
+
+        var token = localStorage.getItem('token')
+        fetch(process.env.REACT_APP_API + "/profile", {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        }).then(e => e.json()).then(res => {
+            console.log(res);
+            run(setUser(res.userData))
+
+        }).catch(err => {
+            console.log(err);
+        })
     }
-    console.log(res);
-   })
-    .catch(err => {
-        console.log(err);
-    })
-   }
+    useEffect(() => {
+        getUser()
+    }, [])
+
     return (
         <header id="header" className="header header-default style-absolute header-fixed is-fixed is-small">
             <div className="tf-container ct2">
@@ -37,7 +64,7 @@ export default function Navbar() {
                                         <img className="site-logo" id="trans-logo" src="/images/logo-white.png" alt="Image" />
                                     </Link>
                                 </div>
-                               
+
                             </div>
                             <div className="header-ct-center">
                                 <div className="nav-wrap">
@@ -50,13 +77,16 @@ export default function Navbar() {
                                                 <Link to="/job">JobList </Link>
                                             </li>
                                             <li className={"menu-item" + (activeMenu == "employers" ? " current-item" : "")} onClick={e => setActiveMenu("employers")}>
-                                                <Link to="/employers">EmployersSingle</Link>
+                                                <Link to="/employers-list">Employers</Link>
                                             </li>
-                                            <li className={"menu-item" + (activeMenu == "" ? " current-item" : "")}>
+                                            <li className={"menu-item" + (activeMenu == "" ? " current-item" : "")} onClick={e => setActiveMenu("employers-Review")}>
                                                 <Link to="/employers-review">EmployersReview</Link>
                                             </li>
-                                            <li className={"menu-item" + (activeMenu == "" ? " current-item" : "")}>
-                                                <a href="#">About</a>
+                                            <li className={"menu-item" + (activeMenu == "" ? " current-item" : "")} onClick={e => setActiveMenu("about-us")}>
+                                                <Link to="/about-us">About</Link>
+                                            </li>
+                                            <li className={"menu-item" + (activeMenu == "" ? " current-item" : "")} onClick={e => setActiveMenu("contact-us")}>
+                                                <Link to="/contact-us">Contact Us</Link>
                                             </li>
                                         </ul>
                                     </nav>
@@ -67,6 +97,7 @@ export default function Navbar() {
                                     {/* <a href="term-of-use.html"><span className="icon-help-circle"></span></a> */}
                                 </div>
 
+                                    {cUser == null ?'' :
                                 <div className="header-customize-item account">
                                     <img src="images/user/avatar/image-01.jpg" alt="" />
                                     <div className="name">
@@ -112,6 +143,7 @@ export default function Navbar() {
                                         </div>
                                     </div>
                                 </div>
+                                     }
                                 {/* <div className="header-customize-item button">
                                     <a href="dashboard/candidates-resumes.html">Upload Resume</a>
                                 </div> */}
