@@ -77,13 +77,13 @@ export default function Profile() {
 
         var pData = new FormData()
         for (const k in user) {
-            if(k != '_id' && k !='email'  &&k != 'savedJob' && k != 'workHistory')
-            if (k == "expertise") {
-                user[k].map(e => {
-                    pData.append(k, e)
-                })
-            } else
-                pData.append(k, user[k])
+            if (k != '_id' && k != 'email' && k != 'savedJob' && k != 'workHistory')
+                if (k == "expertise") {
+                    user[k].map(e => {
+                        pData.append(k, e)
+                    })
+                } else
+                    pData.append(k, user[k])
         }
 
 
@@ -221,12 +221,6 @@ export default function Profile() {
                                                     <label className="title-user fw-7">Email</label>
                                                     <input type="email" className="input-form" onChange={e => setUser({ ...user, email: e.target.value })} value={user.email} required />
                                                 </fieldset>
-<<<<<<< HEAD
-                                            
-=======
-                                   
->>>>>>> 527ccd7c34b52d76e81bfa83c0c8d50ac333c974
-
 
                                                 <fieldset>
                                                     <label className="title-user fw-7">Rate</label>

@@ -7,6 +7,8 @@ export default function Login() {
 
     const send = useNavigate();
 
+    const [showPassword, setShowPassword] = useState(false);
+
 
     const [user, setUser] = useState({
         email: "",
@@ -71,7 +73,7 @@ export default function Login() {
                     <div className="row">
                         <div className="wd-form-login">
                             <h4>Log In</h4>
-        
+
                             <form onSubmit={login}>
                                 <div className="ip">
                                     <label>Username or email address<span>*</span></label>
@@ -80,9 +82,9 @@ export default function Login() {
                                 <div className="ip">
                                     <label>Password<span>*</span></label>
                                     <div className="inputs-group auth-pass-inputgroup">
-                                        <input type="password" className="input-form password-input" onChange={e => setUser({ ...user, password: e.target.value })} value={user.password} placeholder="Password"
+                                        <input  className="input-form password-input" type={showPassword ? "text" : "password"} onChange={e => setUser({ ...user, password: e.target.value })} value={user.password} placeholder="Password"
                                             required="" />
-                                        <a className="icon-eye-off password-addon" id="password-addon"></a>
+                                        <a className="icon-eye-off password-addon" id="password-addon" onClick={e => setShowPassword(!showPassword )} ></a>
                                     </div>
                                 </div>
                                 <div className="group-ant-choice">

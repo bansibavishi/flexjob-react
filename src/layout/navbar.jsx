@@ -74,13 +74,13 @@ export default function Navbar() {
                                                 <Link to="/">Home </Link>
                                             </li>
                                             <li className={"menu-item" + (activeMenu == "job" ? " current-item" : "")} onClick={e => setActiveMenu("job")} >
-                                                <Link to="/job">JobList </Link>
+                                                <Link to="/job">Job </Link>
                                             </li>
                                             <li className={"menu-item" + (activeMenu == "employers" ? " current-item" : "")} onClick={e => setActiveMenu("employers")}>
                                                 <Link to="/employers-list">Employers</Link>
                                             </li>
                                             <li className={"menu-item" + (activeMenu == "" ? " current-item" : "")} onClick={e => setActiveMenu("employers-Review")}>
-                                                <Link to="/employers-review">EmployersReview</Link>
+                                                <Link to="/employers-review">Review</Link>
                                             </li>
                                             <li className={"menu-item" + (activeMenu == "" ? " current-item" : "")} onClick={e => setActiveMenu("about-us")}>
                                                 <Link to="/about-us">About</Link>
@@ -125,18 +125,15 @@ export default function Navbar() {
                                         <div className="sub-account-item">
                                             <a href="dashboard/candidates-messages.html"><span className="icon-chat"></span> Messages</a>
                                         </div>
-                                        <div className="sub-account-item">
+                                        {/* <div className="sub-account-item">
                                             <a href="dashboard/candidates-following-employers.html"><span className="icon-following"></span> Following Employers</a>
-                                        </div>
+                                        </div> */}
                                         <div className="sub-account-item">
                                             <a href="dashboard/candidates-meetings.html"><span className="icon-meeting"></span> Meeting</a>
                                         </div>
                                         <div className="sub-account-item">
                                             <a href="dashboard/candidates-change-passwords.html"><span className="icon-change-passwords"></span> Change
                                                 Passwords</a>
-                                        </div>
-                                        <div className="sub-account-item">
-                                            <a href="dashboard/candidates-delete-profile.html"><span className="icon-trash"></span> Delete Profile</a>
                                         </div>
                                         <div className="sub-account-item">
                                             <a href="#" onClick={logout}><span className="icon-log-out"></span> Log Out</a>

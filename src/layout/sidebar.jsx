@@ -26,7 +26,7 @@ export default function Sidebar() {
             console.log(err);
         })
        }
-      
+
     return (
         <>
             <div className="left-menu">
@@ -87,12 +87,12 @@ export default function Sidebar() {
                             </a>
                         </li>
 
-                        <li>
+                        {/* <li>
                             <a href="candidates-following-employers.html" className="tf-effect">
                                 <span className="icon-following dash-icon"></span>
                                 <span className="dash-titles">Following Employers</span>
                             </a>
-                        </li>
+                        </li> */}
 
                         <li>
                             <a href="candidates-meetings.html" className="tf-effect">
@@ -108,17 +108,17 @@ export default function Sidebar() {
                             </a>
                         </li>
 
-                        <li>
+                        {/* <li>
                             <a href="candidates-delete-profile.html" className="tf-effect ">
                                 <span className="icon-trash dash-icon"></span>
                                 <span className="dash-titles">Delete Profile</span>
                             </a>
-                        </li>
+                        </li> */}
 
                         <li>
                             <a className="tf-effect">
                                 <span className="icon-log-out dash-icon"></span>
-                                <span className="dash-titles" onClick={logout}>Log out</span>  
+                                <span className="dash-titles" onClick={logout}>Log out</span>
                             </a>
                         </li>
 

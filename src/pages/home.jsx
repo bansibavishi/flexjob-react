@@ -51,6 +51,8 @@ export default function Home() {
                 console.log(err);
             })
     }
+
+
     useEffect(() => {
         getJobList()
         getExpertise()
@@ -189,7 +191,6 @@ export default function Home() {
                                                         {e.formattedTime}
                                                     </li>
                                                 </ul>
-                                                <span className="icon-heart"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -213,7 +214,7 @@ export default function Home() {
                                                 <span className="icon-dolar1"></span>
                                                 <p>${e.budget}</p>
                                             </div>
-                                            <p className="days">22 days left to apply</p>
+
                                         </div>
                                     </div>
                                     {/* <a href="" className="jobtex-link-item" tabIndex="0"></a> */}
