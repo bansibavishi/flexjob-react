@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify';
 
-export default function ForgetPass() {
+export default function ResetPass() {
+    const[resetPass,setResetPass] = useState({
+        password:""
+    })
+    let { userId,token } = useParams();
 
-
-    const[forgetPass,setForgetPass] = useState({ email:"" })
-
-    function forgetPassword(e) {
+    function resetPassword(e) {
         e.preventDefault();
-        fetch(process.env.REACT_APP_API + "/forget-pass" , {
-            method: "post",
-            body:JSON.stringify(forgetPass),
+        fetch(process.env.REACT_APP_API + "/reset/" + userId  + "/" + token, {
+            method:"post",
+            body:JSON.stringify(resetPass),
             headers: {
-                "content-type": "application/json",
-
+                "content-type": "application/json"
             }
         }).then(e => e.json()).then(res => {
             console.log(res);
-            if(res.status == true){
-
+            if(res.status == true)
+            {
                 toast.success(res.message)
             }
             else{
@@ -28,12 +28,10 @@ export default function ForgetPass() {
         }).catch(err => {
             console.log(err);
         })
-
     }
-
-    return (
-        <>
-            <section className="bg-f5">
+  return (
+    <>
+<section className="bg-f5">
                 <div className="tf-container">
                     <div className="row">
                         <div className="col-lg-12">
@@ -55,15 +53,19 @@ export default function ForgetPass() {
                 <div className="tf-container">
                     <div className="row">
                         <div className="wd-form-login">
-                            <h4>Forget pass</h4>
-                            <form onSubmit={forgetPassword}>
+                            <h4>ResetPassword</h4>
+                            <form onSubmit={resetPassword} >
                                 <div className="ip">
-                                    <label>email address<span>*</span></label>
-                                    <input type="text"   placeholder="Enter Your Email" onChange={e => setForgetPass({ ...forgetPass, email: e.target.value })} value={forgetPass.email} />
+                                    <label>Reset Password<span>*</span></label>
+                                    <input type="Password"  placeholder="Enter Your Password"  onChange={e => setResetPass({ ...resetPass, password: e.target.value })} value={resetPass.password} />
+                                </div>
+                                <div className="ip">
+                                    <label>Confirm Password<span>*</span></label>
+                                    <input type="Password"  placeholder="Enter Your Password"  />
                                 </div>
 
-                                <button type="submit">Get Link</button>
-                                <div className="sign-up">Not registered yet? <Link to="/register">Sign Up</Link> </div>
+                                <button type="submit">Submit</button>
+                                <div className="sign-In">Not login yet? <Link to="/login">Sign In</Link> </div>
                             </form>
                         </div>
                     </div>
@@ -71,6 +73,6 @@ export default function ForgetPass() {
             </section>
 
 
-        </>
-    )
+    </>
+  )
 }

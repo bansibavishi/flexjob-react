@@ -169,7 +169,7 @@ export default function JobSingle() {
                                             </div>
                                             <div className="price">
                                                 <span className="icon-dollar"></span>
-                                                <p>{job.budget} <span className="year">/year</span></p>
+                                                <p>{job.budget} <span className="year">/hours</span></p>
                                             </div>
                                         </div>
 
@@ -187,8 +187,7 @@ export default function JobSingle() {
                                 <article className="job-article tf-tab single-job">
                                     <ul className="menu-tab">
                                         <li className="ct-tab active">About</li>
-                                        <li className="ct-tab">Jobs (2)</li>
-                                        <li className="ct-tab">reviews</li>
+
                                     </ul>
                                     <div className="content-tab">
                                         <div className="inner-content">

@@ -94,12 +94,7 @@ export default function Sidebar() {
                             </a>
                         </li> */}
 
-                        <li>
-                            <a href="candidates-meetings.html" className="tf-effect">
-                                <span className="icon-meeting dash-icon"></span>
-                                <span className="dash-titles">Meeting</span>
-                            </a>
-                        </li>
+
 
                         <li>
                             <a href="candidates-change-passwords.html" className="tf-effect">

@@ -51,7 +51,28 @@ export default function Home() {
                 console.log(err);
             })
     }
+    function like(likeId, es) {
+        console.log(es);
+        var token = localStorage.getItem('token')
+        fetch(process.env.REACT_APP_API + "/like", {
+            method: "post",
+            headers: {
+                "content-type": "application/json",
+                Authorization: 'Bearer ' + token
+            },
+            body: JSON.stringify({ postId: likeId })
+        }).then(e => e.json()).then(res => {
+            if (res.like == true) {
+                es.target.classList.add('text-danger')
+            } else {
+                es.target.classList.remove('text-danger')
+            }
+            console.log(res);
+        }).catch(err => {
+            console.log(err);
+        })
 
+    }
 
     useEffect(() => {
         getJobList()
@@ -191,6 +212,7 @@ export default function Home() {
                                                         {e.formattedTime}
                                                     </li>
                                                 </ul>
+                                                <span onClick={(se) => like(e._id, se)} className={"icon-heart" + (e?.liked ? " text-danger" : "")}></span>
                                             </div>
                                         </div>
                                     </div>
@@ -211,8 +233,8 @@ export default function Home() {
                                         </div>
                                         <div className="job-footer-right">
                                             <div className="price">
-                                                <span className="icon-dolar1"></span>
-                                                <p>${e.budget}</p>
+                                                <span></span>
+                                                <p>${e.budget}/hours</p>
                                             </div>
 
                                         </div>

@@ -18,6 +18,8 @@ import Dashboard from "./layout/dashboard";
 import EmployerList from "./pages/employers/employerList";
 import AboutUs from "./aboutUs";
 import ContactUs from "./contactUs";
+import ResetPass from "./pages/auth/resetPass";
+
 
 
 
@@ -47,6 +49,8 @@ function App() {
                         <Route path="/job/:postId" element={<RequireAuth><JobSingle/></RequireAuth>} />
                         <Route path="/about-us" element={<RequireAuth><AboutUs/></RequireAuth>} />
                         <Route path="/contact-us" element={<RequireAuth><ContactUs/></RequireAuth>}/>
+                        <Route path="/reset/:userId/:token" element={<ResetPass/>}/>
+
                     </Route>
 
                     <Route path="/" element={<Dashboard />} >

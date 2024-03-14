@@ -11,6 +11,7 @@ export default function JobList() {
 
     const [page, setPage] = useState(1) // current page
     const [totalPage, setTotalPage] = useState(1)
+    const[search,setSearch] = useState("")
 
 
 
@@ -18,7 +19,7 @@ export default function JobList() {
     function getJobList() {
 
         var token = localStorage.getItem('token')
-        fetch(process.env.REACT_APP_API + "/post-list?page=" + page, {
+    fetch(process.env.REACT_APP_API + "/post-list?page=" + page+"&s=" + search,  {
             headers: {
                 Authorization: 'Bearer ' + token
             }
@@ -123,10 +124,10 @@ export default function JobList() {
             <section className="form-sticky stc1">
                 <div className="tf-container">
                     <div className="job-search-form inner-form-map st1">
-                        <form method="post">
+
                             <div className="row-group-search">
                                 <div className="form-group-1">
-                                    <input type="text" className="input-filter-search" placeholder="Job title, key words or company" />
+                                    <input type="text" className="input-filter-search" placeholder="Job title, key words or company" onChange={e => setSearch( e.target.value )} value={search}/>
                                     <span className="icon-search search-job"></span>
                                 </div>
                                 <div className="form-group-2">
@@ -310,11 +311,11 @@ export default function JobList() {
                                     </div>
                                 </div>
                                 <div className="form-group-4">
-                                    <button className="btn btn-find">Find Jobs</button>
+                                    <button className="btn btn-find" onClick={getJobList}>Find Jobs</button>
                                 </div>
                             </div>
 
-                        </form>
+
                     </div>
                 </div>
             </section>
@@ -428,7 +429,7 @@ export default function JobList() {
                                                         <div className="job-footer-right">
                                                             <div className="price">
                                                                 <span className="icon-dolar1"></span>
-                                                                <p>{e.price} <span className="year">/year</span></p>
+                                                                <p>{e.price} <span className="year">/hours</span></p>
                                                             </div>
                                                             <p className="days">{e.validity}</p>
                                                         </div>

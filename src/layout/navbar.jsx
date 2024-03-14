@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import { setUser } from '../helper/slice';
+// import icon from '/images/icon.png'
 
 export default function Navbar() {
 
@@ -53,6 +54,7 @@ export default function Navbar() {
     }, [])
 
     return (
+
         <header id="header" className="header header-default style-absolute header-fixed is-fixed is-small">
             <div className="tf-container ct2">
                 <div className="row">
@@ -61,7 +63,7 @@ export default function Navbar() {
                             <div className="header-ct-left">
                                 <div id="logo" className="logo">
                                     <Link to="/">
-                                        <img className="site-logo" id="trans-logo" src="/images/logo-white.png" alt="Image" />
+                                        <img className="site-logo" id="trans-logo" src="/images/logo.png" alt="Image" />
                                     </Link>
                                 </div>
 
@@ -125,16 +127,11 @@ export default function Navbar() {
                                         <div className="sub-account-item">
                                             <a href="dashboard/candidates-messages.html"><span className="icon-chat"></span> Messages</a>
                                         </div>
-                                        {/* <div className="sub-account-item">
-                                            <a href="dashboard/candidates-following-employers.html"><span className="icon-following"></span> Following Employers</a>
-                                        </div> */}
+
+
                                         <div className="sub-account-item">
-                                            <a href="dashboard/candidates-meetings.html"><span className="icon-meeting"></span> Meeting</a>
-                                        </div>
-                                        <div className="sub-account-item">
-                                            <a href="dashboard/candidates-change-passwords.html"><span className="icon-change-passwords"></span> Change
-                                                Passwords</a>
-                                        </div>
+                                            <a><span className="icon-change-passwords"></span><Link to={"/forget-pass"}>Change Passwords</Link></a>
+                                         </div>
                                         <div className="sub-account-item">
                                             <a href="#" onClick={logout}><span className="icon-log-out"></span> Log Out</a>
                                         </div>
