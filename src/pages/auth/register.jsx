@@ -28,6 +28,9 @@ export default function Register() {
         e.preventDefault();
 
         // axios.post()
+        if (user.type === '') {
+            return toast.error('Please select account type.')
+        }
 
 
         fetch(process.env.REACT_APP_API + "/register", {
@@ -38,7 +41,7 @@ export default function Register() {
             }
         }).then(e => e.json()).then(res => {
             console.log(res);
-            if (res.status == true) {
+            if (res.status === true) {
                 toast.success(res.message)
                 send("/login")
             } else {
@@ -79,8 +82,8 @@ export default function Register() {
                         <div className="wd-form-login tf-tab">
                             <h4>Create a free account</h4>
                             <ul className="menu-tab">
-                                <li className="ct-tab active" onClick={e => setUser({...user, type: "candidate"})}>Candidate</li>
-                                <li className="ct-tab" onClick={e => setUser({...user, type: "employer"})}>Employer</li>
+                                <li className={"ct-tab" + (user.type === "employee" ? ' active' : '')} onClick={e => setUser({ ...user, type: "employee" })}>Employee</li>
+                                <li className={"ct-tab" + (user.type === "employer" ? ' active' : '')} onClick={e => setUser({ ...user, type: "employer" })}>Employer</li>
                             </ul>
                             <div className="content-tab">
                                 <div className="inner">
