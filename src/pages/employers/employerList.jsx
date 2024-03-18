@@ -29,6 +29,8 @@ export default function EmployerList() {
 
     }
 
+
+
     function generateBtn(pageNo) {
         var arr = Array.from({ length: pageNo }, (_, i) => i + 1)
         return arr.map((n) => <li className={n == page ? 'current' : ''}><a onClick={() => setPage(n)} href="#">{n}</a></li>)
@@ -128,8 +130,6 @@ export default function EmployerList() {
                                                                 </p>
                                                             </div>
                                                             <div className="button-readmore">
-                                                                <span className="icon-heart"></span>
-
                                                             </div>
 
                                                         </div>

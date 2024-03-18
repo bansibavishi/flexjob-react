@@ -818,6 +818,10 @@
   content: "\e989";
   color: #64666c;
 }
+.icon-save-candidate-green:before {
+  content: "\e989";
+  color: #14a077;
+}
 
 .icon-submit:before {
   content: "\e98a";

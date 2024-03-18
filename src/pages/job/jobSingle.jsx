@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../../layout/navbar'
 import Footer from '../../layout/footer'
-import { IoClose } from "react-icons/io5";
+import { IoClose} from "react-icons/io5";
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -21,6 +21,8 @@ export default function JobSingle() {
             bidAmount: ""
         }
     )
+
+
 
 
 
@@ -112,9 +114,12 @@ export default function JobSingle() {
     }
 
 
+
+
     useEffect(() => {
         getjob()
     }, [])
+
     return (
         <>
             <div className="boxed">
@@ -400,165 +405,7 @@ export default function JobSingle() {
                                                 </ul>
                                                 <a href="find-jobs-list.html" className="btn-load">See more reviews (719)</a>
                                             </div>
-                                            <div className="related-job">
-                                                <h6>Related Jobs</h6>
-                                                <div className="features-job mg-bt-0">
-                                                    <div className="job-archive-header">
-                                                        <div className="inner-box">
-                                                            <div className="logo-company">
-                                                                <img src="/images/logo-company/cty2.png"
-                                                                    alt="images/logo-company/cty2.png" />
-                                                            </div>
-                                                            <div className="box-content">
-                                                                <h4>
-                                                                    <a href="jobs-single.html">Tamari Law Group LLC</a>
-                                                                </h4>
-                                                                <h3>
-                                                                    <a href="jobs-single.html">HR Administration</a>
-                                                                    <span className="icon-bolt"></span>
-                                                                </h3>
-                                                                <ul>
-                                                                    <li>
-                                                                        <span className="icon-map-pin"></span>
-                                                                        Las Vegas, NV 89107, USA
-                                                                    </li>
-                                                                    <li>
-                                                                        <span className="icon-calendar"></span>
-                                                                        2 days ago
-                                                                    </li>
-                                                                </ul>
-                                                                <span className="icon-heart"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="job-archive-footer">
-                                                        <div className="job-footer-left">
-                                                            <ul className="job-tag">
-                                                                <li><a href="#"> Part-time</a></li>
-                                                                <li><a href="%24.html"> Remote</a></li>
-                                                            </ul>
-                                                            <div className="star">
-                                                                <span className="icon-star-full"></span>
-                                                                <span className="icon-star-full"></span>
-                                                                <span className="icon-star-full"></span>
-                                                                <span className="icon-star-full"></span>
-                                                                <span className="icon-star-full"></span>
-                                                            </div>
-                                                        </div>
-                                                        <div className="job-footer-right">
-                                                            <div className="price">
-                                                                <span className="icon-dolar1"></span>
-                                                                <p>$83,000 - $110,000 <span className="year">/year</span></p>
-                                                            </div>
-                                                            <p className="days">24 days left to apply</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="features-job mg-bt-0">
-                                                    <div className="job-archive-header">
-                                                        <div className="inner-box">
-                                                            <div className="logo-company">
-                                                                <img src="/images/logo-company/cty7.png"
-                                                                    alt="images/logo-company/cty7.png" />
-                                                            </div>
-                                                            <div className="box-content">
-                                                                <h4>
-                                                                    <a href="jobs-single.html">Tamari Law Group LLC</a>
-                                                                </h4>
-                                                                <h3>
-                                                                    <a href="jobs-single.html">HR Administration</a>
-                                                                    <span className="icon-bolt"></span>
-                                                                </h3>
-                                                                <ul>
-                                                                    <li>
-                                                                        <span className="icon-map-pin"></span>
-                                                                        Las Vegas, NV 89107, USA
-                                                                    </li>
-                                                                    <li>
-                                                                        <span className="icon-calendar"></span>
-                                                                        2 days ago
-                                                                    </li>
-                                                                </ul>
-                                                                <span className="icon-heart"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="job-archive-footer">
-                                                        <div className="job-footer-left">
-                                                            <ul className="job-tag">
-                                                                <li><a href="#"> Part-time</a></li>
-                                                                <li><a href="#"> Remote</a></li>
-                                                            </ul>
-                                                            <div className="star">
-                                                                <span className="icon-star-full"></span>
-                                                                <span className="icon-star-full"></span>
-                                                                <span className="icon-star-full"></span>
-                                                                <span className="icon-star-full"></span>
-                                                                <span className="icon-star-full"></span>
-                                                            </div>
-                                                        </div>
-                                                        <div className="job-footer-right">
-                                                            <div className="price">
-                                                                <span className="icon-dolar1"></span>
-                                                                <p>$83,000 - $110,000 <span className="year">/year</span></p>
-                                                            </div>
-                                                            <p className="days">24 days left to apply</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="features-job mg-bt-0">
-                                                    <div className="job-archive-header">
-                                                        <div className="inner-box">
-                                                            <div className="logo-company">
-                                                                <img src="/images/logo-company/cty8.png"
-                                                                    alt="images/logo-company/cty8.png" />
-                                                            </div>
-                                                            <div className="box-content">
-                                                                <h4>
-                                                                    <a href="jobs-single.html">Tamari Law Group LLC</a>
-                                                                </h4>
-                                                                <h3>
-                                                                    <a href="jobs-single.html">HR Administration</a>
-                                                                    <span className="icon-bolt"></span>
-                                                                </h3>
-                                                                <ul>
-                                                                    <li>
-                                                                        <span className="icon-map-pin"></span>
-                                                                        Las Vegas, NV 89107, USA
-                                                                    </li>
-                                                                    <li>
-                                                                        <span className="icon-calendar"></span>
-                                                                        2 days ago
-                                                                    </li>
-                                                                </ul>
-                                                                <span className="icon-heart"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="job-archive-footer">
-                                                        <div className="job-footer-left">
-                                                            <ul className="job-tag">
-                                                                <li><a href="#"> Part-time</a></li>
-                                                                <li><a href="#"> Remote</a></li>
-                                                            </ul>
-                                                            <div className="star">
-                                                                <span className="icon-star-full"></span>
-                                                                <span className="icon-star-full"></span>
-                                                                <span className="icon-star-full"></span>
-                                                                <span className="icon-star-full"></span>
-                                                                <span className="icon-star-full"></span>
-                                                            </div>
-                                                        </div>
-                                                        <div className="job-footer-right">
-                                                            <div className="price">
-                                                                <span className="icon-dolar1"></span>
-                                                                <p>$83,000 - $110,000 <span className="year">/year</span></p>
-                                                            </div>
-                                                            <p className="days">24 days left to apply</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+
                                         </div>
                                         <div className="inner-content">
                                             <h5>Full Job Description</h5>
@@ -653,4 +500,3 @@ export default function JobSingle() {
     )
 }
 
-// modal-menu--close

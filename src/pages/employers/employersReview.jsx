@@ -3,11 +3,14 @@ import Navbar from '../../layout/navbar'
 import Footer from '../../layout/footer'
 import ReactStars from "react-rating-stars-component";
 import { toast } from 'react-toastify';
+import { useParams } from 'react-router-dom';
 
 export default function EmployersReview() {
 
+
+    let { userId } = useParams();
     const [review, setReview] = useState({
-        userId: "65e1a881e55d39b5ad12a81f",
+        userId: userId,
         feedBack: "",
         star: ""
     })
@@ -21,7 +24,7 @@ export default function EmployersReview() {
         e.preventDefault();
         var token = localStorage.getItem('token')
         console.log(review);
-        fetch(process.env.REACT_APP_API + "/reviews", {
+        fetch(process.env.REACT_APP_API + "/reviews" ,{
             method: "post",
             headers: {
                 "content-type": "application/json",
@@ -33,7 +36,7 @@ export default function EmployersReview() {
             console.log(res);
             if(res.status == true){
                 toast.success(res.message)
-            }    
+            }
             else{
                 toast.error(res.message)
             }
@@ -41,7 +44,7 @@ export default function EmployersReview() {
         }).catch(err => {
             console.log(err);
         })
-        
+
 
     }
 
@@ -63,10 +66,10 @@ export default function EmployersReview() {
                                     <h4>Your honest responses help other job seekers and it’s anonymous</h4>
                                 </div>
                                 <div className="form-company">
-                                    <img src="images/logo-company/cty11.png" alt="images/logo-company/cty11.png" className="logo-company" />
+                                    <img src="http://127.0.0.1:4000/avatar.jpg" alt="" className="logo-company" />
                                     <div className="inner-company-right">
                                         <h3>What is the company name?</h3>
-                                        <input type="text" placeholder="Innotek Company" />
+                                        <input type="text"  />
                                     </div>
                                 </div>
                                 <div className="form-rating">
@@ -92,7 +95,7 @@ export default function EmployersReview() {
                                         <input type="radio" id="star1" name="rate" value="1" />
                                         <label for="star1" title="text"></label>
                                     </div> */}
-                                </div>                                                        
+                                </div>
                                 <div className="form-notes">
                                     <h3>What is the best or worst thing about tyhe benefits package at this company?</h3>
 
@@ -105,7 +108,7 @@ export default function EmployersReview() {
                     </div>
                 </section>
 
-                <Footer />
+
             </div>
         </>
     )

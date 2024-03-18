@@ -3,13 +3,12 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 
+
 export default function Login() {
 
     const send = useNavigate();
 
     const [showPassword, setShowPassword] = useState(false);
-
-
     const [user, setUser] = useState({
         email: "",
         password: ""
@@ -82,9 +81,12 @@ export default function Login() {
                                 <div className="ip">
                                     <label>Password<span>*</span></label>
                                     <div className="inputs-group auth-pass-inputgroup">
-                                        <input  className="input-form password-input" type={showPassword ? "text" : "password"} onChange={e => setUser({ ...user, password: e.target.value })} value={user.password} placeholder="Password"
+                                        <input className="input-form password-input" type={showPassword ? "text" : "password"} onChange={e => setUser({ ...user, password: e.target.value })} value={user.password} placeholder="Password"
                                             required="" />
-                                        <a className="icon-eye-off password-addon" id="password-addon" onClick={e => setShowPassword(!showPassword )} ></a>
+
+                                        <a className={"password-addon " + (showPassword ? "icon-eye" : "icon-eye-off") } id="password-addon" onClick={e => setShowPassword(!showPassword)} >
+
+                                        </a>
                                     </div>
                                 </div>
                                 <div className="group-ant-choice">
@@ -102,3 +104,4 @@ export default function Login() {
         </>
     )
 }
+// icon-eye-off password-addon"

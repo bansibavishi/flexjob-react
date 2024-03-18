@@ -67,10 +67,12 @@ export default function Sidebar() {
                         </li>
 
                         <li>
-                            <a href="candidates-save-jobs.html" className="tf-effect">
+                            <Link to={"/savejob-list"}>
+                            <a className="tf-effect">
                                 <span className="icon-work dash-icon"></span>
                                 <span className="dash-titles">Saved Jobs</span>
                             </a>
+                            </Link>
                         </li>
 
                         <li>
@@ -87,12 +89,7 @@ export default function Sidebar() {
                             </a>
                         </li>
 
-                        {/* <li>
-                            <a href="candidates-following-employers.html" className="tf-effect">
-                                <span className="icon-following dash-icon"></span>
-                                <span className="dash-titles">Following Employers</span>
-                            </a>
-                        </li> */}
+
 
 
 

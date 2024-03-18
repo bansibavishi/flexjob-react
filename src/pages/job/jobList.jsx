@@ -51,7 +51,7 @@ export default function JobList() {
     }, [])
 
     function like(likeId, es) {
-        console.log(es);
+        // console.log(es);
         var token = localStorage.getItem('token')
         fetch(process.env.REACT_APP_API + "/like", {
             method: "post",
@@ -85,13 +85,14 @@ export default function JobList() {
             },
             body: JSON.stringify({ postId: saveId })
         }).then(e => e.json()).then(res => {
-            console.log(es.target);
+            // console.log(es.target);
             if (res.save == true) {
-                es.target.classList.add('text-success')
+                es.target.classList.add('icon-save-candidate-green')
+                es.target.classList.remove('icon-save-candidate')
             } else {
-                es.target.classList.remove('text-success')
+                es.target.classList.add('icon-save-candidate')
+                es.target.classList.remove('icon-save-candidate-green')
             }
-            console.log(res);
         }).catch(err => {
             console.log(err);
         })
@@ -405,7 +406,7 @@ export default function JobList() {
                                                                     </li>
                                                                 </ul>
                                                                 <span onClick={(se) => like(e._id, se)} className={"icon-heart" + (e?.liked ? " text-danger" : "")}></span>
-                                                                <span onClick={(se) => save(e._id, se)} className={"icon-save-candidate" + (e?.saved ? " text-danger" : "")}></span>
+                                                                <span onClick={(se) => save(e._id, se)} className={"border fs-5 p-2 rounded-circle" + (e?.saved ? " icon-save-candidate-green" : " icon-save-candidate")} style={{position:'absolute',right:'65px',top:'0px',}}></span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -414,7 +415,7 @@ export default function JobList() {
                                                             <ul className="job-tag">
 
                                                                 {e.expertise && e.expertise?.map(i =>
-                                                                    <li key={Math.random()}><a href="#">{i.technology}</a></li>
+                                                                    <li key={Math.random()}><a>{i.technology}</a></li>
                                                                 )}
 
                                                             </ul>
@@ -429,7 +430,7 @@ export default function JobList() {
                                                         <div className="job-footer-right">
                                                             <div className="price">
                                                                 <span className="icon-dolar1"></span>
-                                                                <p>{e.price} <span className="year">/hours</span></p>
+                                                                <p>{e.budget} <span className="year">/hours</span></p>
                                                             </div>
                                                             <p className="days">{e.validity}</p>
                                                         </div>

@@ -19,6 +19,8 @@ import EmployerList from "./pages/employers/employerList";
 import AboutUs from "./aboutUs";
 import ContactUs from "./contactUs";
 import ResetPass from "./pages/auth/resetPass";
+import SaveJob from "./pages/job/saveJob";
+
 
 
 
@@ -39,7 +41,7 @@ function App() {
                     <Route path="/" element={<Layout />}>
                         <Route path="/" element={<RequireAuth><Home /></RequireAuth>} />
                         <Route path="/employers/:userId" element={<RequireAuth> <EmployersSingle /></RequireAuth>} />
-                        <Route path="/employers-review" element={<RequireAuth><EmployersReview /></RequireAuth>} />
+                        <Route path="/employers-review/:userId" element={<RequireAuth><EmployersReview /></RequireAuth>} />
                         <Route path="/employers-list" element={<RequireAuth><EmployerList/></RequireAuth>} />
                         <Route path="/candidate" element={<RequireAuth><Candidate /></RequireAuth>} />
                         <Route path="/login" element={<Login />}/>
@@ -50,6 +52,7 @@ function App() {
                         <Route path="/about-us" element={<RequireAuth><AboutUs/></RequireAuth>} />
                         <Route path="/contact-us" element={<RequireAuth><ContactUs/></RequireAuth>}/>
                         <Route path="/reset/:userId/:token" element={<ResetPass/>}/>
+                        <Route path="/savejob-list" element={<RequireAuth><SaveJob/></RequireAuth>}/>
 
                     </Route>
 

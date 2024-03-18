@@ -49,6 +49,7 @@ export default function Navbar() {
             console.log(err);
         })
     }
+
     useEffect(() => {
         getUser()
     }, [])
@@ -81,9 +82,7 @@ export default function Navbar() {
                                             <li className={"menu-item" + (activeMenu == "employers" ? " current-item" : "")} onClick={e => setActiveMenu("employers")}>
                                                 <Link to="/employers-list">Employers</Link>
                                             </li>
-                                            <li className={"menu-item" + (activeMenu == "" ? " current-item" : "")} onClick={e => setActiveMenu("employers-Review")}>
-                                                <Link to="/employers-review">Review</Link>
-                                            </li>
+
                                             <li className={"menu-item" + (activeMenu == "" ? " current-item" : "")} onClick={e => setActiveMenu("about-us")}>
                                                 <Link to="/about-us">About</Link>
                                             </li>
@@ -119,7 +118,7 @@ export default function Navbar() {
                                             <a href="dashboard/candidates-my-applied.html"><span className="icon-my-apply"></span> My Applied</a>
                                         </div>
                                         <div className="sub-account-item">
-                                            <a href="dashboard/candidates-save-jobs.html"><span className="icon-work"></span> Saved Jobs</a>
+                                            <Link to={"/savejob-list"}><span className="icon-work"></span> Saved Jobs</Link>
                                         </div>
                                         <div className="sub-account-item">
                                             <a href="dashboard/candidates-alerts-jobs.html"><span className="icon-bell1"></span> Candidate Alerts</a>

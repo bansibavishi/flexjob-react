@@ -545,7 +545,7 @@ export default function Home() {
                                         <div className="employer-block">
                                             <div className="inner-box">
                                                 <div className="logo-company">
-                                                    <img src="images/logo-company/cty16.png" alt="images/logo-company/cty16.png" />
+                                                    <img src="http://127.0.0.1:4000/avatar.jpg" alt="" />
                                                 </div>
                                                 <div className="box-content">
                                                     <div className="star">
