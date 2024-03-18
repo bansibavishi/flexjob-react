@@ -9,23 +9,23 @@ export default function Sidebar() {
     const send = useNavigate();
     function logout() {
         var token = localStorage.getItem('token')
-       fetch(process.env.REACT_APP_API + "/logout" , {
-        method:"post",
-        headers:{
-            Authorization:'Bearer ' + token
-        }
-       }).then(e => e.json()).then(res => {
-        if(res.status == true){
-            localStorage.removeItem('token')
-            toast.success(res.message)
-            send("/login")
-        }
-        console.log(res);
-       })
-        .catch(err => {
-            console.log(err);
+        fetch(process.env.REACT_APP_API + "/logout", {
+            method: "post",
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        }).then(e => e.json()).then(res => {
+            if (res.status == true) {
+                localStorage.removeItem('token')
+                toast.success(res.message)
+                send("/login")
+            }
+            console.log(res);
         })
-       }
+            .catch(err => {
+                console.log(err);
+            })
+    }
 
     return (
         <>
@@ -68,10 +68,10 @@ export default function Sidebar() {
 
                         <li>
                             <Link to={"/savejob-list"}>
-                            <a className="tf-effect">
-                                <span className="icon-work dash-icon"></span>
-                                <span className="dash-titles">Saved Jobs</span>
-                            </a>
+                                <a className="tf-effect">
+                                    <span className="icon-work dash-icon"></span>
+                                    <span className="dash-titles">Saved Jobs</span>
+                                </a>
                             </Link>
                         </li>
 

@@ -190,7 +190,7 @@ export default function Home() {
                                     <div className="job-archive-header">
                                         <div className="inner-box">
                                             <div className="logo-company">
-                                                <img src={process.env.REACT_APP_API + e.user[0].img} className='rounded-circle' alt="" />
+                                                <img src={process.env.REACT_APP_API + e?.user[0]?.img} className='rounded-circle' alt="" />
                                             </div>
                                             <div className="box-content">
                                                 <Link to={'/job/' + e._id} >
