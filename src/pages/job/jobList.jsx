@@ -3,6 +3,7 @@ import Navbar from '../../layout/navbar'
 import Footer from '../../layout/footer'
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import JobCmp from '../../component/job';
 
 export default function JobList() {
 
@@ -11,7 +12,7 @@ export default function JobList() {
 
     const [page, setPage] = useState(1) // current page
     const [totalPage, setTotalPage] = useState(1)
-    const[search,setSearch] = useState("")
+    const [search, setSearch] = useState("")
 
 
 
@@ -47,54 +48,9 @@ export default function JobList() {
         getJobList()
     }, [])
 
-    function like(likeId, es) {
-        // console.log(es);
-        var token = localStorage.getItem('token')
-        fetch(process.env.REACT_APP_API + "/like", {
-            method: "post",
-            headers: {
-                "content-type": "application/json",
-                Authorization: 'Bearer ' + token
-            },
-            body: JSON.stringify({ postId: likeId })
-        }).then(e => e.json()).then(res => {
-            if (res.like == true) {
-                es.target.classList.add('text-danger')
-            } else {
-                es.target.classList.remove('text-danger')
-            }
-            console.log(res);
-        }).catch(err => {
-            console.log(err);
-        })
 
-    }
 
-    function save(saveId, es) {
-        console.log(es);
 
-        var token = localStorage.getItem('token')
-        fetch(process.env.REACT_APP_API + "/save-post", {
-            method: "post",
-            headers: {
-                "content-type": "application/json",
-                Authorization: 'Bearer ' + token
-            },
-            body: JSON.stringify({ postId: saveId })
-        }).then(e => e.json()).then(res => {
-            // console.log(es.target);
-            if (res.save == true) {
-                es.target.classList.add('icon-save-candidate-green')
-                es.target.classList.remove('icon-save-candidate')
-            } else {
-                es.target.classList.add('icon-save-candidate')
-                es.target.classList.remove('icon-save-candidate-green')
-            }
-        }).catch(err => {
-            console.log(err);
-        })
-
-    }
 
 
     return (
@@ -123,195 +79,195 @@ export default function JobList() {
                 <div className="tf-container">
                     <div className="job-search-form inner-form-map st1">
 
-                            <div className="row-group-search">
-                                <div className="form-group-1">
-                                    <input type="text" className="input-filter-search" placeholder="Job title, key words or company" onChange={e => setSearch( e.target.value )} value={search}/>
-                                    <span className="icon-search search-job"></span>
+                        <div className="row-group-search">
+                            <div className="form-group-1">
+                                <input type="text" className="input-filter-search" placeholder="Job title, key words or company" onChange={e => setSearch(e.target.value)} value={search} />
+                                <span className="icon-search search-job"></span>
+                            </div>
+                            <div className="form-group-2">
+                                <span className="icon-map-pin"></span>
+                                <select className="select-location" style={{ display: 'none' }}>
+                                    <option value="">All Location</option>
+                                    <option value="">All Location 1</option>
+                                    <option value="">All Location 2</option>
+                                    <option value="">All Location 3</option>
+                                </select>
+                                <div className="nice-select select-location" tabIndex="0">
+                                    <span className="current">All Location</span>
+                                    <ul className="list">
+                                        <li data-value="" className="option selected focus">All Location</li>
+                                        <li data-value="" className="option">Singapore</li>
+                                        <li data-value="" className="option">Japan</li>
+                                        <li data-value="" className="option">Korea</li>
+                                        <li data-value="" className="option">Italia</li>
+                                        <li data-value="" className="option">Canada</li>
+                                    </ul>
                                 </div>
-                                <div className="form-group-2">
-                                    <span className="icon-map-pin"></span>
-                                    <select className="select-location" style={{ display: 'none' }}>
-                                        <option value="">All Location</option>
-                                        <option value="">All Location 1</option>
-                                        <option value="">All Location 2</option>
-                                        <option value="">All Location 3</option>
-                                    </select>
-                                    <div className="nice-select select-location" tabIndex="0">
-                                        <span className="current">All Location</span>
-                                        <ul className="list">
-                                            <li data-value="" className="option selected focus">All Location</li>
-                                            <li data-value="" className="option">Singapore</li>
-                                            <li data-value="" className="option">Japan</li>
-                                            <li data-value="" className="option">Korea</li>
-                                            <li data-value="" className="option">Italia</li>
-                                            <li data-value="" className="option">Canada</li>
+                            </div>
+                            <div className="form-group-3">
+                                <span className="icon-filter"></span>
+                                <select id="select-location" className="select-location filter-radio" style={{ display: 'none' }}>
+                                    <option value="">Filter More</option>
+                                </select>
+                            </div>
+                            <div className="wd-filter-radio">
+                                <div className="content">
+                                    <div className="fl-cl lc1">
+                                        <h6>On-site/Remote</h6>
+                                        <ul>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-1" /><label htmlFor="checkbox-1"></label></div>
+                                                <label>On-site (1,675)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-2" /><label htmlFor="checkbox-2"></label></div>
+                                                <label>Remote (5,675)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-3" /><label htmlFor="checkbox-3"></label></div>
+                                                <label>Hybrid (6,675)</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div className="fl-cl lc2">
+                                        <h6>All Job Types</h6>
+                                        <ul>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-4" /><label htmlFor="checkbox-4"></label></div>
+                                                <label>All Job Types (1,675)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-5" /><label htmlFor="checkbox-5"></label></div>
+                                                <label>Full-time (623)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-6" /><label htmlFor="checkbox-6"></label></div>
+                                                <label>Part-time (45)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-7" /><label htmlFor="checkbox-7"></label></div>
+                                                <label>Contract (65)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-8" /><label htmlFor="checkbox-8"></label></div>
+                                                <label>Internship (9)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-9" /><label htmlFor="checkbox-9"></label></div>
+                                                <label>Temporary (4)</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div className="fl-cl lc3">
+                                        <h6>All Salary</h6>
+                                        <ul>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-10" /><label htmlFor="checkbox-10"></label>
+                                                </div><label>All Salaries (6,277)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-11" /><label htmlFor="checkbox-11"></label>
+                                                </div><label>$50,000+ (2,277)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-12" /><label htmlFor="checkbox-12"></label>
+                                                </div><label>$70,000+ (1,627)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-13" /><label htmlFor="checkbox-13"></label>
+                                                </div><label>$90,000+ (7,627)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-14" /><label htmlFor="checkbox-14"></label>
+                                                </div><label>$110,000+ (227)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-15" /><label htmlFor="checkbox-15"></label>
+                                                </div><label>$130,000+ (527)</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div className="fl-cl lc4">
+                                        <h6>Any Distance</h6>
+                                        <ul>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-16" /><label htmlFor="checkbox-16"></label>
+                                                </div><label>Any Distance (227)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-17" /><label htmlFor="checkbox-17"></label>
+                                                </div><label>within 5 miles (227)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-18" /><label htmlFor="checkbox-18"></label>
+                                                </div><label>within 10 miles (227)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-19" /><label htmlFor="checkbox-19"></label>
+                                                </div><label>within 25 miles (227)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-20" /><label htmlFor="checkbox-20"></label>
+                                                </div><label>within 50 miles (227)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-21" /><label htmlFor="checkbox-21"></label>
+                                                </div><label>within 100 miles (227)</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div className="fl-cl lc5">
+                                        <h6>Posted Anytime</h6>
+                                        <ul>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-22" /><label htmlFor="checkbox-22"></label>
+                                                </div><label>Posted Anytime</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-23" /><label htmlFor="checkbox-23"></label>
+                                                </div><label>Last 1 days (227)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-24" /><label htmlFor="checkbox-24"></label>
+                                                </div><label>Last 3 days (227)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-25" /><label htmlFor="checkbox-25"></label>
+                                                </div><label>Last 7 days (227)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-26" /><label htmlFor="checkbox-26"></label>
+                                                </div><label>Last 14 days (227)</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div className="fl-cl lc6">
+                                        <h6>All Seniority Levels</h6>
+                                        <ul>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-27" /><label htmlFor="checkbox-27"></label>
+                                                </div><label>All Seniority Levels</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-28" /><label htmlFor="checkbox-28"></label>
+                                                </div><label>Entry Level (24)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-29" /><label htmlFor="checkbox-29"></label>
+                                                </div><label>Mid Senior Level (34)</label>
+                                            </li>
+                                            <li>
+                                                <div className="round"><input type="checkbox" id="checkbox-30" /><label htmlFor="checkbox-30"></label>
+                                                </div><label>Executive (12)</label>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div className="form-group-3">
-                                    <span className="icon-filter"></span>
-                                    <select id="select-location" className="select-location filter-radio" style={{ display: 'none' }}>
-                                        <option value="">Filter More</option>
-                                    </select>
-                                </div>
-                                <div className="wd-filter-radio">
-                                    <div className="content">
-                                        <div className="fl-cl lc1">
-                                            <h6>On-site/Remote</h6>
-                                            <ul>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-1" /><label htmlFor="checkbox-1"></label></div>
-                                                    <label>On-site (1,675)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-2" /><label htmlFor="checkbox-2"></label></div>
-                                                    <label>Remote (5,675)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-3" /><label htmlFor="checkbox-3"></label></div>
-                                                    <label>Hybrid (6,675)</label>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div className="fl-cl lc2">
-                                            <h6>All Job Types</h6>
-                                            <ul>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-4" /><label htmlFor="checkbox-4"></label></div>
-                                                    <label>All Job Types (1,675)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-5" /><label htmlFor="checkbox-5"></label></div>
-                                                    <label>Full-time (623)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-6" /><label htmlFor="checkbox-6"></label></div>
-                                                    <label>Part-time (45)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-7" /><label htmlFor="checkbox-7"></label></div>
-                                                    <label>Contract (65)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-8" /><label htmlFor="checkbox-8"></label></div>
-                                                    <label>Internship (9)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-9" /><label htmlFor="checkbox-9"></label></div>
-                                                    <label>Temporary (4)</label>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div className="fl-cl lc3">
-                                            <h6>All Salary</h6>
-                                            <ul>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-10" /><label htmlFor="checkbox-10"></label>
-                                                    </div><label>All Salaries (6,277)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-11" /><label htmlFor="checkbox-11"></label>
-                                                    </div><label>$50,000+ (2,277)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-12" /><label htmlFor="checkbox-12"></label>
-                                                    </div><label>$70,000+ (1,627)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-13" /><label htmlFor="checkbox-13"></label>
-                                                    </div><label>$90,000+ (7,627)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-14" /><label htmlFor="checkbox-14"></label>
-                                                    </div><label>$110,000+ (227)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-15" /><label htmlFor="checkbox-15"></label>
-                                                    </div><label>$130,000+ (527)</label>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div className="fl-cl lc4">
-                                            <h6>Any Distance</h6>
-                                            <ul>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-16" /><label htmlFor="checkbox-16"></label>
-                                                    </div><label>Any Distance (227)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-17" /><label htmlFor="checkbox-17"></label>
-                                                    </div><label>within 5 miles (227)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-18" /><label htmlFor="checkbox-18"></label>
-                                                    </div><label>within 10 miles (227)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-19" /><label htmlFor="checkbox-19"></label>
-                                                    </div><label>within 25 miles (227)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-20" /><label htmlFor="checkbox-20"></label>
-                                                    </div><label>within 50 miles (227)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-21" /><label htmlFor="checkbox-21"></label>
-                                                    </div><label>within 100 miles (227)</label>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div className="fl-cl lc5">
-                                            <h6>Posted Anytime</h6>
-                                            <ul>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-22" /><label htmlFor="checkbox-22"></label>
-                                                    </div><label>Posted Anytime</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-23" /><label htmlFor="checkbox-23"></label>
-                                                    </div><label>Last 1 days (227)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-24" /><label htmlFor="checkbox-24"></label>
-                                                    </div><label>Last 3 days (227)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-25" /><label htmlFor="checkbox-25"></label>
-                                                    </div><label>Last 7 days (227)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-26" /><label htmlFor="checkbox-26"></label>
-                                                    </div><label>Last 14 days (227)</label>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div className="fl-cl lc6">
-                                            <h6>All Seniority Levels</h6>
-                                            <ul>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-27" /><label htmlFor="checkbox-27"></label>
-                                                    </div><label>All Seniority Levels</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-28" /><label htmlFor="checkbox-28"></label>
-                                                    </div><label>Entry Level (24)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-29" /><label htmlFor="checkbox-29"></label>
-                                                    </div><label>Mid Senior Level (34)</label>
-                                                </li>
-                                                <li>
-                                                    <div className="round"><input type="checkbox" id="checkbox-30" /><label htmlFor="checkbox-30"></label>
-                                                    </div><label>Executive (12)</label>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="form-group-4">
-                                    <button className="btn btn-find" onClick={getJobList}>Find Jobs</button>
-                                </div>
                             </div>
+                            <div className="form-group-4">
+                                <button className="btn btn-find" onClick={getJobList}>Find Jobs</button>
+                            </div>
+                        </div>
 
 
                     </div>
@@ -375,67 +331,9 @@ export default function JobList() {
                                     <div className="group-col-2">
                                         {
                                             jobList.map(e =>
-
-                                                <div className="features-job cl2" key={Math.random()}>
-                                                    <div className="job-archive-header">
-                                                        <div className="inner-box">
-                                                            <div className="logo-company">
-                                                                <img src="images/logo-company/cty8.png" alt="images/logo-company/cty8.png" />
-                                                            </div>
-                                                            <div className="box-content">
-                                                                <Link to={'/job/' + e._id} >
-                                                                    <h4>
-                                                                        {e.user[0].firstName}
-                                                                    </h4>
-                                                                    <h3>
-                                                                        {e.title}
-                                                                        <span className="icon-bolt"></span>
-                                                                    </h3>
-                                                                </Link>
-                                                                <ul>
-                                                                    <li>
-                                                                        <span className="icon-map-pin"></span>
-                                                                        {e.description}
-                                                                    </li>
-                                                                    <li>
-                                                                        <span className="icon-calendar"></span>
-                                                                        {e.formattedTime}
-                                                                    </li>
-                                                                </ul>
-                                                                <span onClick={(se) => like(e._id, se)} className={"icon-heart" + (e?.liked ? " text-danger" : "")}></span>
-                                                                <span onClick={(se) => save(e._id, se)} className={"border fs-5 p-2 rounded-circle" + (e?.saved ? " icon-save-candidate-green" : " icon-save-candidate")} style={{position:'absolute',right:'65px',top:'0px',}}></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="job-archive-footer">
-                                                        <div className="job-footer-left">
-                                                            <ul className="job-tag">
-
-                                                                {e.expertise && e.expertise?.map(i =>
-                                                                    <li key={Math.random()}><a>{i.technology}</a></li>
-                                                                )}
-
-                                                            </ul>
-                                                            <div className="star">
-                                                                <span className="icon-star-full"></span>
-                                                                <span className="icon-star-full"></span>
-                                                                <span className="icon-star-full"></span>
-                                                                <span className="icon-star-full"></span>
-                                                                <span className="icon-star-full"></span>
-                                                            </div>
-                                                        </div>
-                                                        <div className="job-footer-right">
-                                                            <div className="price">
-                                                                <span className="icon-dolar1"></span>
-                                                                <p>{e.budget} <span className="year">/hours</span></p>
-                                                            </div>
-                                                            <p className="days">{e.validity}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            )}
-
-
+                                                <JobCmp e={e} />
+                                            )
+                                        }
                                     </div>
 
                                     <ul className="pagination-job padding">
