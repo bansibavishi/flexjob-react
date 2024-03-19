@@ -12,7 +12,7 @@ export default function Navbar() {
 
     const run = useDispatch();
     const cUser = useSelector(state => state.user)
-    console.log(cUser);
+    // console.log(cUser);
 
     function logout() {
         var token = localStorage.getItem('token')
@@ -43,9 +43,13 @@ export default function Navbar() {
             }
         }).then(e => e.json()).then(res => {
             console.log(res);
+            if (res.status.message === 'Unauthorized: Invalid or expired token') {
+                run(setUser(null))
+                localStorage.setItem('token', null)
+            }
             run(setUser(res.userData))
-
         }).catch(err => {
+            // localStorage.setItem('token', null)
             console.log(err);
         })
     }
@@ -98,45 +102,45 @@ export default function Navbar() {
                                     {/* <a href="term-of-use.html"><span className="icon-help-circle"></span></a> */}
                                 </div>
 
-                                    {cUser == null ?'' :
-                                <div className="header-customize-item account">
-                                    <img src="images/user/avatar/image-01.jpg" alt="" />
-                                    <div className="name">
-                                        Candidates<span className="icon-keyboard_arrow_down"></span>
-                                    </div>
-                                    <div className="sub-account">
-                                        <div className="sub-account-item">
-                                            <a href="dashboard/candidates-dashboard.html"><span className="icon-dashboard"></span>Dashboard</a>
+                                {cUser == null ? '' :
+                                    <div className="header-customize-item account">
+                                        <img src={cUser?.link} alt="" />
+                                        <div className="name">
+                                            Candidates<span className="icon-keyboard_arrow_down"></span>
                                         </div>
-                                        <div className="sub-account-item">
-                                            <Link to="/profile"><span className="icon-profile"></span> Profile</Link>
-                                        </div>
-                                        <div className="sub-account-item">
-                                            <a href="dashboard/candidates-resumes.html"><span className="icon-resumes"></span> Resumes</a>
-                                        </div>
-                                        <div className="sub-account-item">
-                                            <a href="dashboard/candidates-my-applied.html"><span className="icon-my-apply"></span> My Applied</a>
-                                        </div>
-                                        <div className="sub-account-item">
-                                            <Link to={"/savejob-list"}><span className="icon-work"></span> Saved Jobs</Link>
-                                        </div>
-                                        <div className="sub-account-item">
-                                            <a href="dashboard/candidates-alerts-jobs.html"><span className="icon-bell1"></span> Candidate Alerts</a>
-                                        </div>
-                                        <div className="sub-account-item">
-                                            <a href="dashboard/candidates-messages.html"><span className="icon-chat"></span> Messages</a>
-                                        </div>
+                                        <div className="sub-account">
+                                            <div className="sub-account-item">
+                                                <a href="dashboard/candidates-dashboard.html"><span className="icon-dashboard"></span>Dashboard</a>
+                                            </div>
+                                            <div className="sub-account-item">
+                                                <Link to="/profile"><span className="icon-profile"></span> Profile</Link>
+                                            </div>
+                                            <div className="sub-account-item">
+                                                <a href="dashboard/candidates-resumes.html"><span className="icon-resumes"></span> Resumes</a>
+                                            </div>
+                                            <div className="sub-account-item">
+                                                <a href="dashboard/candidates-my-applied.html"><span className="icon-my-apply"></span> My Applied</a>
+                                            </div>
+                                            <div className="sub-account-item">
+                                                <Link to={"/savejob-list"}><span className="icon-work"></span> Saved Jobs</Link>
+                                            </div>
+                                            <div className="sub-account-item">
+                                                <a href="dashboard/candidates-alerts-jobs.html"><span className="icon-bell1"></span> Candidate Alerts</a>
+                                            </div>
+                                            <div className="sub-account-item">
+                                                <a href="dashboard/candidates-messages.html"><span className="icon-chat"></span> Messages</a>
+                                            </div>
 
 
-                                        <div className="sub-account-item">
-                                            <a><span className="icon-change-passwords"></span><Link to={"/forget-pass"}>Change Passwords</Link></a>
-                                         </div>
-                                        <div className="sub-account-item">
-                                            <a href="#" onClick={logout}><span className="icon-log-out"></span> Log Out</a>
+                                            <div className="sub-account-item">
+                                                <a><span className="icon-change-passwords"></span><Link to={"/forget-pass"}>Change Passwords</Link></a>
+                                            </div>
+                                            <div className="sub-account-item">
+                                                <a href="#" onClick={logout}><span className="icon-log-out"></span> Log Out</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                     }
+                                }
                                 {/* <div className="header-customize-item button">
                                     <a href="dashboard/candidates-resumes.html">Upload Resume</a>
                                 </div> */}

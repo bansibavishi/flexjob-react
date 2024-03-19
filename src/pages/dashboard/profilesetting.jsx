@@ -3,71 +3,47 @@ import { Helmet } from 'react-helmet'
 import axios from 'axios'
 import Select from 'react-select'
 import { toast } from 'react-toastify'
-axios.defaults.withCredentials = true
+import { useDispatch, useSelector } from 'react-redux';
+// axios.defaults.withCredentials = true
 
 export default function Profile() {
 
-    const [user, setUser] = useState({
-        type: "employeer",
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-        mobile: "",
-        expertise: ["communication skills", "DSA"],
-        title: "qwertyuiop",
-        description: "qwtdycvbhdhhd",
-        // workHistory: ["fdfdfdf", "fdfdffdff"],
-        location: "fdfgdf",
-        // savedJob: ["sdd", "sff"],
-        rate: "8",
-        image: ""
-    })
+    const cUser = useSelector(state => state.user)
     const [expertise, setExpertise] = useState([])
-    const options = [
-        { value: 'Communication Skills', label: 'Communication Skills' },
-        { value: 'DSA', label: 'DSA' }
-    ]
-    function getUser() {
 
-        var token = localStorage.getItem('token')
+    const [user, setUser] = useState({
+        // type: cUser?.type,
+        firstName: cUser?.firstName,
+        lastName: cUser?.lastName,
+        email: cUser?.email,
+        password: cUser?.password,
+        mobile: cUser?.mobile,
+        expertise: cUser?.expertise,
+        title: cUser?.title,
+        description: cUser?.description,
+        location: cUser?.location,
+        rate: cUser?.rate,
+        image: cUser?.image
+    })
+    console.log(user, cUser);
 
-        fetch(process.env.REACT_APP_API + "/profile", {
-            // method: "post",
-            // body: JSON.stringify(user),
-            headers: {
-                Authorization: 'Bearer ' + token
-                // "content-type": "application/json"
-            }
-        }).then(e => e.json()).then(res => {
-            console.log(res);
-            setUser(res.userData)
-        })
-            .catch(err => {
-                console.log(err);
-            })
-    }
 
-    function exper() {
-        fetch(process.env.REACT_APP_API + "/expertise-data", {
 
-        }).then(e => e.json()).then(res => {
-            if (res.data.length) {
-                var ex = res.data.map(e => {
-                    return {
-                        value: e.technology,
-                        label: e.technology
-                    }
-                })
-                // console.log(ex);
-                setExpertise(ex)
-            }
-            console.log(res);
+    function getExpertise() {
 
-        })
-
-            .catch(err => {
-                console.log(err);
+        axios.get(process.env.REACT_APP_API + "/expertise-data")
+            .then(res => {
+                console.log(res);
+                if (res.data.data.length) {
+                    var ex = res.data.data.map(e => {
+                        return {
+                            value: e.technology,
+                            label: e.technology
+                        }
+                    })
+                    setExpertise(ex)
+                }
+                console.log(res);
             })
 
     }
@@ -89,32 +65,36 @@ export default function Profile() {
 
         var token = localStorage.getItem('token')
 
-        fetch(process.env.REACT_APP_API + "/profile-update", {
-            method: "post",
-            body: pData,
-            headers: {
-                "content-type": "multipart/form-data",
-                Authorization: 'Bearer ' + token
-            }
-        }).then(e => e.json()).then(res => {
-            console.log(res);
-            if (res?.status) {
-                toast.success(res?.message)
-            }
-            if (res?.error) {
-                toast.error(res?.error)
-            }
-
-        })
-            .catch(err => {
-                console.log(err);
+        axios.postForm(process.env.REACT_APP_API + "/profile-update", pData, { headers: { Authorization: 'Bearer ' + token } })
+            .then(res => {
+                console.log(res.data);
+                    if (res.data?.status) {
+                        toast.success(res.data?.message)
+                    }
+                    if (res.data?.error) {
+                        toast.error(res.data?.error)
+                    }
             })
+
+        // fetch(, {
+        //     method: "post",
+        //     body: pData,
+        //     headers: {
+        //         "content-type": "multipart/form-data",
+        //         Authorization: 'Bearer ' + token
+        //     }
+        // }).then(e => e.json()).then(res => {
+        //     console.log(res);
+
+        // })
+        //     .catch(err => {
+        //         console.log(err);
+        //     })
     }
 
 
     useEffect(() => {
-        getUser()
-        exper()
+        getExpertise()
 
     }, [])
 
@@ -146,7 +126,7 @@ export default function Profile() {
 
                                     <div className="wrap-img flex2">
                                         <div className="img-box relative">
-                                            <img className="avatar " id="profileimg" src="../images/dashboard/image-up.jpg" alt="" />
+                                            <img className="avatar " id="profileimg" src={cUser?.link} alt="" />
                                         </div>
                                         <div id="upload-profile">
                                             <h5 className="fw-6">Upload a new avatar: </h5>
@@ -180,10 +160,6 @@ export default function Profile() {
                                                     {/* <a className="btn-selector nolink input-form"> Male</a> */}
 
                                                 </div>
-                                                <fieldset>
-                                                    <label className="title-user fw-7">Offered Salary ($)</label>
-                                                    <input type="text" className="input-form" required />
-                                                </fieldset>
                                                 <div id="item_1" className="dropdown titles-dropdown">
                                                     <label className="title-user fw-7">Expertise</label>
 
@@ -197,11 +173,6 @@ export default function Profile() {
                                                         }}
                                                         options={expertise} />
 
-                                                    {/* <select multiple>
-                                                    <option>communication skills</option>
-                                                    <option>DSA</option>
-                                                   </select> */}
-
                                                 </div>
                                                 <fieldset>
                                                     <label className="title-user fw-7">Location</label>
@@ -209,7 +180,7 @@ export default function Profile() {
                                                 </fieldset>
                                                 <fieldset>
                                                     <label className="title-user fw-7">Job Title</label>
-                                                    <input type="text" className="input-form" required />
+                                                    <input type="text" className="input-form" onChange={e => setUser({ ...user, title: e.target.value })} value={user.title} required />
                                                 </fieldset>
                                             </div>
                                             <div className="info-box info-wd">
