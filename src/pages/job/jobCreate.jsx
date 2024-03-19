@@ -140,7 +140,7 @@ export default function JobCreate() {
                                                 </fieldset>
                                             </div>
                                         </div>
-                                        <button type='submit'>Submit</button>
+                                        <button className="tf-button bg-success text-white" type='submit'>Submit</button>
                                     </form>
                                 </div>
 

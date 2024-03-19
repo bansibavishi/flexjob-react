@@ -12,7 +12,6 @@ export default function Profile() {
     const [expertise, setExpertise] = useState([])
 
     const [user, setUser] = useState({
-        // type: cUser?.type,
         firstName: cUser?.firstName,
         lastName: cUser?.lastName,
         email: cUser?.email,
@@ -25,7 +24,22 @@ export default function Profile() {
         rate: cUser?.rate,
         image: cUser?.image
     })
-    console.log(user, cUser);
+
+    useEffect(() => {
+        setUser({
+            firstName: cUser?.firstName,
+            lastName: cUser?.lastName,
+            email: cUser?.email,
+            password: cUser?.password,
+            mobile: cUser?.mobile,
+            expertise: cUser?.expertise,
+            title: cUser?.title,
+            description: cUser?.description,
+            location: cUser?.location,
+            rate: cUser?.rate,
+            image: cUser?.image
+        })
+    }, [cUser])
 
 
 
@@ -33,17 +47,18 @@ export default function Profile() {
 
         axios.get(process.env.REACT_APP_API + "/expertise-data")
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 if (res.data.data.length) {
                     var ex = res.data.data.map(e => {
                         return {
                             value: e.technology,
-                            label: e.technology
+                            label: e.technology,
+                            id: e._id
                         }
                     })
                     setExpertise(ex)
                 }
-                console.log(res);
+                // console.log(res);
             })
 
     }
@@ -67,29 +82,15 @@ export default function Profile() {
 
         axios.postForm(process.env.REACT_APP_API + "/profile-update", pData, { headers: { Authorization: 'Bearer ' + token } })
             .then(res => {
-                console.log(res.data);
-                    if (res.data?.status) {
-                        toast.success(res.data?.message)
-                    }
-                    if (res.data?.error) {
-                        toast.error(res.data?.error)
-                    }
+                // console.log(res.data);
+                if (res.data?.status) {
+                    toast.success(res.data?.message)
+                }
+                if (res.data?.error) {
+                    toast.error(res.data?.error)
+                }
             })
 
-        // fetch(, {
-        //     method: "post",
-        //     body: pData,
-        //     headers: {
-        //         "content-type": "multipart/form-data",
-        //         Authorization: 'Bearer ' + token
-        //     }
-        // }).then(e => e.json()).then(res => {
-        //     console.log(res);
-
-        // })
-        //     .catch(err => {
-        //         console.log(err);
-        //     })
     }
 
 
@@ -97,6 +98,10 @@ export default function Profile() {
         getExpertise()
 
     }, [])
+
+    function expertiseSelect(ex) {
+        setUser({ ...user, expertise: ex.map(e => e.id) })
+    }
 
 
     return (
@@ -135,9 +140,9 @@ export default function Profile() {
                                         </div>
                                     </div>
 
-                                    <div className="tt-button button-style">
+                                    {/* <div className="tt-button button-style">
                                         <a href="#" className="btn-3">Save Profile</a>
-                                    </div>
+                                    </div> */}
                                 </div>
 
 
@@ -164,14 +169,23 @@ export default function Profile() {
                                                     <label className="title-user fw-7">Expertise</label>
 
                                                     <Select
-                                                        defaultValue={{ value: 'Communication Skills', label: 'Communication Skills' }}
-                                                        isMulti styles={{
+                                                        options={expertise}
+                                                        value={expertise.filter(e => cUser.expertise.includes(e.id))}
+                                                        // value={cUser?.expertise.map(u => {
+                                                        //     var ee = expertise.filter(e =>{
+                                                        //         return e.id === u
+                                                        //     })
+                                                        //     // console.log(ee[0]);
+                                                        //     return ee[0]
+                                                        // })}
+
+                                                        onChange={expertiseSelect} isMulti styles={{
                                                             control: (baseStyles, state) => ({
                                                                 ...baseStyles,
                                                                 borderColor: state.isFocused ? 'green' : 'gray',
                                                             }),
                                                         }}
-                                                        options={expertise} />
+                                                    />
 
                                                 </div>
                                                 <fieldset>
@@ -210,7 +224,9 @@ export default function Profile() {
                                                 </ul>
                                             </div>
                                         </div>
-                                        <button type='submit'>Submit</button>
+                                        <div>
+                                            <button className="tf-button bg-success text-white" type='submit'>Submit</button>
+                                        </div>
                                     </form>
                                 </div>
 

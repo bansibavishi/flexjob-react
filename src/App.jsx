@@ -42,23 +42,23 @@ function App() {
                         <Route path="/" element={<RequireAuth><Home /></RequireAuth>} />
                         <Route path="/employers/:userId" element={<RequireAuth> <EmployersSingle /></RequireAuth>} />
                         <Route path="/employers-review/:userId" element={<RequireAuth><EmployersReview /></RequireAuth>} />
-                        <Route path="/employers-list" element={<RequireAuth><EmployerList/></RequireAuth>} />
+                        <Route path="/employers-list" element={<RequireAuth><EmployerList /></RequireAuth>} />
                         <Route path="/candidate" element={<RequireAuth><Candidate /></RequireAuth>} />
-                        <Route path="/login" element={<Login />}/>
+                        <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/forget-pass" element={<ForgetPass />} />
                         <Route path="/job" element={<RequireAuth><JobList /></RequireAuth>} />
-                        <Route path="/job/:postId" element={<RequireAuth><JobSingle/></RequireAuth>} />
-                        <Route path="/about-us" element={<RequireAuth><AboutUs/></RequireAuth>} />
-                        <Route path="/contact-us" element={<RequireAuth><ContactUs/></RequireAuth>}/>
-                        <Route path="/reset/:userId/:token" element={<ResetPass/>}/>
-                        <Route path="/savejob-list" element={<RequireAuth><SaveJob/></RequireAuth>}/>
+                        <Route path="/job/:postId" element={<RequireAuth><JobSingle /></RequireAuth>} />
+                        <Route path="/about-us" element={<RequireAuth><AboutUs /></RequireAuth>} />
+                        <Route path="/contact-us" element={<RequireAuth><ContactUs /></RequireAuth>} />
+                        <Route path="/reset/:userId/:token" element={<ResetPass />} />
+                        <Route path="/savejob-list" element={<RequireAuth><SaveJob /></RequireAuth>} />
 
                     </Route>
 
                     <Route path="/" element={<Dashboard />} >
                         <Route path="/profile" element={<RequireAuth> <Profile /></RequireAuth>} />
-                        <Route path="/job/create" element={<JobCreate />} />
+                        <Route path="/job/create" element={<RequireAuth><JobCreate /></RequireAuth>} />
                     </Route>
 
                 </Routes>
@@ -66,11 +66,6 @@ function App() {
             </BrowserRouter>
             <ToastContainer />
 
-            {/* <JobList /> */}
-            {/* <JobSingle/> */}
-            {/* <EmployersSingle/> */}
-            {/* <EmployersReview/> */}
-            {/* <Candidate/> */}
 
 
         </>

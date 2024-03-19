@@ -116,6 +116,9 @@ export default function Navbar() {
                                                 <Link to="/profile"><span className="icon-profile"></span> Profile</Link>
                                             </div>
                                             <div className="sub-account-item">
+                                                <Link to="/job/create"><span className="icon-plus"></span>Create Job</Link>
+                                            </div>
+                                            <div className="sub-account-item">
                                                 <a href="dashboard/candidates-resumes.html"><span className="icon-resumes"></span> Resumes</a>
                                             </div>
                                             <div className="sub-account-item">
@@ -125,12 +128,8 @@ export default function Navbar() {
                                                 <Link to={"/savejob-list"}><span className="icon-work"></span> Saved Jobs</Link>
                                             </div>
                                             <div className="sub-account-item">
-                                                <a href="dashboard/candidates-alerts-jobs.html"><span className="icon-bell1"></span> Candidate Alerts</a>
-                                            </div>
-                                            <div className="sub-account-item">
                                                 <a href="dashboard/candidates-messages.html"><span className="icon-chat"></span> Messages</a>
                                             </div>
-
 
                                             <div className="sub-account-item">
                                                 <a><span className="icon-change-passwords"></span><Link to={"/forget-pass"}>Change Passwords</Link></a>
