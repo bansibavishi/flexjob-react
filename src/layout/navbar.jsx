@@ -87,10 +87,10 @@ export default function Navbar() {
                                                 <Link to="/employers-list">Employers</Link>
                                             </li>
 
-                                            <li className={"menu-item" + (activeMenu == "" ? " current-item" : "")} onClick={e => setActiveMenu("about-us")}>
+                                            <li className={"menu-item" + (activeMenu == "about-us" ? " current-item" : "")} onClick={e => setActiveMenu("about-us")}>
                                                 <Link to="/about-us">About</Link>
                                             </li>
-                                            <li className={"menu-item" + (activeMenu == "" ? " current-item" : "")} onClick={e => setActiveMenu("contact-us")}>
+                                            <li className={"menu-item" + (activeMenu == "contact-us" ? " current-item" : "")} onClick={e => setActiveMenu("contact-us")}>
                                                 <Link to="/contact-us">Contact Us</Link>
                                             </li>
                                         </ul>

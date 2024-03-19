@@ -14,7 +14,7 @@ export default function EmployerList() {
 
     function getEmployerList() {
         var token = localStorage.getItem('token')
-        fetch(process.env.REACT_APP_API + "/employer-data?page=" + page, {
+        fetch(process.env.REACT_APP_API + "/employer-data?limit=10&page=" + page, {
             headers: {
                 Authorization: 'Bearer ' + token
             }

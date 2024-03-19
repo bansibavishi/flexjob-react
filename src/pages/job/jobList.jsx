@@ -19,7 +19,7 @@ export default function JobList() {
     function getJobList() {
 
         var token = localStorage.getItem('token')
-    fetch(process.env.REACT_APP_API + "/post-list?page=" + page+"&s=" + search,  {
+    fetch(process.env.REACT_APP_API + "/post-list?limit=8&page=" + page+"&s=" + search,  {
             headers: {
                 Authorization: 'Bearer ' + token
             }

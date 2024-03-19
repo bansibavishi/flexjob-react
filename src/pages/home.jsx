@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../layout/navbar'
 import Footer from '../layout/footer'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Home() {
 
     const [jobList, setJobList] = useState([])
     const [expertise, setExpertise] = useState([])
     const [employer, setEmployer] = useState([])
+    const[Search,setSearch] = useState("")
+    const send = useNavigate();
 
 
     console.log(jobList);
@@ -109,7 +111,7 @@ export default function Home() {
                                     <form method="post">
                                         <div className="row-group-search home1">
                                             <div className="form-group-1">
-                                                <input type="text" className="input-filter-search" placeholder="Job title, key words or company" />
+                                                <input type="text" className="input-filter-search" placeholder="Job title, key words or company" onChange={e => setSearch( e.target.value )} value={Search} />
                                             </div>
                                             <div className="form-group-2">
                                                 <span className="icon-map-pin"></span>
@@ -123,7 +125,7 @@ export default function Home() {
                                                 </select>
                                             </div>
                                             <div className="form-group-4">
-                                                <button type="submit" className="btn btn-find">Find Jobs</button>
+                                            <button className="btn btn-find" onClick={ () =>  send('/job')}>Find Jobs</button>
                                             </div>
                                         </div>
                                     </form>
