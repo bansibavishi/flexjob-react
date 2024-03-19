@@ -402,76 +402,6 @@ export default function EmployersSingle() {
                                                                 )} */}
                                            </h6>
 
-                                            {/* <p>Are you a User Experience Designer with a track record of delivering intuitive digital experiences
-                                                that
-                                                drive results? Are you a strategic storyteller and systems thinker who can concept and craft smart,
-                                                world-class campaigns across a variety of mediums?
-                                            </p>
-                                            <p>Deloitte's Green Dot Agency is looking to add a Lead User Experience Designer to our
-                                                experience design team. We want a passionate creative who's inspired by new trends and emerging
-                                                technologies, and is able to integrate them into memorable user experiences. A problem solver who is
-                                                entrepreneurial, collaborative, hungry, and humble; can deliver beautifully designed, leading-edge
-                                                experiences under tight deadlines; and who has demonstrated proven expertise.
-                                            </p> */}
-                                            <form method="post" className="wd-form-rating">
-                                                <div className="row">
-                                                    <div className="col-lg-12">
-                                                        <div className="form-rating-heading">
-                                                            <h3>Be the first to review</h3>
-                                                            <div className="group-rating">
-                                                                <label>Your Rating:</label>
-                                                                <div className="list-rating">
-                                                                    <input type="radio" id="star5" name="rate" value="5" />
-                                                                    <label htmlFor="star5" title="text"></label>
-                                                                    <input type="radio" id="star4" name="rate" value="4" />
-                                                                    <label htmlFor="star4" title="text"></label>
-                                                                    <input type="radio" id="star3" name="rate" value="3" />
-                                                                    <label htmlFor="star3" title="text"></label>
-                                                                    <input type="radio" id="star2" name="rate" value="2" />
-                                                                    <label htmlFor="star2" title="text"></label>
-                                                                    <input type="radio" id="star1" name="rate" value="1" />
-                                                                    <label htmlFor="star1" title="text"></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-lg-12">
-                                                        <div className="form-rating-content">
-                                                            <div className="row">
-                                                                <div className="col-lg-6">
-                                                                    <div className="wrap-input">
-                                                                        <label>Name</label>
-                                                                        <input type="text" placeholder="Tony Nguyen |" />
-                                                                    </div>
-                                                                </div>
-                                                                <div className="col-lg-6">
-                                                                    <div className="wrap-input">
-                                                                        <label>Email</label>
-                                                                        <input type="text" placeholder="jobtex@mail.com" />
-                                                                    </div>
-                                                                </div>
-                                                                <div className="col-lg-12">
-                                                                    <div className="wrap-checkbox">
-                                                                        <input type="checkbox" />
-                                                                        <label>Save your name, email for the next time review</label>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="col-lg-12">
-                                                                    <div className="wrap-notes">
-                                                                        <label>Review</label>
-                                                                        <textarea cols="30" rows="10" placeholder="Write comment"></textarea>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-lg-12">
-                                                        <button className="tf-btn-submit style-2">submit review</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-
                                         </div>
                                         <div className={"inner-content" + (activeMenu == "Jobs" ? " " : " d-none")}>
                                             <h5>Job List</h5>
@@ -681,7 +611,7 @@ export default function EmployersSingle() {
                                     <div className="map-content">
                                         <iframe className="map-box"
                                          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.0803768630963!2d72.89526667436085!3d21.228661080884436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa077b7e6b92acf11%3A0xf9e448da46c6d42e!2sFuture%20way%20Institute%20of%20Multimedia!5e0!3m2!1sen!2sin!4v1710497299201!5m2!1sen!2sin"  width="600" height="450" style={{border:0}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                                        ></iframe>  
+                                        ></iframe>
                                     </div>
                                     <ul className="list-infor">
                                         <li>

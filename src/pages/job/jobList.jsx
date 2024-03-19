@@ -40,9 +40,6 @@ export default function JobList() {
         return arr.map((n) => <li className={n == page ? 'current' : ''}><a onClick={() => setPage(n)} href="#">{n}</a></li>)
     }
 
-
-
-
     useEffect(() => {
         getJobList()
     }, [page])
