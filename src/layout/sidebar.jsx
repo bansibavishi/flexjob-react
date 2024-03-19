@@ -35,13 +35,6 @@ export default function Sidebar() {
                     <ul className="downmenu list-unstyled" id="side-menu">
 
                         <li>
-                            <a href="#" className="tf-effect">
-                                <span className="icon-dashboard dash-icon"></span>
-                                <span className="dash-titles">Dashboard</span>
-                            </a>
-                        </li>
-
-                        <li>
                             <Link to="/profile" className="tf-effect">
                                 <span className="icon-profile dash-icon"></span>
                                 <span className="dash-titles">Profile</span>
