@@ -40,13 +40,13 @@ export default function EmployersSingle() {
 
     function getList() {
         var token = localStorage.getItem('token')
-        fetch(process.env.REACT_APP_API + "/current-user-post", {
+        fetch(process.env.REACT_APP_API + "/post-list-by-user-id/"+ userId, {
             headers: {
                 Authorization: 'Bearer ' + token
             }
         }).then(e => e.json()).then(res => {
             console.log(res);
-            setJobList(res.currentUserPost)
+            setJobList(res.data)
         }).catch(err => {
             console.log(err);
         })

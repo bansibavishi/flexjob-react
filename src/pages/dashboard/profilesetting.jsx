@@ -170,7 +170,7 @@ export default function Profile() {
 
                                                     <Select
                                                         options={expertise}
-                                                        value={expertise.filter(e => cUser.expertise.includes(e.id))}
+                                                        value={expertise.filter(e => cUser?.expertise.includes(e.id))}
                                                         // value={cUser?.expertise.map(u => {
                                                         //     var ee = expertise.filter(e =>{
                                                         //         return e.id === u

@@ -25,10 +25,6 @@ export default function JobSingle() {
         }
     )
 
-
-
-
-
     function getjob() {
         var token = localStorage.getItem('token')
         fetch(process.env.REACT_APP_API + "/post-by-id/" + postId, {

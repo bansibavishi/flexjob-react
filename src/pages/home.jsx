@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../layout/navbar'
 import Footer from '../layout/footer'
 import { Link, useNavigate } from 'react-router-dom'
+import JobCmp from '../component/job'
 
 export default function Home() {
 
     const [jobList, setJobList] = useState([])
     const [expertise, setExpertise] = useState([])
     const [employer, setEmployer] = useState([])
-    const[Search,setSearch] = useState("")
+    const [Search, setSearch] = useState("")
     const send = useNavigate();
 
 
@@ -111,7 +112,7 @@ export default function Home() {
                                     <form method="post">
                                         <div className="row-group-search home1">
                                             <div className="form-group-1">
-                                                <input type="text" className="input-filter-search" placeholder="Job title, key words or company" onChange={e => setSearch( e.target.value )} value={Search} />
+                                                <input type="text" className="input-filter-search" placeholder="Job title, key words or company" onChange={e => setSearch(e.target.value)} value={Search} />
                                             </div>
                                             <div className="form-group-2">
                                                 <span className="icon-map-pin"></span>
@@ -125,7 +126,7 @@ export default function Home() {
                                                 </select>
                                             </div>
                                             <div className="form-group-4">
-                                            <button className="btn btn-find" onClick={ () =>  send('/job')}>Find Jobs</button>
+                                                <button className="btn btn-find" onClick={() => send('/job')}>Find Jobs</button>
                                             </div>
                                         </div>
                                     </form>
@@ -186,81 +187,27 @@ export default function Home() {
                     </div>
                     <div className="row wow fadeInUp">
 
-                        {jobList.map(e => (
-                            <div className="col-lg-6 " key={Math.random()}>
-                                <div className="features-job">
-                                    <div className="job-archive-header">
-                                        <div className="inner-box">
-                                            <div className="logo-company">
-                                                <img src={process.env.REACT_APP_API + e?.user[0]?.img} className='rounded-circle' alt="" />
-                                            </div>
-                                            <div className="box-content">
-                                                <Link to={'/job/' + e._id} >
-                                                    <h4>
-                                                        <a>{e.user[0].firstName}</a>
-                                                    </h4>
-                                                    <h3>
-                                                        <a> {e.title} </a>
-                                                        <span className="icon-bolt"></span>
-                                                    </h3>
-                                                </Link>
-                                                <ul>
-                                                    <li>
-                                                        <span className="icon-map-pin"></span>
-                                                        {e.description}
-                                                    </li>
-                                                    <li>
-                                                        <span className="icon-calendar"></span>
-                                                        {e.formattedTime}
-                                                    </li>
-                                                </ul>
-                                                <span onClick={(se) => like(e._id, se)} className={"icon-heart" + (e?.liked ? " text-danger" : "")}></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="job-archive-footer">
-                                        <div className="job-footer-left">
-                                            <ul className="job-tag">
-                                                {e.expertise.map(i =>
-                                                    <li key={Math.random}><a href="#">{i.technology}</a></li>
-                                                )}
-                                            </ul>
-                                            <div className="star">
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                                <span className="icon-star-full"></span>
-                                            </div>
-                                        </div>
-                                        <div className="job-footer-right">
-                                            <div className="price">
-                                                <span></span>
-                                                <p>${e.budget}/hours</p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    {/* <a href="" className="jobtex-link-item" tabIndex="0"></a> */}
-                                </div>
-                            </div>
-                        ))}
+                        <div className="group-col-2 " >
+                            {jobList.map(e => (
+                                <JobCmp e={e} />
+                            ))}
+                        </div>
 
 
                         <div className="col-md-12">
                             <div className="wrap-button">
-                                <Link to = {"/job"} className="tf-button style-1">See more Jobs
-                                <span className="icon-keyboard_arrow_right"></span>
+                                <Link to={"/job"} className="tf-button style-1">See more Jobs
+                                    <span className="icon-keyboard_arrow_right"></span>
                                 </Link>
-                            {/* <a href="find-jobs-list.html" className="tf-button style-1">
+                                {/* <a href="find-jobs-list.html" className="tf-button style-1">
                                     See more Jobs
                                 </a> */}
-                        </div>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section >
+            </section >
             <section className="wd-iconbox flat-row background1">
                 <div className="tf-container">
                     <div className="title-iconbox">
@@ -584,7 +531,7 @@ export default function Home() {
 
 
 
-    {/* </div> */ }
+            {/* </div> */}
         </>
     )
 }

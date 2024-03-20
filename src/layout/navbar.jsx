@@ -122,7 +122,7 @@ export default function Navbar() {
                                                 <a href="dashboard/candidates-resumes.html"><span className="icon-resumes"></span> Resumes</a>
                                             </div>
                                             <div className="sub-account-item">
-                                                <a href="dashboard/candidates-my-applied.html"><span className="icon-my-apply"></span> My Applied</a>
+                                               <Link to={"/myjob"}><span className="icon-my-apply"></span> My Applied</Link>
                                             </div>
                                             <div className="sub-account-item">
                                                 <Link to={"/savejob-list"}><span className="icon-work"></span> Saved Jobs</Link>

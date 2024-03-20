@@ -53,10 +53,12 @@ export default function Sidebar() {
                         </li>
 
                         <li>
-                            <a href="#candidates-my-applied.html" className="tf-effect">
-                                <span className="icon-my-apply dash-icon"></span>
-                                <span className="dash-titles">My Applied</span>
-                            </a>
+                            <Link to={"/myjob"}>
+                                <a href="#candidates-my-applied.html" className="tf-effect">
+                                    <span className="icon-my-apply dash-icon"></span>
+                                    <span className="dash-titles">My Applied</span>
+                                </a>
+                            </Link>
                         </li>
 
                         <li>
