@@ -115,9 +115,12 @@ export default function Navbar() {
                                             <div className="sub-account-item">
                                                 <Link to="/profile"><span className="icon-profile"></span> Profile</Link>
                                             </div>
+                                            {
+                                                cUser.type == "employer" ?
                                             <div className="sub-account-item">
                                                 <Link to="/job/create"><span className="icon-plus"></span>Create Job</Link>
-                                            </div>
+                                            </div>:""
+                                            }
                                             <div className="sub-account-item">
                                                 <a href="dashboard/candidates-resumes.html"><span className="icon-resumes"></span> Resumes</a>
                                             </div>

@@ -23,6 +23,7 @@ export default function Register() {
         savedJob: ["sdd", "sff"],
         rate: "8"
     })
+    const [showPassword, setShowPassword] = useState(false);
 
     function register(e) {
         e.preventDefault();
@@ -100,11 +101,22 @@ export default function Register() {
                                             <label >Username or email address<span>*</span></label>
                                             <input type="text" onChange={e => setUser({ ...user, email: e.target.value })} value={user.email} />
                                         </div>
-                                        <div className="ip">
+                                        {/* <div className="ip">
                                             <label >Password<span>*</span></label>
                                             <div className="inputs-group auth-pass-inputgroup">
                                                 <input type="password" className="input-form password-input" onChange={e => setUser({ ...user, password: e.target.value })} value={user.password} placeholder="Password" required="" />
                                                 <a className="icon-eye-off password-addon"></a>
+                                            </div>
+                                        </div> */}
+                                        <div className="ip">
+                                            <label>Password<span>*</span></label>
+                                            <div className="inputs-group auth-pass-inputgroup">
+                                                <input className="input-form password-input" type={showPassword ? "text" : "password"} onChange={e => setUser({ ...user, password: e.target.value })} value={user.password} placeholder="Password"
+                                                    required="" />
+
+                                                <a className={"password-addon " + (showPassword ? "icon-eye" : "icon-eye-off")} id="password-addon" onClick={e => setShowPassword(!showPassword)} >
+
+                                                </a>
                                             </div>
                                         </div>
                                         <div className="group-ant-choice st">
