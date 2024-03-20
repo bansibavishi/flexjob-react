@@ -22,6 +22,7 @@ import ResetPass from "./pages/auth/resetPass";
 import SaveJob from "./pages/job/saveJob";
 import MyJob from "./pages/dashboard/myJob";
 import ApplicationJob from "./pages/dashboard/applicationJob";
+import Message from "./pages/dashboard/message";
 
 
 
@@ -63,6 +64,7 @@ function App() {
                         <Route path="/job/create" element={<RequireAuth><JobCreate /></RequireAuth>} />
                         <Route path="/myjob" element={<RequireAuth><MyJob/></RequireAuth>}/>
                         <Route path="/application-job/:postId" element={<RequireAuth><ApplicationJob/></RequireAuth>}/>
+                        <Route path="/message" element={<RequireAuth><Message/></RequireAuth>}/>
                     </Route>
 
                 </Routes>

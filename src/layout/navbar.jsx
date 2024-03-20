@@ -131,7 +131,7 @@ export default function Navbar() {
                                                 <Link to={"/savejob-list"}><span className="icon-work"></span> Saved Jobs</Link>
                                             </div>
                                             <div className="sub-account-item">
-                                                <a href="dashboard/candidates-messages.html"><span className="icon-chat"></span> Messages</a>
+                                                <Link  to={"/message"}><span className="icon-chat"></span> Messages</Link>
                                             </div>
 
                                             <div className="sub-account-item">

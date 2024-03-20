@@ -78,19 +78,19 @@ export default function Sidebar() {
                         </li>
 
                         <li>
-                            <a href="#candidates-messages.html" className="tf-effect">
+                            <Link to={"/message"} className="tf-effect">
                                 <span className="icon-chat dash-icon"></span>
                                 <span className="dash-titles">Messages</span>
-                            </a>
+                            </Link>
                         </li>
 
 
-                        <li>
+                        {/* <li>
                             <a href="#candidates-change-passwords.html" className="tf-effect">
                                 <span className="icon-change-passwords dash-icon"></span>
                                 <span className="dash-titles">Change passwords</span>
                             </a>
-                        </li>
+                        </li> */}
 
                         {/* <li>
                             <a href="#candidates-delete-profile.html" className="tf-effect ">
