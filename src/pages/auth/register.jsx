@@ -83,7 +83,7 @@ export default function Register() {
                         <div className="wd-form-login tf-tab">
                             <h4>Create a free account</h4>
                             <ul className="menu-tab">
-                                <li className={"ct-tab" + (user.type === "employee" ? ' active' : '')} onClick={e => setUser({ ...user, type: "employee" })}>Employee</li>
+                                <li className={"ct-tab" + (user.type === "candidate" ? ' active' : '')} onClick={e => setUser({ ...user, type: "candidate" })}>Employee</li>
                                 <li className={"ct-tab" + (user.type === "employer" ? ' active' : '')} onClick={e => setUser({ ...user, type: "employer" })}>Employer</li>
                             </ul>
                             <div className="content-tab">

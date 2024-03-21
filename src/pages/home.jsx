@@ -165,7 +165,7 @@ export default function Home() {
                                     <div className="job-category-box" key={Math.random()}>
                                         <div className="job-category-header">
                                             <h1><a href="find-jobs-list.html">{e.technology}</a></h1>
-                                            <p>120 Jobs available</p>
+                                            {/* <p>120 Jobs available</p> */}
                                         </div>
                                         <a href="#" className="btn-category-job">Explore Jobs <span className="icon-keyboard_arrow_right"></span></a>
                                     </div>

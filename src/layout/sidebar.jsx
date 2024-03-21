@@ -54,19 +54,15 @@ export default function Sidebar() {
 
                         <li>
                             <Link to={"/myjob"}>
-                                <a href="#candidates-my-applied.html" className="tf-effect">
                                     <span className="icon-my-apply dash-icon"></span>
                                     <span className="dash-titles">My Applied</span>
-                                </a>
                             </Link>
                         </li>
 
                         <li>
                             <Link to={"/savejob-list"}>
-                                <a className="tf-effect">
                                     <span className="icon-work dash-icon"></span>
                                     <span className="dash-titles">Saved Jobs</span>
-                                </a>
                             </Link>
                         </li>
 

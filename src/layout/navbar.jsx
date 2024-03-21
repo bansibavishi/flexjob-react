@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import { setUser } from '../helper/slice';
 // import icon from '/images/icon.png'
+import { useLocation, useParams } from 'react-router-dom';
 
 export default function Navbar() {
 
@@ -58,9 +59,25 @@ export default function Navbar() {
         getUser()
     }, [])
 
+    const location  = useLocation();
+
+    console.log(location);
+
+    function headClass() {
+        const path = location.pathname
+
+        if (
+            path.startsWith("/job/") || path.startsWith("/employers/")
+        ) {
+            return "header header-default"
+        }else {
+            return "header header-default style-absolute header-fixed is-fixed is-small"
+        }
+    }
+
     return (
 
-        <header id="header" className="header header-default style-absolute header-fixed is-fixed is-small">
+        <header id="header" className={headClass()}>
             <div className="tf-container ct2">
                 <div className="row">
                     <div className="col-md-12">

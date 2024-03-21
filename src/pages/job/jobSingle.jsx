@@ -280,7 +280,7 @@ export default function JobSingle() {
                                         <li><div className="category">Website</div><div className="detail"><a href="#">avitex.vn</a></div></li>
                                         <li><div className="category">Email</div><div className="detail"><a href="https://themesflat.co/cdn-cgi/l/email-protection" className="__cf_email__" data-cfemail="264e4f0847504f52435e66414b474f4a0845494b">[email&#160;protected]</a></div></li>
                                         <li><div className="category">Industry</div><div className="detail">Internet Publishing</div></li>
-                                        <li><div className="category">Company size</div><div className="detail">51-200 employees</div></li>
+                                        <li><div className="category">Company size</div><div className="detail">51-200 candidates</div></li>
                                         <li><div className="category">Headquarters</div><div className="detail">3 S Valley , Las Vegas, USA</div></li>
                                         <li><div className="category">Founded</div><div className="detail">2017</div></li>
                                     </ul>

@@ -20,7 +20,7 @@ export default function EmployersReview() {
       };
 
 
-    function employeeReview(e) {
+    function candidateReview(e) {
         e.preventDefault();
         var token = localStorage.getItem('token')
         console.log(review);
@@ -60,7 +60,7 @@ export default function EmployersReview() {
                     <div className="wrap-form-rating-page">
 
                         <div className="wd-form-rating-page">
-                            <form onSubmit={employeeReview}>
+                            <form onSubmit={candidateReview}>
                                 <div className="form-title">
                                     <h1>Please help answer these questions about your employer</h1>
                                     <h4>Your honest responses help other job seekers and it’s anonymous</h4>

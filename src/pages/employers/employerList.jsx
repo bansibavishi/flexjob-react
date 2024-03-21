@@ -79,7 +79,8 @@ export default function EmployerList() {
                                 <div className="wd-meta-select-job">
 
                                     <div className="wd-findjob-filer">
-                                        <div className="group-select-display">
+                                        <h5>Employers</h5>
+                                        {/* <div className="group-select-display">
                                             <div className="inner menu-tab">
 
                                             </div>
@@ -96,7 +97,7 @@ export default function EmployerList() {
                                                 <option>New</option>
                                                 <option>Last</option>
                                             </select>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                                 <div className="content-tab">

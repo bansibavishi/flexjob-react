@@ -7,6 +7,8 @@ import e from 'cors';
 
 export default function EmployersSingle() {
 
+    document.getElementById('heades')
+
     const [employer, setEmployer] = useState({})
     let { userId } = useParams();
     const [activeMenu, setActiveMenu] = useState('About')
@@ -40,7 +42,7 @@ export default function EmployersSingle() {
 
     function getList() {
         var token = localStorage.getItem('token')
-        fetch(process.env.REACT_APP_API + "/post-list-by-user-id/"+ userId, {
+        fetch(process.env.REACT_APP_API + "/post-list-by-user-id/" + userId, {
             headers: {
                 Authorization: 'Bearer ' + token
             }
@@ -361,7 +363,7 @@ export default function EmployersSingle() {
                                         <span className="icon-share2"></span>
                                         <div className="group-btn">
                                             <Link to={"/employers-review/" + userId}>
-                                            <button className="tf-btn-submit btn-popup">Write a review</button>
+                                                <button className="tf-btn-submit btn-popup">Write a review</button>
                                             </Link>
                                             <button className="tf-btn">Message</button>
                                         </div>
@@ -386,21 +388,21 @@ export default function EmployersSingle() {
                                     <div className="content-tab">
                                         <div className={"inner-content" + (activeMenu == "About" ? " " : " d-none")}>
                                             <h5 className='fw-bolder'>About Company</h5>
-                                           <h6 className='fw-bold'>Company Name: <span className='fw-light ms-2'>{employer.title}</span></h6>
+                                            <h6 className='fw-bold'>Company Name: <span className='fw-light ms-2'>{employer.title}</span></h6>
                                             {/* <div>{employer.title}</div> */}
                                             <h6 className='fw-bold'>Description:
-                                            <span className='fw-light ms-2'>{employer.description}</span>
+                                                <span className='fw-light ms-2'>{employer.description}</span>
                                             </h6>
-                                           <h6 className='fw-bold'>Expertise:
-                                           {
-                                            employer.expertise && employer.expertise?.map(e=>
-                                                <p key={Math.random()} className='btn btn-outline-success px-4 rounded-pill mx-2'>{e}</p>
-                                                )
-                                           }
-                                             {/* {e.expertise && e.expertise?.map(i =>
+                                            <h6 className='fw-bold'>Expertise:
+                                                {
+                                                    employer.expertise && employer.expertise?.map(e =>
+                                                        <p key={Math.random()} className='btn btn-outline-success px-4 rounded-pill mx-2'>{e.technology}</p>
+                                                    )
+                                                }
+                                                {/* {e.expertise && e.expertise?.map(i =>
                                                                     <li key={Math.random()}><a>{i.technology}</a></li>
                                                                 )} */}
-                                           </h6>
+                                            </h6>
 
                                         </div>
                                         <div className={"inner-content" + (activeMenu == "Jobs" ? " " : " d-none")}>
@@ -409,31 +411,21 @@ export default function EmployersSingle() {
                                             <div className="related-job">
                                                 {
                                                     jobList.map(e =>
-
                                                         <div className="features-job mg-bt-0" key={Math.random()}>
                                                             <div className="job-archive-header">
                                                                 <div className="inner-box">
                                                                     <div className="logo-company">
-                                                                        <img src="http://127.0.0.1:4000/avtar.jpg"
-                                                                            alt="avtar" />
+                                                                        <img src="http://127.0.0.1:4000/avtar.jpg" alt="avtar" />
                                                                     </div>
                                                                     <div className="box-content">
-                                                                        <h4>
-                                                                            <a>{e._id}</a>
-                                                                        </h4>
+                                                                        <h4><a>{e._id}</a></h4>
                                                                         <h3>
                                                                             <a>{e.title}</a>
                                                                             <span className="icon-bolt"></span>
                                                                         </h3>
                                                                         <ul>
-                                                                            <li>
-                                                                                <span className="icon-map-pin"></span>
-                                                                                Las Vegas, NV 89107, USA
-                                                                            </li>
-                                                                            <li>
-                                                                                <span className="icon-calendar"></span>
-                                                                                2 days ago
-                                                                            </li>
+                                                                            <li><span className="icon-map-pin"></span>Las Vegas, NV 89107, USA</li>
+                                                                            <li><span className="icon-calendar"></span>2 days ago</li>
                                                                         </ul>
                                                                         <span className="icon-heart"></span>
                                                                     </div>
@@ -459,7 +451,6 @@ export default function EmployersSingle() {
                                                                         <span className="icon-dolar1"></span>
                                                                         <p>{e.budget} <span className="year">/month</span></p>
                                                                     </div>
-
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -610,7 +601,7 @@ export default function EmployersSingle() {
                                 <div className="cv-form-details po-sticky job-sg">
                                     <div className="map-content">
                                         <iframe className="map-box"
-                                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.0803768630963!2d72.89526667436085!3d21.228661080884436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa077b7e6b92acf11%3A0xf9e448da46c6d42e!2sFuture%20way%20Institute%20of%20Multimedia!5e0!3m2!1sen!2sin!4v1710497299201!5m2!1sen!2sin"  width="600" height="450" style={{border:0}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.0803768630963!2d72.89526667436085!3d21.228661080884436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa077b7e6b92acf11%3A0xf9e448da46c6d42e!2sFuture%20way%20Institute%20of%20Multimedia!5e0!3m2!1sen!2sin!4v1710497299201!5m2!1sen!2sin" width="600" height="450" style={{ border: 0 }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
                                         ></iframe>
                                     </div>
                                     <ul className="list-infor">

@@ -31,8 +31,8 @@ export default function Message() {
             const chatClient = StreamChat.getInstance("yf4v8e7zzc6u");
             await chatClient.connectUser({ id: cUser._id, name: cUser.firstName, image: cUser.link }, chatClient.devToken(cUser._id))
 
-
-            const channel = chatClient.channel('messaging', 'react-talk', 'custom_channel_id', {
+            console.log(cUser._id);
+            const channel = chatClient.channel('messaging', 'react-talk', {
                 // add as many custom fields as you'd like
                 image: 'https://www.drupal.org/files/project-images/react.png',
                 name: 'Talk about React',
@@ -473,4 +473,4 @@ return (
 
     </>
 )
-}
+        }
