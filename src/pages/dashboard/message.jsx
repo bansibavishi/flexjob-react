@@ -17,44 +17,49 @@ import 'stream-chat-react/dist/css/v2/index.css';
 
 
 export default function Message() {
-
-
-
     const cUser = useSelector(state => state.user)
 
+
+    const [client, setClient] = useState(null);
+    const [channel, setChannel] = useState(null);
+
+
+    useEffect(() => {
+
+        async function init() {
+            const chatClient = StreamChat.getInstance("yf4v8e7zzc6u");
+            await chatClient.connectUser({ id: cUser._id, name: cUser.firstName, image: cUser.link, })
+
+
+            const channel = chatClient.channel('messaging', 'custom_channel_id', {
+                // add as many custom fields as you'd like
+                image: 'https://www.drupal.org/files/project-images/react.png',
+                name: 'Talk about React',
+                members: [cUser._id],
+            });
+
+            await channel.watch();
+        }
+        init()
+    }, [])
 
     // async function connect() {
 
     //     if (!cUser) return
-    const client = StreamChat.getInstance("yf4v8e7zzc6u");
 
-    const userId = cUser._id;
+    // const userId = cUser._id;
 
-    const apiKey = 'yf4v8e7zzc6u';
-    const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoibXV0ZS1uaWdodC0wIn0.1OYofxNZ1ixYkACHr-i1dqpP-QGNkRJs4-32pr7l-ag';
+    // const apiKey = 'yf4v8e7zzc6u';
+    // const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoibXV0ZS1uaWdodC0wIn0.1OYofxNZ1ixYkACHr-i1dqpP-QGNkRJs4-32pr7l-ag';
 
-    const chatClient = new StreamChat(apiKey);
-    client.connectUser({
-        id: cUser._id,
-        name: cUser.firstName,
-        image: cUser.link,
-    }, userId)
+    // const chatClient = new StreamChat(apiKey);
 
 
 
-    const channel = chatClient.channel('messaging', 'custom_channel_id', {
-        // add as many custom fields as you'd like
-        image: 'https://www.drupal.org/files/project-images/react.png',
-        name: 'Talk about React',
-        members: [userId],
-    });
 
 
     // }
 
-    useEffect(() => {
-        // connect()
-    }, [])
 
 
 
