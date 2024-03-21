@@ -29,7 +29,7 @@ export default function Message() {
 
         async function init() {
             const chatClient = StreamChat.getInstance("yf4v8e7zzc6u");
-            await chatClient.connectUser({ id: cUser._id, name: cUser.firstName, image: cUser.link })
+            await chatClient.connectUser({ id: cUser._id, name: cUser.firstName, image: cUser.link }, chatClient.devToken(cUser._id))
 
 
             const channel = chatClient.channel('messaging', 'react-talk', 'custom_channel_id', {
