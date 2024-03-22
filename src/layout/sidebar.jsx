@@ -44,13 +44,13 @@ export default function Sidebar() {
                                 <li><a href="candidates-profile-setting.html">Profile Setting</a></li>
                             </ul> */}
                         </li>
-
+{/*
                         <li>
                             <a href="#candidates-resumes.html" className="tf-effect">
                                 <span className="icon-resumes dash-icon"></span>
                                 <span className="dash-titles">Resumes</span>
                             </a>
-                        </li>
+                        </li> */}
 
                         <li>
                             <Link to={"/myjob"}>
@@ -66,12 +66,12 @@ export default function Sidebar() {
                             </Link>
                         </li>
 
-                        <li>
+                        {/* <li>
                             <a href="#candidates-alerts-jobs.html" className="tf-effect">
                                 <span className="icon-bell1 dash-icon"></span>
                                 <span className="dash-titles">Alerts Jobs</span>
                             </a>
-                        </li>
+                        </li> */}
 
                         <li>
                             <Link to={"/message"} className="tf-effect">

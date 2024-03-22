@@ -89,19 +89,9 @@ export default function ContactUs() {
                         </div>
                     </div>
                 </section>
-                <section>
-                    <div className="tf-container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className="banner-contact-v1">
-                                    <h6>recruiting?</h6>
-                                    <p>Advertise  your jobs to milions of monthly users and search 15.3 milions cvs in our database.</p>
-                                    <a href="#" className="btn">Start Recruiting now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+
+
+
 
 
 

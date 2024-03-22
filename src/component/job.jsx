@@ -109,7 +109,7 @@ export default function JobCmp({ e }) {
                     <div className="job-footer-right">
                         <div className="price">
                             <span className="icon-dolar1"></span>
-                            <p>{e.budget} <span className="year">/hours</span></p>
+                            <p>{e.budget} <span className="year">/Month</span></p>
                         </div>
                         <p className="days">{e.validity}</p>
                     </div>
