@@ -365,7 +365,7 @@ export default function EmployersSingle() {
                                             <Link to={"/employers-review/" + userId}>
                                                 <button className="tf-btn-submit btn-popup">Write a review</button>
                                             </Link>
-                                            <button className="tf-btn">Message</button>
+                                            <Link to={'/message?id=' + employer._id} className="tf-btn">Message</Link>
                                         </div>
                                     </div>
 

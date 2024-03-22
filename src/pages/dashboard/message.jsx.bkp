@@ -1,43 +1,89 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
-import { useSearchParams } from "react-router-dom";
+import { StreamChat, User } from 'stream-chat';
 
-import SendbirdApp from '@sendbird/uikit-react/App';
-import '@sendbird/uikit-react/dist/index.css';
+
+
+import {
+    Chat,
+    Channel,
+    ChannelHeader,
+    ChannelList,
+    MessageInput,
+    MessageList,
+    Thread,
+    Window,
+    LoadingIndicator
+} from 'stream-chat-react';
+
+import 'stream-chat-react/dist/css/v2/index.css';
 
 
 export default function Message() {
 
     const cUser = useSelector(state => state.user)
-    const [search] = useSearchParams();
-    const otherUserId = search.get('id')
+    const [client, setClient] = useState(null);
+    const [channel, setChannel] = useState(null);
+
+    const userId = "john"
 
 
-    function getUser() {
+    const filters = { type: "messaging", members: { $in: [userId] } }
 
-        fetch(process.env.REACT_APP_API + "/user-by-id/" + otherUserId, {})
-            .then(e => e.json()).then(res => {
-                // setEmployer(res.data)
-            }).catch(err => { console.log(err); })
-    }
 
-    if (!cUser) return
 
+    useEffect(() => {
+
+        async function init() {
+            const chatClient = StreamChat.getInstance("yf4v8e7zzc6u");
+            // await chatClient.connectUser({ id: cUser._id, name: cUser.firstName, image: cUser.link }, chatClient.devToken(cUser._id))
+
+            await chatClient.connectUser({
+                id: userId,
+                name: 'John Doe',
+                image: 'https://getstream.io/random_svg/?name=John',
+            }, chatClient.devToken(userId),);
+
+
+            // const channel = chatClient.channel('messaging', 'react-talk', {
+            //     // add as many custom fields as you'd like
+            //     image: 'https://www.drupal.org/files/project-images/react.png',
+            //     name: 'Talk about React',
+            //     members: [cUser._id],
+            // });
+
+            const channel = chatClient.channel('messaging', 'react-talk2', {
+                members: [userId],
+                name: 'Awesome channel about traveling'
+            });
+            channel.addMembers([userId])
+
+            await channel.watch();
+            // setChannel(channel)
+            setClient(chatClient)
+        }
+        init()
+        if (client) return () => client.disconnectUser()
+    }, [])
+
+    console.log(12);
+    if (!client) return <LoadingIndicator />
+    console.log(1);
     return (
-        <div className="App vh-100" style={{ "padding-top": "100px" }}>
-            <SendbirdApp
-                // Add the two lines below.
-                // You can find your Sendbird application ID on the Sendbird dashboard.
-                appId="42759A03-CECB-473A-83B6-4AA310DA0582"
-                profileUrl={cUser.link}
-                nickname={cUser.firstName}
+        <Chat client={client} theme='str-chat__theme-light' customStyles={{ "padding-top": "156px", "width": "916px", "padding-left": "35px" }}>
+            <ChannelList filters={filters} />
+            <Channel>
+                <Window>
+                    <ChannelHeader />
+                    <MessageList />
+                    <MessageInput />
+                </Window>
+                <Thread />
+            </Channel>
+        </Chat>
+    )
 
-                // Specify the user ID you've created on the dashboard.
-                // Or you can create a user by specifying a unique userId.
-                userId={cUser._id}
-            />
-        </div>
-    );
+
 
 
 
