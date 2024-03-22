@@ -110,12 +110,12 @@ export default function JobList() {
                                     </div>
 
                                     <ul className="pagination-job padding">
-                                        <li><a href="#"><i className="icon-keyboard_arrow_left"></i></a></li>
+
                                         {generateBtn(totalPage)}
                                         {/* <li><a href="#">1</a></li>
                                         <li className="current"><a href="#">2</a></li>
                                         <li><a href="#">3</a></li> */}
-                                        <li><a href="#"><i className="icon-keyboard_arrow_right"></i></a></li>
+
                                     </ul>
                                 </div>
 

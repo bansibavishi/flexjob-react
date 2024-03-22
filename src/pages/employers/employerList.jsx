@@ -138,10 +138,10 @@ export default function EmployerList() {
                                                 )}
                                         </div>
                                         <ul className="pagination-job p-top">
-                                            <li><a href="#"><i className="icon-keyboard_arrow_left"></i></a></li>
+
                                             {generateBtn(totalPage)}
 
-                                            <li><a href="#"><i className="icon-keyboard_arrow_right"></i></a></li>
+
                                         </ul>
                                     </div>
                                     <div className="inner">

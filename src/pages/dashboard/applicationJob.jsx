@@ -2,10 +2,13 @@ import axios from 'axios';
 import e from 'cors';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import useRazorpay from "react-razorpay";
+import { toast } from 'react-toastify';
 
 export default function ApplicationJob() {
     let { postId } = useParams();
     const [proposal, setProposal] = useState([])
+    const [Razorpay] = useRazorpay();
 
 
     function getProposal() {
@@ -22,13 +25,77 @@ export default function ApplicationJob() {
         axios.post(process.env.REACT_APP_API + "/proposal-accept-reject", {
             id: id,
             status: status
-        }).then(e => e.json()).then(res => {
+        }).then(res => {
+            getProposal()
             console.log(res);
         }).catch(err => {
             console.log(err);
         })
 
     }
+
+    async function paymentMethod(proposalId) {
+
+        var token = localStorage.getItem('token')
+
+        var order = await axios.post(process.env.REACT_APP_API + "/create-order", { proposalId: proposalId }, { headers: { Authorization: 'Bearer ' + token } })
+            .catch(err => { console.log(err); })
+        console.log(order);
+
+        if (order.data.status !== "created") return toast.error(order.data?.error?.description);
+
+        const options = {
+            key: "rzp_test_GFjWtFrV9orbTZ", // Enter the Key ID generated from the Dashboard
+            amount: order.data.amount,
+            amount_due: order.data.amount_due,
+            amount_paid: order.data.amount_paid,
+            attempts: order.data.attempts,
+            currency: order.data.currency,
+            entity: order.data.entity,
+            name: "Flexjob",
+            description: "Test Transaction",
+            image: "/images/logo.png",
+            order_id: order.data.id,
+            handler:  async function (response) {
+                console.log(response.razorpay_payment_id);
+                console.log(response.razorpay_order_id);
+                console.log(response.razorpay_signature);
+                axios.post(process.env.REACT_APP_API + "/verify-order", {
+                    payment_id:response.razorpay_payment_id,
+                    order_id:response.razorpay_order_id,
+                    razorpay_signature:response.razorpay_signature
+                }
+                ).then(res => {
+                    if(res.data.success == true)
+                    {
+                        toast.success(res.data.message)
+                    }
+                    else {
+                        toast.error(res.data.message)
+                    }
+                }).catch(err => {
+                    console.log(err);
+                })
+
+            },
+            prefill: {
+                name: "Piyush Garg",
+                email: "youremail@example.com",
+                contact: "9999999999",
+            },
+            notes: {
+                address: "Razorpay Corporate Office",
+            },
+            theme: {
+                color: "#3399cc",
+            },
+        };
+
+        const rzpay = new Razorpay(options);
+        rzpay.open();
+
+    }
+
     useEffect(() => {
         getProposal()
     }, [])
@@ -98,14 +165,18 @@ export default function ApplicationJob() {
                                                                         <div className="status-wrap col">
                                                                             <button type='submit' className="button-status color-3" onClick={() => proposalStatus(e._id, "rejected")}> Rejected</button>
                                                                         </div>
-                                                                    </td> : <td>{e.status}</td>
+                                                                    </td> :  <button type='submit' className="button-status color-3 mt-5">{e.status}</button>
                                                             }
+                                                            {
+                                                              e.status == "approved" ?
+
                                                             <td>
 
-                                                            <div className="status-wrap col">
-                                                                <button type='submit' className="button-status color-3"> Payment</button>
-                                                            </div>
-                                                            </td>
+                                                                <div className="status-wrap col">
+                                                                    <button type='submit' className="button-status color-3" onClick={() => paymentMethod(e._id)}> Payment</button>
+                                                                </div>
+                                                            </td> :""
+                                                            }
 
                                                         </tr>
                                                     )}
