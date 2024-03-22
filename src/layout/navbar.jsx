@@ -194,9 +194,9 @@ export default function Navbar() {
                                             Candidates<span className="icon-keyboard_arrow_down"></span>
                                         </div>
                                         <div className="sub-account">
-                                            <div className="sub-account-item">
+                                            {/* <div className="sub-account-item">
                                                 <a href="dashboard/candidates-dashboard.html"><span className="icon-dashboard"></span>Dashboard</a>
-                                            </div>
+                                            </div> */}
                                             <div className="sub-account-item">
                                                 <Link to="/profile"><span className="icon-profile"></span> Profile</Link>
                                             </div>
@@ -206,9 +206,9 @@ export default function Navbar() {
                                                 <Link to="/job/create"><span className="icon-plus"></span>Create Job</Link>
                                             </div>:""
                                             }
-                                            <div className="sub-account-item">
+                                            {/* <div className="sub-account-item">
                                                 <a href="dashboard/candidates-resumes.html"><span className="icon-resumes"></span> Resumes</a>
-                                            </div>
+                                            </div> */}
                                             <div className="sub-account-item">
                                                <Link to={"/myjob"}><span className="icon-my-apply"></span> My Applied</Link>
                                             </div>
