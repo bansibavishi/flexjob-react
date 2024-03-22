@@ -56,7 +56,7 @@ export default function EmployersReview() {
             <div className="boxed">
 
                 <Navbar />
-                <section>
+                <section className='pt-5'>
                     <div className="wrap-form-rating-page">
 
                         <div className="wd-form-rating-page">
@@ -108,7 +108,7 @@ export default function EmployersReview() {
                     </div>
                 </section>
 
-                                    
+
             </div>
         </>
     )
