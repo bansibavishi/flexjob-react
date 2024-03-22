@@ -25,8 +25,8 @@ export default function EmployersSingle() {
             .catch(err => {
                 console.log(err);
             })
-
     }
+
     function reviewList() {
         var token = localStorage.getItem('token')
         fetch(process.env.REACT_APP_API + "/review-list?id=" + userId, {
@@ -346,7 +346,7 @@ export default function EmployersSingle() {
                             <div className="col-lg-12">
                                 <div className="wd-job-author stc-em">
                                     <div className="inner-job-left">
-                                        <img src={process.env.REACT_APP_API + employer.img} alt="" className="logo-company" />
+                                        <img src={process.env.REACT_APP_API + employer?.img} alt="" className="logo-company" />
                                         <div className="content">
                                             <h3><a href="#">{employer?.title}</a><span className="icon-bolt"></span></h3>
                                             <div className="job-info">
@@ -388,14 +388,14 @@ export default function EmployersSingle() {
                                     <div className="content-tab">
                                         <div className={"inner-content" + (activeMenu == "About" ? " " : " d-none")}>
                                             <h5 className='fw-bolder'>About Company</h5>
-                                            <h6 className='fw-bold'>Company Name: <span className='fw-light ms-2'>{employer.title}</span></h6>
-                                            {/* <div>{employer.title}</div> */}
+                                            <h6 className='fw-bold'>Company Name: <span className='fw-light ms-2'>{employer?.title}</span></h6>
+                                            {/* <div>{employer?.title}</div> */}
                                             <h6 className='fw-bold'>Description:
-                                                <span className='fw-light ms-2'>{employer.description}</span>
+                                                <span className='fw-light ms-2'>{employer?.description}</span>
                                             </h6>
                                             <h6 className='fw-bold'>Expertise:
                                                 {
-                                                    employer.expertise && employer.expertise?.map(e =>
+                                                    employer?.expertise && employer?.expertise?.map(e =>
                                                         <p key={Math.random()} className='btn btn-outline-success px-4 rounded-pill mx-2'>{e.technology}</p>
                                                     )
                                                 }
@@ -565,7 +565,7 @@ export default function EmployersSingle() {
                                                                                 <img src="http://127.0.0.1:4000/avatar.jpg" alt="images" />
                                                                             </div>
                                                                             <div className="infor">
-                                                                                <h5><a href="#">{e.user[0].firstName}</a><svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                                                                                <h5><a href="#">{e.user[0]?.firstName}</a><svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
                                                                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M0.5 10C0.5 4.47715 4.97715 0 10.5 0C16.0228 0 20.5 4.47715 20.5 10C20.5 15.5228 16.0228 20 10.5 20C4.97715 20 0.5 15.5228 0.5 10Z" fill="#37B853" />
                                                                                     <path d="M8.89644 13.8429L5.64644 10.3563C5.45119 10.1468 5.45119 9.80718 5.64644 9.59769L6.35353 8.8391C6.54879 8.62961 6.86539 8.62961 7.06064 8.8391L9.25 11.1878L13.9394 6.1571C14.1346 5.94763 14.4512 5.94763 14.6465 6.1571L15.3536 6.91569C15.5488 7.12516 15.5488 7.46479 15.3536 7.67428L9.60355 13.8429C9.40828 14.0524 9.0917 14.0524 8.89644 13.8429Z" fill="white" />
                                                                                 </svg></h5>
@@ -607,19 +607,19 @@ export default function EmployersSingle() {
                                     <ul className="list-infor">
                                         <li>
                                             <div className="category">Email</div>
-                                            <div className="detail"><a href="#" className="__cf_email__">{employer.email}</a></div>
+                                            <div className="detail"><a href="#" className="__cf_email__">{employer?.email}</a></div>
                                         </li>
                                         <li>
                                             <div className="category">Mobile</div>
-                                            <div className="detail"><a href="#">{employer.mobile}</a></div>
+                                            <div className="detail"><a href="#">{employer?.mobile}</a></div>
                                         </li>
                                         <li>
                                             <div className="category">Location</div>
-                                            <div className="detail">{employer.location}</div>
+                                            <div className="detail">{employer?.location}</div>
                                         </li>
                                         <li>
                                             <div className="category">Rate</div>
-                                            <div className="detail">${employer.rate}</div>
+                                            <div className="detail">${employer?.rate}</div>
                                         </li>
 
                                     </ul>

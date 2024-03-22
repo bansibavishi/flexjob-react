@@ -167,7 +167,7 @@ export default function Home() {
                                             <h1><a href="find-jobs-list.html">{e.technology}</a></h1>
                                             {/* <p>120 Jobs available</p> */}
                                         </div>
-                                        <a href="#" className="btn-category-job">Explore Jobs <span className="icon-keyboard_arrow_right"></span></a>
+                                        <Link to="/job" className="btn-category-job">Explore Jobs <span className="icon-keyboard_arrow_right"></span></Link>
                                     </div>
                                 )}
 
