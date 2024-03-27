@@ -9,7 +9,7 @@ export default function Footer() {
                     <div className="row">
                         <div className="col-lg-2 col-md-4">
                             <div className="footer-logo">
-                                <img src="/images/logo.png" alt="images" />
+                                <img src="/images/logo2.png" alt="images" />
                             </div>
                         </div>
                         <div className="col-lg-10 col-md-8">

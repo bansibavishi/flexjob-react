@@ -115,7 +115,7 @@ export default function Home() {
                                                 <input type="text" className="input-filter-search" placeholder="Job title, key words or company" onChange={e => setSearch(e.target.value)} value={Search} />
                                             </div>
                                             <div className="form-group-2">
-                                                <span className="icon-map-pin"></span>
+
                                                 <select id="select-location" className="select-location">
                                                     <option value="">All Location</option>
                                                     <option value="">Singapore</option>
@@ -126,7 +126,7 @@ export default function Home() {
                                                 </select>
                                             </div>
                                             <div className="form-group-4">
-                                                <button className="btn btn-find" onClick={() => send('/job')}>Find Jobs</button>
+                                                <button className="btn btn-find" onChange={e => setSearch(e.target.value )} value={Search} onClick={() => send('/job?s='+Search)}>Find Jobs</button>
                                             </div>
                                         </div>
                                     </form>
@@ -167,7 +167,7 @@ export default function Home() {
                                             <h1><a href="find-jobs-list.html">{e.technology}</a></h1>
                                             {/* <p>120 Jobs available</p> */}
                                         </div>
-                                        <Link to="/job" className="btn-category-job">Explore Jobs <span className="icon-keyboard_arrow_right"></span></Link>
+                                        <Link to={"/job?e=" + e.technology} className="btn-category-job">Explore Jobs <span className="icon-keyboard_arrow_right"></span></Link>
                                     </div>
                                 )}
 
@@ -494,16 +494,16 @@ export default function Home() {
                                         <div className="employer-block">
                                             <div className="inner-box">
                                                 <div className="logo-company">
-                                                    <img src="http://127.0.0.1:4000/avatar.jpg" alt="" />
+                                                    <img src="http://127.0.0.1:4000/avatar.jpg" alt="avtar" />
                                                 </div>
                                                 <div className="box-content">
-                                                    <div className="star">
+                                                    {/* <div className="star">
                                                         <span className="icon-star-full"></span>
                                                         <span className="icon-star-full"></span>
                                                         <span className="icon-star-full"></span>
                                                         <span className="icon-star-full"></span>
                                                         <span className="icon-star-full"></span>
-                                                    </div>
+                                                    </div> */}
                                                     <Link to={'/employers/' + e._id}>
                                                         <h3>
                                                             {e.title}

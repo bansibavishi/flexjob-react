@@ -4,15 +4,20 @@ import Footer from '../../layout/footer'
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import JobCmp from '../../component/job';
+import { useSearchParams } from "react-router-dom";
 
 export default function JobList() {
 
+    let [searchParams, setSearchParams] = useSearchParams();
+
+    console.log(searchParams.get('s'));
 
     const [jobList, setJobList] = useState([])
 
-    const [page, setPage] = useState(1) // current page
+    const [page, setPage] = useState(1)  //current page
     const [totalPage, setTotalPage] = useState(1)
-    const [search, setSearch] = useState("")
+    const [search, setSearch] = useState(searchParams.get('s')||'')
+    const[expertise,setExpertise] = useState(searchParams.get('e')||'')
 
 
 
@@ -20,7 +25,7 @@ export default function JobList() {
     function getJobList() {
 
         var token = localStorage.getItem('token')
-        fetch(process.env.REACT_APP_API + "/post-list?limit=8&page=" + page + "&s=" + search, {
+        fetch(process.env.REACT_APP_API + "/post-list?limit=8&page=" + page + "&s=" + search +  "&e=" + expertise,   {
             headers: {
                 Authorization: 'Bearer ' + token
             }
@@ -48,15 +53,8 @@ export default function JobList() {
         getJobList()
     }, [])
 
-
-
-
-
-
     return (
         <>
-
-
             <section className="bg-f5 breadcrumb-section">
                 <div className="tf-container">
                     <div className="row">
@@ -73,7 +71,6 @@ export default function JobList() {
                     </div>
                 </div>
             </section>
-
 
             <section className="form-sticky stc1">
                 <div className="tf-container">
@@ -97,7 +94,6 @@ export default function JobList() {
                         <div className="col-lg-12 tf-tab">
                             <div className="wd-meta-select-job">
                                 <h5 className="pb-3">Jobs</h5>
-
                             </div>
                             <div className="content-tab">
                                 <div className="inner">
@@ -108,18 +104,10 @@ export default function JobList() {
                                             )
                                         }
                                     </div>
-
                                     <ul className="pagination-job padding">
-
                                         {generateBtn(totalPage)}
-                                        {/* <li><a href="#">1</a></li>
-                                        <li className="current"><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li> */}
-
                                     </ul>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>

@@ -100,7 +100,7 @@ export default function Navbar() {
                             <div className="header-ct-left">
                                 <div id="logo" className="logo">
                                     <Link to="/">
-                                        <img className="site-logo" id="trans-logo" src="/images/logo.png" alt="Image" />
+                                        <img className="site-logo" id="trans-logo" src="/images/logo2.png" alt="Image" />
                                     </Link>
                                 </div>
 
@@ -117,6 +117,9 @@ export default function Navbar() {
                                             </li>
                                             <li className={"menu-item" + (activeMenu == "employers" ? " current-item" : "")} onClick={e => setActiveMenu("employers")}>
                                                 <Link to="/employers-list">Employers</Link>
+                                            </li>
+                                            <li className={"menu-item" + (activeMenu == "employers" ? " current-item" : "")} onClick={e => setActiveMenu("candidate")}>
+                                                <Link to="/candidate-list">Candidate</Link>
                                             </li>
 
                                             <li className={"menu-item" + (activeMenu == "about-us" ? " current-item" : "")} onClick={e => setActiveMenu("about-us")}>
@@ -191,7 +194,7 @@ export default function Navbar() {
                                     <div className="header-customize-item account">
                                         <img src={cUser?.link} alt="" />
                                         <div className="name">
-                                            Candidates<span className="icon-keyboard_arrow_down"></span>
+                                            {cUser?.type}
                                         </div>
                                         <div className="sub-account">
                                             {/* <div className="sub-account-item">

@@ -2,21 +2,18 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../../layout/navbar'
 import Footer from '../../layout/footer'
 import { IoClose } from "react-icons/io5";
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-
+import EmployerList from '../employers/employerList';
+import EmployersReview from '../employers/employersReview';
 
 export default function JobSingle() {
 
     const [job, setJob] = useState({})
-
     const [modal, setModal] = useState(false)
-
     const [purposer, setpurposer] = useState([])
     const [activeMenu, setActiveMenu] = useState('About')
-
     let { postId } = useParams();
-
     const [applyJob, setApplyJob] = useState(
         {
             postId: postId,
@@ -91,7 +88,6 @@ export default function JobSingle() {
 
     function save(saveId, es) {
         console.log(es);
-
         var token = localStorage.getItem('token')
         fetch(process.env.REACT_APP_API + "/save-post", {
             method: "post",
@@ -147,10 +143,10 @@ export default function JobSingle() {
                                             <img src={process.env.REACT_APP_API + (job?.user && job?.user[0]?.img)} alt="logo" />
                                         </div>
                                         <div className="content">
-                                            <a href="#" className="category">{job?.user && job?.user[0]?.firstName}</a>
+                                            <Link to={"/employers/" +( job?.user &&  job?.user[0]?._id) }className="category">{job?.user && job?.user[0]?.firstName}</Link>
                                             <h6><a href="#">{job.title}<span className="icon-bolt"></span></a></h6>
                                             <ul className="job-info">
-                                                <li><span className="icon-map-pin"></span>
+                                                <li>
                                                     <span>{job?.user && job?.user[0]?.location}</span></li>
                                                 <li><span className="icon-calendar"></span>
                                                     <span>2 days ago</span></li>
@@ -172,16 +168,7 @@ export default function JobSingle() {
                                         </div>
                                         <div className="bottom">
 
-                                            <div className="gr-rating">
-                                                <p>32 days left to apply</p>
-                                                <ul className="list-star">
-                                                    <li className="icon-star-full"></li>
-                                                    <li className="icon-star-full"></li>
-                                                    <li className="icon-star-full"></li>
-                                                    <li className="icon-star-full"></li>
-                                                    <li className="icon-star-full"></li>
-                                                </ul>
-                                            </div>
+
                                             <div className="price">
                                                 <span className="icon-dollar"></span>
                                                 <p>{job.budget} <span className="year">/hours</span></p>
@@ -214,13 +201,6 @@ export default function JobSingle() {
                                             </p>
 
                                         </div>
-                                        {/* <div className={"inner-content" + (activeMenu == "About" ? " " : " d-none")} >
-                                            <h5>Proposal</h5>
-                                            <p>Are you a User Experience Designer with a track record of delivering intuitive digital experiences that
-                                                drive results? Are you a strategic storyteller and systems thinker who can concept and craft smart,
-                                                world-class campaigns across a variety of mediums?
-                                            </p>
-                                        </div> */}
                                         <div className={"inner-content" + (activeMenu == "Reviews" ? " " : " d-none")}>
                                             <h5>Full Reviews</h5>
 

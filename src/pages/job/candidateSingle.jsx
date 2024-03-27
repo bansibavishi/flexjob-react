@@ -1,32 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../../layout/navbar'
-import Footer from '../../layout/footer'
 import { Link, useParams } from 'react-router-dom';
 import ReactStars from "react-rating-stars-component";
-import e from 'cors';
 
-export default function EmployersSingle() {
-
-    document.getElementById('heades')
+export default function CandidateSingle() {
 
     const [employer, setEmployer] = useState({})
-    let { userId } = useParams();
+    const [review, setReview] = useState([])
     const [activeMenu, setActiveMenu] = useState('About')
 
-    const [review, setReview] = useState([])
-    const [jobList, setJobList] = useState([])
+    let { userId } = useParams();
 
-    function getSingleEmployer() {
-
+    function getCandidate() {
         fetch(process.env.REACT_APP_API + "/user-by-id/" + userId, {
+
         }).then(e => e.json()).then(res => {
             setEmployer(res.data)
+            console.log(res);
+        }).then(err => {
+            console.log(err);
         })
-            .catch(err => {
-                console.log(err);
-            })
     }
-
     function reviewList() {
         var token = localStorage.getItem('token')
         fetch(process.env.REACT_APP_API + "/review-list?id=" + userId, {
@@ -40,25 +33,10 @@ export default function EmployersSingle() {
         })
     }
 
-    function getList() {
-        var token = localStorage.getItem('token')
-        fetch(process.env.REACT_APP_API + "/post-list-by-user-id/" + userId, {
-            headers: {
-                Authorization: 'Bearer ' + token
-            }
-        }).then(e => e.json()).then(res => {
-            console.log(res.userData);
-            setJobList(res.data)
-        }).catch(err => {
-            console.log(err);
-        })
-    }
+
     useEffect(() => {
-        getSingleEmployer()
-    }, [])
-    useEffect(() => {
+        getCandidate()
         reviewList()
-        getList()
     }, [])
     return (
         <>
@@ -408,7 +386,7 @@ export default function EmployersSingle() {
                                         <div className={"inner-content" + (activeMenu == "Jobs" ? " " : " d-none")}>
                                             <h5>Job List</h5>
 
-                                            <div className="related-job">
+                                            {/* <div className="related-job">
                                                 {
                                                     jobList.map(e =>
                                                         <div className="features-job mg-bt-0" key={Math.random()}>
@@ -455,7 +433,7 @@ export default function EmployersSingle() {
                                                             </div>
                                                         </div>
                                                     )}
-                                            </div>
+                                            </div> */}
 
                                         </div>
                                         <div className={"inner-content" + (activeMenu == "Reviews" ? " " : " d-none")}>
@@ -491,7 +469,68 @@ export default function EmployersSingle() {
                                             </div>
                                             <div className="job-rating">
                                                 <h6>reviews</h6>
-                                                                            
+                                                <div className="rating-review">
+                                                    <div className="left-rating">
+                                                        <h2>4.8</h2>
+                                                        <ul className="list-star">
+                                                            <li className="icon-star-full"></li>
+                                                            <li className="icon-star-full"></li>
+                                                            <li className="icon-star-full"></li>
+                                                            <li className="icon-star-full"></li>
+                                                            <li className="icon-star-full"></li>
+                                                        </ul>
+                                                        <p className="count-rating">(1,968 Ratings)</p>
+                                                    </div>
+                                                    <div className="right-rating">
+                                                        <ul className="rating-list">
+                                                            <li className="rating-details">
+                                                                <span className="number-rating">5</span>
+                                                                <div className="progress-item">
+                                                                    <div className="donat-bg" data-percent="60%">
+                                                                        <div className="custom-donat"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <span className="percent"></span>
+                                                            </li>
+                                                            <li className="rating-details">
+                                                                <span className="number-rating">4</span>
+                                                                <div className="progress-item">
+                                                                    <div className="donat-bg" data-percent="20%">
+                                                                        <div className="custom-donat"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <span className="percent"></span>
+                                                            </li>
+                                                            <li className="rating-details">
+                                                                <span className="number-rating">3</span>
+                                                                <div className="progress-item">
+                                                                    <div className="donat-bg" data-percent="10%">
+                                                                        <div className="custom-donat"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <span className="percent"></span>
+                                                            </li>
+                                                            <li className="rating-details">
+                                                                <span className="number-rating">2</span>
+                                                                <div className="progress-item">
+                                                                    <div className="donat-bg" data-percent="7%">
+                                                                        <div className="custom-donat"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <span className="percent"></span>
+                                                            </li>
+                                                            <li className="rating-details">
+                                                                <span className="number-rating last">1</span>
+                                                                <div className="progress-item">
+                                                                    <div className="donat-bg" data-percent="3%">
+                                                                        <div className="custom-donat"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <span className="percent"></span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                                 <ul className="client-review">
                                                     <li className="client-item">
                                                         <div className="content">
@@ -594,6 +633,9 @@ export default function EmployersSingle() {
 
 
             </div>
+
+
+
         </>
     )
 }

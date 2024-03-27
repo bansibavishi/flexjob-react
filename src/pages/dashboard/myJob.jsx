@@ -47,7 +47,7 @@ export default function MyJob() {
                         <div className="col-lg-12 col-md-12 ">
 
                             <div className="applicants bg-white">
-                                <div className="dash-search flex">
+                                {/* <div className="dash-search flex">
                                     <div className="widget search">
                                         <div className="search-flat">
                                             <form action="#" method="get" role="search" className="search-form">
@@ -65,7 +65,7 @@ export default function MyJob() {
                                             <li><span>Days</span></li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> */}
 
                                 <div className="table-content">
                                     <div className="wrap-applicants table-responsive">

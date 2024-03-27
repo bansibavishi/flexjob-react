@@ -23,6 +23,8 @@ import SaveJob from "./pages/job/saveJob";
 import MyJob from "./pages/dashboard/myJob";
 import ApplicationJob from "./pages/dashboard/applicationJob";
 import Message from "./pages/dashboard/message";
+import CandidateList from "./pages/job/candidateList";
+import CandidateSingle from "./pages/job/candidateSingle";
 
 
 
@@ -56,6 +58,8 @@ function App() {
                         <Route path="/contact-us" element={<RequireAuth><ContactUs /></RequireAuth>} />
                         <Route path="/reset/:userId/:token" element={<ResetPass />} />
                         <Route path="/savejob-list" element={<RequireAuth><SaveJob /></RequireAuth>} />
+                        <Route path="/candidate-list" element={<RequireAuth><CandidateList/></RequireAuth>}/>
+                        <Route path="/candidate/:userId" element={<RequireAuth><CandidateSingle/></RequireAuth>}/>
 
                     </Route>
 

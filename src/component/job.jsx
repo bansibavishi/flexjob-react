@@ -62,13 +62,16 @@ export default function JobCmp({ e }) {
                 <div className="job-archive-header">
                     <div className="inner-box">
                         <div className="logo-company">
-                            <img src="images/logo-company/cty8.png" alt="images/logo-company/cty8.png" />
+                            <img src="http://127.0.0.1:4000/avatar.jpg" alt="avtar" />
                         </div>
                         <div className="box-content">
-                            <Link to={'/job/' + e._id} >
+                            <Link to={"/employers/" +( e?.user &&  e?.user[0]?._id) }>
+
                                 <h4>
                                     {e.user[0].firstName}
                                 </h4>
+                            </Link>
+                            <Link to={'/job/' + e._id} >
                                 <h3>
                                     {e.title}
                                     <span className="icon-bolt"></span>
@@ -98,13 +101,7 @@ export default function JobCmp({ e }) {
                             )}
 
                         </ul>
-                        <div className="star">
-                            <span className="icon-star-full"></span>
-                            <span className="icon-star-full"></span>
-                            <span className="icon-star-full"></span>
-                            <span className="icon-star-full"></span>
-                            <span className="icon-star-full"></span>
-                        </div>
+
                     </div>
                     <div className="job-footer-right">
                         <div className="price">

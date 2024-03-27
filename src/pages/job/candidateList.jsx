@@ -1,50 +1,57 @@
 import React, { useEffect, useState } from 'react'
-import Footer from '../../layout/footer'
-import Navbar from '../../layout/navbar'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-export default function EmployerList() {
+export default function CandidateList() {
 
-    const [employerList, setEmployerList] = useState([])
-    const [page, setPage] = useState(1)
-    const [totalPage, setTotalPage] = useState(1)
+    const[candidateList, setCandidateList] = useState([])
+    // const [page, setPage] = useState(1)
+    // const [totalPage, setTotalPage] = useState(1)
 
 
-    console.log(page);
+    // console.log(page);
 
-    function getEmployerList() {
-        var token = localStorage.getItem('token')
-        fetch(process.env.REACT_APP_API + "/employer-data?limit=10&page=" + page, {
-            headers: {
-                Authorization: 'Bearer ' + token
-            }
+    // function getEmployerList() {
+    //     var token = localStorage.getItem('token')
+    //     fetch(process.env.REACT_APP_API + "/employer-data?limit=10&page=" + page, {
+    //         headers: {
+    //             Authorization: 'Bearer ' + token
+    //         }
+    //     }).then(e => e.json()).then(res => {
+    //         setEmployerList(res.users)
+    //         setPage(res.currentPage)
+    //         setTotalPage(res.totalPages)
+    //     })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
+
+    // }
+    function getCandidateList() {
+        fetch(process.env.REACT_APP_API + "/employee-data", {
+
         }).then(e => e.json()).then(res => {
-            setEmployerList(res.users)
-            setPage(res.currentPage)
-            setTotalPage(res.totalPages)
+            setCandidateList(res.data)
+            console.log(res);
+        }).catch(err => {
+            console.log(err);
         })
-            .catch(err => {
-                console.log(err);
-            })
-
     }
 
 
+    // function generateBtn(pageNo) {
+    //     var arr = Array.from({ length: pageNo }, (_, i) => i + 1)
+    //     return arr.map((n) => <li className={n == page ? 'current' : ''}><a onClick={() => setPage(n)} href="#">{n}</a></li>)
+    // }
 
-    function generateBtn(pageNo) {
-        var arr = Array.from({ length: pageNo }, (_, i) => i + 1)
-        return arr.map((n) => <li className={n == page ? 'current' : ''}><a onClick={() => setPage(n)} href="#">{n}</a></li>)
-    }
-
+    // useEffect(() => {
+    //     getEmployerList()
+    // }, [page])
     useEffect(() => {
-        getEmployerList()
-    }, [page])
-    useEffect(() => {
-        getEmployerList()
+        getCandidateList()
     }, [])
-    return (
-        <>
-            <div className="boxed">
+  return (
+    <>
+        <div className="boxed">
                 <section className="bg-f5 breadcrumb-section">
                     <div className="tf-container">
                         <div className="row">
@@ -87,18 +94,18 @@ export default function EmployerList() {
                                     <div className="inner">
                                         <div className="group-col-2">
                                             {
-                                                employerList.map(e =>
+                                                candidateList.map(e =>
 
                                                     <div className="employer-block style-2 cl2" key={Math.random()}>
                                                         <div className="inner-box">
                                                             <div className="logo-company">
-                                                                <img src="http://127.0.0.1:4000/avatar.jpg" alt="avtar" />
+                                                                <img src="http://127.0.0.1:4000/avatar.jpg"  alt="images/logo-company/cty17.png" />
                                                             </div>
                                                             <div className="box-content">
 
-                                                                <Link to={"/employers/" + e._id}>
+                                                                <Link to={"/candidate/" + e._id}>
                                                                 <h3>
-                                                                    <a>{e.title}</a>
+                                                                    <a>{e.firstName}</a>
                                                                     <span className="icon-bolt"></span>
                                                                 </h3>
                                                                 </Link>
@@ -116,7 +123,7 @@ export default function EmployerList() {
                                         </div>
                                         <ul className="pagination-job p-top">
 
-                                            {generateBtn(totalPage)}
+                                            {/* {generateBtn(totalPage)} */}
 
 
                                         </ul>
@@ -134,6 +141,6 @@ export default function EmployerList() {
 
 
             </div>
-        </>
-    )
+    </>
+  )
 }
