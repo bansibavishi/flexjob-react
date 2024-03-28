@@ -4,7 +4,7 @@ import ReactStars from "react-rating-stars-component";
 
 export default function CandidateSingle() {
 
-    const [employer, setEmployer] = useState({})
+    const [candidate, setCandidate] = useState({})
     const [review, setReview] = useState([])
     const [activeMenu, setActiveMenu] = useState('About')
 
@@ -14,7 +14,7 @@ export default function CandidateSingle() {
         fetch(process.env.REACT_APP_API + "/user-by-id/" + userId, {
 
         }).then(e => e.json()).then(res => {
-            setEmployer(res.data)
+            setCandidate(res.data)
             console.log(res);
         }).then(err => {
             console.log(err);
@@ -324,16 +324,15 @@ export default function CandidateSingle() {
                             <div className="col-lg-12">
                                 <div className="wd-job-author stc-em">
                                     <div className="inner-job-left">
-                                        <img src={process.env.REACT_APP_API + employer?.img} alt="" className="logo-company" />
+                                        <img src={process.env.REACT_APP_API + candidate?.img} alt="" className="logo-company" />
                                         <div className="content">
-                                            <h3><a href="#">{employer?.title}</a><span className="icon-bolt"></span></h3>
+                                            <h3><a href="#">{candidate?.firstName}</a><span className="icon-bolt"></span></h3>
                                             <div className="job-info">
                                                 <span className="icon-map-pin"></span>
-                                                <span>{employer?.location}</span>
+                                                <span>{candidate?.location}</span>
                                             </div>
                                             <div className="group-btn">
 
-                                                <button className="tf-btn">2 job openings</button>
                                             </div>
                                         </div>
                                     </div>
@@ -343,7 +342,7 @@ export default function CandidateSingle() {
                                             <Link to={"/employers-review/" + userId}>
                                                 <button className="tf-btn-submit btn-popup">Write a review</button>
                                             </Link>
-                                            <Link to={'/message?id=' + employer?._id} className="tf-btn">Message</Link>
+                                            <Link to={'/message?id=' + candidate?._id} className="tf-btn">Message</Link>
                                         </div>
                                     </div>
 
@@ -366,14 +365,14 @@ export default function CandidateSingle() {
                                     <div className="content-tab">
                                         <div className={"inner-content" + (activeMenu == "About" ? " " : " d-none")}>
                                             <h5 className='fw-bolder'>About Company</h5>
-                                            <h6 className='fw-bold'>Company Name: <span className='fw-light ms-2'>{employer?.title}</span></h6>
+                                            <h6 className='fw-bold'>Company Name: <span className='fw-light ms-2'>{candidate?.title}</span></h6>
                                             {/* <div>{employer?.title}</div> */}
                                             <h6 className='fw-bold'>Description:
-                                                <span className='fw-light ms-2'>{employer?.description}</span>
+                                                <span className='fw-light ms-2'>{candidate?.description}</span>
                                             </h6>
                                             <h6 className='fw-bold'>Expertise:
                                                 {
-                                                    employer?.expertise && employer?.expertise?.map(e =>
+                                                    candidate?.expertise && candidate?.expertise?.map(e =>
                                                         <p key={Math.random()} className='btn btn-outline-success px-4 rounded-pill mx-2'>{e.technology}</p>
                                                     )
                                                 }
@@ -469,68 +468,7 @@ export default function CandidateSingle() {
                                             </div>
                                             <div className="job-rating">
                                                 <h6>reviews</h6>
-                                                <div className="rating-review">
-                                                    <div className="left-rating">
-                                                        <h2>4.8</h2>
-                                                        <ul className="list-star">
-                                                            <li className="icon-star-full"></li>
-                                                            <li className="icon-star-full"></li>
-                                                            <li className="icon-star-full"></li>
-                                                            <li className="icon-star-full"></li>
-                                                            <li className="icon-star-full"></li>
-                                                        </ul>
-                                                        <p className="count-rating">(1,968 Ratings)</p>
-                                                    </div>
-                                                    <div className="right-rating">
-                                                        <ul className="rating-list">
-                                                            <li className="rating-details">
-                                                                <span className="number-rating">5</span>
-                                                                <div className="progress-item">
-                                                                    <div className="donat-bg" data-percent="60%">
-                                                                        <div className="custom-donat"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <span className="percent"></span>
-                                                            </li>
-                                                            <li className="rating-details">
-                                                                <span className="number-rating">4</span>
-                                                                <div className="progress-item">
-                                                                    <div className="donat-bg" data-percent="20%">
-                                                                        <div className="custom-donat"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <span className="percent"></span>
-                                                            </li>
-                                                            <li className="rating-details">
-                                                                <span className="number-rating">3</span>
-                                                                <div className="progress-item">
-                                                                    <div className="donat-bg" data-percent="10%">
-                                                                        <div className="custom-donat"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <span className="percent"></span>
-                                                            </li>
-                                                            <li className="rating-details">
-                                                                <span className="number-rating">2</span>
-                                                                <div className="progress-item">
-                                                                    <div className="donat-bg" data-percent="7%">
-                                                                        <div className="custom-donat"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <span className="percent"></span>
-                                                            </li>
-                                                            <li className="rating-details">
-                                                                <span className="number-rating last">1</span>
-                                                                <div className="progress-item">
-                                                                    <div className="donat-bg" data-percent="3%">
-                                                                        <div className="custom-donat"></div>
-                                                                    </div>
-                                                                </div>
-                                                                <span className="percent"></span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
+
                                                 <ul className="client-review">
                                                     <li className="client-item">
                                                         <div className="content">
@@ -567,7 +505,7 @@ export default function CandidateSingle() {
 
 
                                                 </ul>
-                                                <a href="find-jobs-list.html" className="btn-load">See more reviews (719)</a>
+
                                             </div>
                                         </div>
 
@@ -585,19 +523,19 @@ export default function CandidateSingle() {
                                     <ul className="list-infor">
                                         <li>
                                             <div className="category">Email</div>
-                                            <div className="detail"><a href="#" className="__cf_email__">{employer?.email}</a></div>
+                                            <div className="detail"><a href="#" className="__cf_email__">{candidate?.email}</a></div>
                                         </li>
                                         <li>
                                             <div className="category">Mobile</div>
-                                            <div className="detail"><a href="#">{employer?.mobile}</a></div>
+                                            <div className="detail"><a href="#">{candidate?.mobile}</a></div>
                                         </li>
                                         <li>
                                             <div className="category">Location</div>
-                                            <div className="detail">{employer?.location}</div>
+                                            <div className="detail">{candidate?.location}</div>
                                         </li>
                                         <li>
                                             <div className="category">Rate</div>
-                                            <div className="detail">${employer?.rate}</div>
+                                            <div className="detail">${candidate?.rate}</div>
                                         </li>
 
                                     </ul>

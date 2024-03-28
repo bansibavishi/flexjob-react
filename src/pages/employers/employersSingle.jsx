@@ -355,7 +355,7 @@ export default function EmployersSingle() {
                                             </div>
                                             <div className="group-btn">
 
-                                                <button className="tf-btn">2 job openings</button>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -491,7 +491,7 @@ export default function EmployersSingle() {
                                             </div>
                                             <div className="job-rating">
                                                 <h6>reviews</h6>
-                                                                            
+
                                                 <ul className="client-review">
                                                     <li className="client-item">
                                                         <div className="content">
@@ -528,7 +528,7 @@ export default function EmployersSingle() {
 
 
                                                 </ul>
-                                                <a href="find-jobs-list.html" className="btn-load">See more reviews (719)</a>
+
                                             </div>
                                         </div>
 

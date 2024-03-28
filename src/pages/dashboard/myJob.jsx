@@ -47,25 +47,7 @@ export default function MyJob() {
                         <div className="col-lg-12 col-md-12 ">
 
                             <div className="applicants bg-white">
-                                {/* <div className="dash-search flex">
-                                    <div className="widget search">
-                                        <div className="search-flat">
-                                            <form action="#" method="get" role="search" className="search-form">
-                                                <input type="search" className="search-field" placeholder="Search" value="" name="s"
-                                                    title="Search for" required="" />
-                                                <button className="search-icon search-submit" type="submit" title="Search"></button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div id="item_category2" className="dropdown titles-dropdown ">
-                                        <a className="btn-selector nolink "> Sort by (Defaut)</a>
-                                        <ul>
-                                            <li><span>UX/UI</span></li>
-                                            <li><span>Candidates</span></li>
-                                            <li><span>Days</span></li>
-                                        </ul>
-                                    </div>
-                                </div> */}
+
 
                                 <div className="table-content">
                                     <div className="wrap-applicants table-responsive">
