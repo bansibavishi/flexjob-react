@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../layout/navbar'
-import Footer from '../layout/footer'
 import { Link, useNavigate } from 'react-router-dom'
 import JobCmp from '../component/job'
 
