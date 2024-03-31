@@ -4,6 +4,7 @@ import axios from 'axios'
 import Select from 'react-select'
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux';
+import Multiselect from 'multiselect-react-dropdown';
 // axios.defaults.withCredentials = true
 
 export default function Profile() {
@@ -51,8 +52,8 @@ export default function Profile() {
                 if (res.data.data.length) {
                     var ex = res.data.data.map(e => {
                         return {
-                            value: e.technology,
-                            label: e.technology,
+                            name: e.technology,
+                            // label: e.technology,
                             id: e._id
                         }
                     })
@@ -85,6 +86,8 @@ export default function Profile() {
                 // console.log(res.data);
                 if (res.data?.status) {
                     toast.success(res.data?.message)
+                }else{
+                    toast.error(res.data?.message)
                 }
                 if (res.data?.error) {
                     toast.error(res.data?.error)
@@ -96,11 +99,11 @@ export default function Profile() {
 
     useEffect(() => {
         getExpertise()
-
     }, [])
 
     function expertiseSelect(ex) {
         setUser({ ...user, expertise: ex.map(e => e.id) })
+        console.log(ex);
     }
 
 
@@ -168,7 +171,7 @@ export default function Profile() {
                                                 <div id="item_1" className="dropdown titles-dropdown">
                                                     <label className="title-user fw-7">Expertise</label>
 
-                                                    <Select
+                                                    {/* <Select
                                                         options={expertise}
                                                         value={expertise.filter(e => cUser?.expertise.includes(e.id))}
                                                         // value={cUser?.expertise.map(u => {
@@ -185,6 +188,14 @@ export default function Profile() {
                                                                 borderColor: state.isFocused ? 'green' : 'gray',
                                                             }),
                                                         }}
+                                                    /> */}
+
+                                                    <Multiselect
+                                                        options={expertise} // Options to display in the dropdown
+                                                        selectedValues={expertise.filter(e => cUser?.expertise.includes(e.id))} // Preselected value to persist in dropdown
+                                                        onSelect={expertiseSelect} // Function will trigger on select event
+                                                        onRemove={expertiseSelect} // Function will trigger on remove event
+                                                        displayValue="name" // Property name to display in the dropdown options
                                                     />
 
                                                 </div>

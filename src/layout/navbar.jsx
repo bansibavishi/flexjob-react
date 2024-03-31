@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { setUser } from '../helper/slice';
 // import icon from '/images/icon.png'
 import { useLocation, useParams } from 'react-router-dom';
+import SendbirdProvider from '@sendbird/uikit-react/SendbirdProvider';
 
 export default function Navbar() {
 
@@ -16,7 +17,7 @@ export default function Navbar() {
 
 
 
-    const[notification,setNotification]= useState([])
+    const [notification, setNotification] = useState([])
     // console.log(cUser);
 
     function logout() {
@@ -74,7 +75,7 @@ export default function Navbar() {
         getnotification()
     }, [])
 
-    const location  = useLocation();
+    const location = useLocation();
 
     console.log(location);
 
@@ -85,7 +86,7 @@ export default function Navbar() {
             path.startsWith("/job/") || path.startsWith("/employers/")
         ) {
             return "header header-default"
-        }else {
+        } else {
             return "header header-default style-absolute header-fixed is-fixed is-small"
         }
     }
@@ -93,6 +94,17 @@ export default function Navbar() {
     return (
 
         <header id="header" className={headClass()}>
+
+            <div className='d-none'>
+                {cUser && <SendbirdProvider
+                    appId={process.env.REACT_APP_SBID}
+                    userId={cUser._id}
+                    profileUrl={cUser.link}
+                    nickname={cUser?.type == 'employer' ? cUser.title : cUser.firstName + " " + cUser.lastName}
+                />}
+
+            </div>
+
             <div className="tf-container ct2">
                 <div className="row">
                     <div className="col-md-12">
@@ -134,7 +146,7 @@ export default function Navbar() {
                             </div>
 
                             <div className="header-ct-right">
-                            <div className="header-customize-item bell">
+                                <div className="header-customize-item bell">
                                     <span className="icon-bell"></span>
                                     <div className="sub-notification">
                                         <div className="sub-notification-heading">
@@ -205,21 +217,21 @@ export default function Navbar() {
                                             </div>
                                             {
                                                 cUser.type == "employer" ?
-                                            <div className="sub-account-item">
-                                                <Link to="/job/create"><span className="icon-plus"></span>Create Job</Link>
-                                            </div>:""
+                                                    <div className="sub-account-item">
+                                                        <Link to="/job/create"><span className="icon-plus"></span>Create Job</Link>
+                                                    </div> : ""
                                             }
                                             {/* <div className="sub-account-item">
                                                 <a href="dashboard/candidates-resumes.html"><span className="icon-resumes"></span> Resumes</a>
                                             </div> */}
                                             <div className="sub-account-item">
-                                               <Link to={"/myjob"}><span className="icon-my-apply"></span> My Applied</Link>
+                                                <Link to={"/myjob"}><span className="icon-my-apply"></span> My Applied</Link>
                                             </div>
                                             <div className="sub-account-item">
                                                 <Link to={"/savejob-list"}><span className="icon-work"></span> Saved Jobs</Link>
                                             </div>
                                             <div className="sub-account-item">
-                                                <Link  to={"/message"}><span className="icon-chat"></span> Messages</Link>
+                                                <Link to={"/message"}><span className="icon-chat"></span> Messages</Link>
                                             </div>
 
                                             <div className="sub-account-item">

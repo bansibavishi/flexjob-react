@@ -2,10 +2,10 @@
   * Name: Jobtext
   * Version: 1.0.2
   * Author: Themesflat
-  * Author URI: http://themesflat.com 
+  * Author URI: http://themesflat.com
 
 */
-/* 
+/*
 
   * Reset
   * Header
@@ -18,9 +18,35 @@
   * Preload
   * Boxed
   * Switcher
-  * Scroll 
-  
+  * Scroll
+
 */
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+.sendbird-chat-header__right{
+    display: none;
+}
+.sendbird-modal__content .sendbird-user-list-item{
+    width: auto;
+}
+
 /* Reset
 -------------------------------------------------------------- */
 html {
@@ -2627,7 +2653,7 @@ input[type="color"],
   overflow: hidden;
 }
 
-/* Preload 
+/* Preload
 ------------------------------------------- */
 .preload-container {
   position: relative;
