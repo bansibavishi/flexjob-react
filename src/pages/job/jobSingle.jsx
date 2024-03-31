@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import Navbar from '../../layout/navbar'
-import Footer from '../../layout/footer'
+import React, { useEffect, useState } from 'react';
 import { IoClose } from "react-icons/io5";
 import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import EmployerList from '../employers/employerList';
-import EmployersReview from '../employers/employersReview';
 
 export default function JobSingle() {
 

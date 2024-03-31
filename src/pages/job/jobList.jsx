@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import Navbar from '../../layout/navbar'
-import Footer from '../../layout/footer'
-import { toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
-import JobCmp from '../../component/job';
+import React, { useEffect, useState } from 'react';
 import { useSearchParams } from "react-router-dom";
+import JobCmp from '../../component/job';
 
 export default function JobList() {
 
