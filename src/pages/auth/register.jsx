@@ -14,14 +14,14 @@ export default function Register() {
         lastName: "",
         email: "",
         password: "",
-        mobile: "1234567890",
-        expertise: ["communication skills", "DSA"],
-        title: "qwertyuiop",
-        description: "qwtdycvbhdhhd",
-        workHistory: ["fdfdfdf", "fdfdffdff"],
-        location: "fdfgdf",
-        savedJob: ["sdd", "sff"],
-        rate: "8"
+        // mobile: "1234567890",
+        // expertise: ["communication skills", "DSA"],
+        // title: "qwertyuiop",
+        // description: "qwtdycvbhdhhd",
+        // workHistory: ["fdfdfdf", "fdfdffdff"],
+        // location: "fdfgdf",
+        // savedJob: ["sdd", "sff"],
+        // rate: "8"
     })
     const [showPassword, setShowPassword] = useState(false);
 

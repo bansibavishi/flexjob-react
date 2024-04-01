@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { useSearchParams } from "react-router-dom";
-
 import SendbirdApp from '@sendbird/uikit-react/App';
 import '@sendbird/uikit-react/dist/index.css';
+import { Helmet } from 'react-helmet';
+
+import SendbirdChat from '@sendbird/chat';
+import { OpenChannelModule } from '@sendbird/chat/openChannel';
+import ChannelList from '@sendbird/uikit-react/ChannelList';
+import SendbirdProvider from '@sendbird/uikit-react/SendbirdProvider';
+import OpenChannel from '@sendbird/uikit-react/OpenChannel';
+
+const sbAppId = process.env.REACT_APP_SBID
 
 
 export default function Message() {
@@ -11,414 +19,103 @@ export default function Message() {
     const cUser = useSelector(state => state.user)
     const [search] = useSearchParams();
     const otherUserId = search.get('id')
+    const [channel, setChannel] = useState(null);
+
+    // const sb = SendbirdChat.init({ appId: sbAppId, modules: [new OpenChannelModule()] })
+
 
 
     function getUser() {
-
         fetch(process.env.REACT_APP_API + "/user-by-id/" + otherUserId, {})
             .then(e => e.json()).then(res => {
                 // setEmployer(res.data)
             }).catch(err => { console.log(err); })
     }
 
+
+    async function createChannel(channelUrl) {
+
+        const params = {
+            // name: NAME,
+            channelUrl: channelUrl,
+            operatorUserIds: [cUser._id, otherUserId],
+        };
+
+        // sb.connect(cUser._id).then(async () => {
+        //     var isExist = await sb.groupChannel.getChannel(channelUrl).catch(err => err)
+        //     console.log(isExist, 5555555555555555555);
+        //     if (isExist?._url) {
+        //         isExist.sendUserMessage({ message: "Hello from " + cUser.firstName })
+        //         setChannel(isExist)
+        //     } else {
+        //         sb.groupChannel.createChannel(params)
+        //             .then(channel => {
+        //                 setChannel(channel)
+        //             })
+        //     }
+        // })
+
+    }
+
+    // useEffect(() => {
+    //     if (cUser && otherUserId) {
+    //         createChannel(strMix(cUser._id, otherUserId));
+    //     }
+    // }, [cUser, otherUserId]);
+
     if (!cUser) return
 
-    return (
-        <div className="App vh-100" style={{ "padding-top": "100px" }}>
+    return (<>
+        <Helmet>
+            <body className='dashboard show sendbird-theme--light' />
+        </Helmet>
+        <div className="App vh-100" style={{ paddingTop: "100px" }}>
+            {/* <SendbirdProvider
+                appId={sbAppId}
+                profileUrl={cUser.link}
+                nickname={cUser.firstName}
+            >
+                <div style={{ height: '90vh' }}>
+
+
+
+                    <OpenChannel
+                        useMessageGrouping={false}  // To determine whether to use message grouping,
+                        disableUserProfile  // to determine whether to display user profile on clicking userIcons,
+                        channelUrl={channel?._url} // pass your channel URL here.
+                    />
+                    {console.log(channel?._url,44444444444444444)}
+                </div>
+                <div className='sendbird-app__wrap'>
+                    <ChannelList activeChannelUrl={channel?._url} />
+                </div>
+            </SendbirdProvider> */}
             <SendbirdApp
                 // Add the two lines below.
                 // You can find your Sendbird application ID on the Sendbird dashboard.
-                appId="42759A03-CECB-473A-83B6-4AA310DA0582"
+                appId={sbAppId}
                 profileUrl={cUser.link}
-                nickname={cUser.firstName}
+                nickname={cUser?.type == 'employer' ? cUser.title : cUser.firstName + " " + cUser.lastName}
+                // disableUserProfile={true}
+                allowProfileEdit={false}
+
+
 
                 // Specify the user ID you've created on the dashboard.
                 // Or you can create a user by specifying a unique userId.
                 userId={cUser._id}
             />
         </div>
+    </>
     );
 
+}
 
 
-    return (
-        <>
-            {/* <div className="left-menu">
-                <div id="sidebar-menu">
-                    <ul className="downmenu list-unstyled" id="side-menu">
-                        <li>
-                            <a href="candidates-dashboard.html" className="tf-effect">
-                                <span className="icon-dashboard dash-icon"></span>
-                                <span className="dash-titles">Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a className="has-arrow tf-effect">
-                                <span className="icon-profile dash-icon"></span>
-                                <span className="dash-titles">Profile</span>
-                            </a>
-                            <ul className="sub-menu2" aria-expanded="false">
-                                <li><a href="candidates-overview.html">Overview</a></li>
-                                <li><a href="candidates-profile-setting.html">Profile Setting</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="candidates-resumes.html" className="tf-effect">
-                                <span className="icon-resumes dash-icon"></span>
-                                <span className="dash-titles">Resumes</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="candidates-my-applied.html" className="tf-effect">
-                                <span className="icon-my-apply dash-icon"></span>
-                                <span className="dash-titles">My Applied</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="candidates-save-jobs.html" className="tf-effect">
-                                <span className="icon-work dash-icon"></span>
-                                <span className="dash-titles">Saved Jobs</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="candidates-alerts-jobs.html" className="tf-effect">
-                                <span className="icon-bell1 dash-icon"></span>
-                                <span className="dash-titles">Alerts Jobs</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="candidates-messages.html" className="tf-effect">
-                                <span className="icon-chat dash-icon"></span>
-                                <span className="dash-titles">Messages</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="candidates-following-employers.html" className="tf-effect">
-                                <span className="icon-following dash-icon"></span>
-                                <span className="dash-titles">Following Employers</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="candidates-meetings.html" className="tf-effect">
-                                <span className="icon-meeting dash-icon"></span>
-                                <span className="dash-titles">Meeting</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="candidates-change-passwords.html" className="tf-effect">
-                                <span className="icon-change-passwords dash-icon"></span>
-                                <span className="dash-titles">Change passwords</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="candidates-delete-profile.html" className="tf-effect ">
-                                <span className="icon-trash dash-icon"></span>
-                                <span className="dash-titles">Delete Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../home-01.html" className="tf-effect">
-                                <span className="icon-log-out dash-icon"></span>
-                                <span className="dash-titles">Log out</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div> */}
 
-            <section className="page-title-dashboard">
-                <div className="themes-container">
-                    <div className="row">
-                        <div className="col-lg-12 col-md-12 ">
-                            <div className="title-dashboard">
-                                <div className="title-dash flex2">Messages</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
-            <section className="flat-dashboard-messages">
-                <div className="themes-container">
-                    <div className="row">
-                        <div className="col-lg-12 col-md-12 ">
-
-                            <div className="wrapper-messages">
-                                <div className="content flex">
-                                    <div className="left">
-                                        <div className="dash-search">
-                                            <div className="widget search">
-                                                <div className="search-flat">
-                                                    <form action="#" method="get" role="search" className="search-form">
-                                                        <input type="search" className="search-field" placeholder="Search" value="" name="s"
-                                                            title="Search for" required="" />
-                                                        <button className="search-icon search-submit" type="submit" title="Search"></button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <ul className="people" style={{ minHeight: "500px" }}>
-                                            <li className="person flex" data-chat="person1">
-                                                <div className="images">
-                                                    <span className="status-icon online"></span>
-                                                    <img src="../images/dashboard/messages-1.jpg" alt="" />
-                                                </div>
-                                                <div>
-                                                    <div className="name fw-7">Initech</div>
-                                                    <div className="preview fs-12 fw-5 ">Hey! there I'm available</div>
-                                                </div>
-                                                <span className="time fs-12">05 min</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="right">
-                                        <div className="top flex2">
-                                            <div className="images-box flex2">
-                                                <div className="images">
-                                                    <img src="../images/dashboard/messages-2.jpg" alt="" />
-                                                </div>
-                                                <div>
-                                                    <div className="name fw-7 lh-24">Avitex Agency</div>
-                                                    <div className="map fs-12 flex2">Las Vegas, NV 89107, USA</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="chat" data-chat="person1" data-message="message1">
-                                            <div className="history-time you style">
-                                                Today, 5:02 Am
-                                            </div>
-                                            <div className="bubble you style">
-                                                Hello
-                                            </div>
-
-                                            <div className="bubble me">
-                                                I was wondering...
-                                            </div>
-                                            <div className="conversation-start">
-                                                <span>August 22</span>
-                                            </div>
-                                        </div>
-                                        <div className="chat" data-chat="person2" data-message="message2">
-
-                                            <div className="history-time you style">
-                                                Today, 5:02 Am
-                                            </div>
-                                            <div className="bubble you style">
-                                                Hello
-                                            </div>
-
-                                            <div className="bubble me">
-                                                How are you?
-                                            </div>
-                                            <div className="history-time">
-                                                Today, 5:02 Am
-                                            </div>
-                                            <div className="conversation-start">
-                                                <span>August 22</span>
-                                            </div>
-                                            <div className="bubble you">
-                                                I'm good and you?
-                                            </div>
-                                            <div className="history-time you">
-                                                Today, 5:02 Am
-                                            </div>
-
-                                            <div className="bubble me">
-                                                Tell me about yourself
-                                            </div>
-                                            <div className="history-time">
-                                                Today, 5:02 Am
-                                            </div>
-
-                                            <div className="bubble me">
-                                                What are your strengths?
-                                            </div>
-                                            <div className="history-time">
-                                                Today, 5:02 Am
-                                            </div>
-
-                                            <div className="bubble you">
-                                                I’m a punctual person. I always arrive early and complete my work on time. My previous job
-                                                had a lot of deadlines (time when you must finish something by) and I made sure that I
-                                                was organized and adhered to (respected) all my jobs.
-                                            </div>
-                                            <div className="history-time you">
-                                                Today, 5:02 Am
-                                            </div>
-                                        </div>
-                                        <div className="chat" data-chat="person3">
-                                            <div className="conversation-start">
-                                                <span>Today, 3:38 AM</span>
-                                            </div>
-                                            <div className="bubble you">
-                                                Hey human!
-                                            </div>
-                                            <div className="bubble you">
-                                                Umm... Someone took a shit in the hallway.
-                                            </div>
-                                            <div className="bubble me">
-                                                ... what.
-                                            </div>
-                                            <div className="bubble me">
-                                                Are you serious?
-                                            </div>
-                                            <div className="bubble you">
-                                                I mean...
-                                            </div>
-                                            <div className="bubble you">
-                                                It’s not that bad...
-                                            </div>
-                                            <div className="bubble you">
-                                                But we’re probably gonna need a new carpet.
-                                            </div>
-                                        </div>
-                                        <div className="chat" data-chat="person4">
-                                            <div className="conversation-start">
-                                                <span>Yesterday, 4:20 PM</span>
-                                            </div>
-                                            <div className="bubble me">
-                                                Hey human!
-                                            </div>
-                                            <div className="bubble me">
-                                                Umm... Someone took a shit in the hallway.
-                                            </div>
-                                            <div className="bubble you">
-                                                ... what.
-                                            </div>
-                                            <div className="bubble you">
-                                                Are you serious?
-                                            </div>
-                                            <div className="bubble me">
-                                                I mean...
-                                            </div>
-                                            <div className="bubble me">
-                                                It’s not that bad...
-                                            </div>
-                                        </div>
-                                        <div className="chat" data-chat="person5">
-                                            <div className="conversation-start">
-                                                <span>Today, 6:28 AM</span>
-                                            </div>
-                                            <div className="bubble you">
-                                                Wasup
-                                            </div>
-                                            <div className="bubble you">
-                                                Wasup
-                                            </div>
-                                            <div className="bubble you">
-                                                Wasup for the third time like is <br />you blind bitch
-                                            </div>
-
-                                        </div>
-                                        <div className="chat" data-chat="person6">
-                                            <div className="conversation-start">
-                                                <span>Monday, 1:27 PM</span>
-                                            </div>
-                                            <div className="bubble you">
-                                                So, how's your new phone?
-                                            </div>
-                                            <div className="bubble you">
-                                                You finally have a smartphone :D
-                                            </div>
-                                            <div className="bubble me">
-                                                Drake?
-                                            </div>
-                                            <div className="bubble me">
-                                                Why aren't you answering?
-                                            </div>
-                                            <div className="bubble you">
-                                                howdoyoudoaspace
-                                            </div>
-                                        </div>
-                                        <div className="chat" data-chat="person7">
-
-                                            <div className="history-time you style">
-                                                Today, 5:02 Am
-                                            </div>
-                                            <div className="bubble you style">
-                                                Hello
-                                            </div>
-
-                                            <div className="bubble me">
-                                                I was wondering...
-                                            </div>
-                                            <div className="conversation-start">
-                                                <span>August 22</span>
-                                            </div>
-                                        </div>
-                                        <div className="chat" data-chat="person8">
-
-                                            <div className="history-time you style">
-                                                Today, 5:02 Am
-                                            </div>
-                                            <div className="bubble you style">
-                                                Hello
-                                            </div>
-
-                                            <div className="bubble me">
-                                                I was wondering...
-                                            </div>
-                                            <div className="conversation-start">
-                                                <span>August 22</span>
-                                            </div>
-                                        </div>
-                                        <div className="chat" data-chat="person9">
-                                            <div className="history-time you style">
-                                                Today, 5:02 Am
-                                            </div>
-                                            <div className="bubble you style">
-                                                Hello
-                                            </div>
-
-                                            <div className="bubble me">
-                                                I was wondering...
-                                            </div>
-                                            <div className="conversation-start">
-                                                <span>August 22</span>
-                                            </div>
-                                        </div>
-                                        <div className="chat" data-chat="person10">
-                                            <div className="history-time you style">
-                                                Today, 5:02 Am
-                                            </div>
-                                            <div className="bubble you style">
-                                                Hello
-                                            </div>
-
-                                            <div className="bubble me">
-                                                I was wondering...
-                                            </div>
-                                            <div className="conversation-start">
-                                                <span>August 22</span>
-                                            </div>
-                                        </div>
-                                        <div className="write flex2">
-                                            <div className="write-box flex2">
-                                                <input type="text" placeholder="Enter Message..." />
-                                                <a href="javascript:;" className="write-link attach-icon"><i className="fa fa-paperclip"
-                                                    aria-hidden="true"></i></a>
-                                                <a href="javascript:;" className="write-link smile-icon"><i className="fa fa-smile-o"
-                                                    aria-hidden="true"></i></a>
-                                            </div>
-                                            <a className="icon-send flex2"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section className="flat-dashboard-bottom">
-                <div className="themes-container">
-                    <div className="row">
-                        <div className="col-lg-12 col-md-12 ">
-                            <h5 className="center">©2023 Jobtex. All Rights Reserved.</h5>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-        </>
-    )
+function strMix(str1, str2) {
+    let val = ''
+    if (str2 && str1) for (let i = 0; i < str1.length; i++)  val += (str1.charCodeAt(i) + str2.charCodeAt(i))
+    return val
 }
