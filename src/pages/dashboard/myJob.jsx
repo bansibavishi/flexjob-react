@@ -82,11 +82,7 @@ export default function MyJob() {
                                                                             </svg>
                                                                         </div>
                                                                         <div className="now-box flex2">
-                                                                            <div className="map color-4">
-                                                                                {/* {e.expertise && e.expertise?.map(i =>
-                                <li key={Math.random()}><a>{i.technology}</a></li>
-                            )} */}
-                                                                            </div>
+
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -110,7 +106,7 @@ export default function MyJob() {
                           <li className="hv-tool" data-tooltip="Write"><a className="action-icon icon-write1"></a></li> */}
                                                                         <li><Link to={"/application-job/" + e._id} className="button-cancel fw-7 remove-file me-3">View Application</Link></li>
                                                                         <li>
-                                                                            <Link to={"/application-job/" + postId}><a className="button-cancel fw-7 remove-file">Cancel</a></Link>
+                                                                           {/* <a className="button-cancel fw-7 remove-file">Cancel</a> */}
                                                                         </li>
 
 

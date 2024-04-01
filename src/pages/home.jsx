@@ -116,14 +116,14 @@ export default function Home() {
                                             </div>
                                             <div className="form-group-2">
 
-                                                <select id="select-location" className="select-location">
+                                                {/* <select id="select-location" className="select-location">
                                                     <option value="">All Location</option>
                                                     <option value="">Singapore</option>
                                                     <option value="">Japan</option>
                                                     <option value="">Korea</option>
                                                     <option value="">Italia</option>
                                                     <option value="">Canada</option>
-                                                </select>
+                                                </select> */}
                                             </div>
                                             <div className="form-group-4">
                                                 <button className="btn btn-find" onChange={e => setSearch(e.target.value )} value={Search} onClick={() => send('/job?s='+Search)}>Find Jobs</button>
