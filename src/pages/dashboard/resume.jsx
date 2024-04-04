@@ -46,14 +46,13 @@ export default function Resume() {
 
 
                         <div className="row" >
-                            <div className="col-lg-8">
+                            <div className="col-lg-12">
                                 <div className="wd-cv-item">
                                     <div className="item-group">
                                         <div className="content-left">
                                             <div className="avatar">
                                                 <img src="http://127.0.0.1:4000/avatar.jpg" alt="images" />
                                                 {/* <img src={process.env.REACT_APP_API + (employer?.user && employer?.user[0]?.img)} alt="logo" /> */}
-                                            <span className='fs-5'>{employer.email}</span>
                                             </div>
                                             <h6>tools</h6>
                                             <div className="wd-cv-skill">
@@ -212,7 +211,7 @@ export default function Resume() {
                                                 </div>
 
                                             </div>
-                                            <h6 className="mg-bt-26">Other Tools</h6>
+                                            {/* <h6 className="mg-bt-26">Other Tools</h6>
                                             <div className="wd-cv-skill">
                                                 <div className="progress-item">
                                                     <div className="icon"><span className="icon-logo--magento"></span></div>
@@ -224,7 +223,7 @@ export default function Resume() {
                                                     </div>
                                                 </div>
 
-                                            </div>
+                                            </div> */}
                                             <div className="wd-cv-skill">
                                                 <div className="progress-item">
                                                     <div className="icon"><span className="icon-logo--salesforce"><span className="path1"></span><span className="path2"></span><span className="path3"></span><span className="path4"></span><span className="path5"></span><span className="path6"></span><span className="path7"></span><span className="path8"></span><span className="path9"></span><span className="path10"></span><span className="path11"></span></span></div>
@@ -265,7 +264,7 @@ export default function Resume() {
                                         <div className="content-right">
                                             <div className="profile">
                                                 <h2>{employer.firstName}</h2>
-                                                <h4>{employer.mobile}</h4>
+                                                <h4>{employer.email }</h4>
                                                 <h6>{employer.title}</h6>
                                                 <p>{employer.description}</p>
                                             </div>
@@ -309,33 +308,7 @@ export default function Resume() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <h6 className="title-cv">Education</h6>
-                                            <div className="cv-road-map">
-                                                <div className="inner">
-                                                    <div className="history">2020-2021</div>
-                                                    <div className="dot-icon"></div>
-                                                    <div className="content">
-                                                        <h6>At vero eos et accusamus et</h6>
-                                                        <div className="sub-heading">Company name - TOWN</div>
-                                                    </div>
-                                                </div>
-                                                <div className="inner">
-                                                    <div className="history">2020-2021</div>
-                                                    <div className="dot-icon"></div>
-                                                    <div className="content">
-                                                        <h6>Sed ut perspiciatis unde omnis</h6>
-                                                        <div className="sub-heading">Company name - TOWN</div>
-                                                    </div>
-                                                </div>
-                                                <div className="inner">
-                                                    <div className="history">2020-2021</div>
-                                                    <div className="dot-icon"></div>
-                                                    <div className="content">
-                                                        <h6>Et harum quidem rerum facilis </h6>
-                                                        <div className="sub-heading">Company name - TOWN</div>
-                                                    </div>
-                                                </div>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>

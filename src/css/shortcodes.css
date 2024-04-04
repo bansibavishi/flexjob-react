@@ -2931,7 +2931,7 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 28px;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   color: #b1b1b1;
   padding-bottom: 12px;
   border-bottom: 2px solid #148160;
