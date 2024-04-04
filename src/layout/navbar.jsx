@@ -243,9 +243,9 @@ export default function Navbar() {
                                         </div>
                                     </div>
                                 }
-                                {/* <div className="header-customize-item button">
-                                    <a href="dashboard/candidates-resumes.html">Upload Resume</a>
-                                </div> */}
+                                <div className="header-customize-item button">
+                                    <Link to={"/resume"}>Upload Resume</Link>
+                                </div>
                             </div>
                             <div className="nav-filter">
                                 <div className="nav-mobile"><span></span></div>

@@ -355,7 +355,7 @@ export default function EmployersSingle() {
                                             </div>
                                             <div className="group-btn">
 
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -396,7 +396,7 @@ export default function EmployersSingle() {
                                             <h6 className='fw-bold'>Expertise:
                                                 {
                                                     employer?.expertise && employer?.expertise?.map(e =>
-                                                        <p key={Math.random()} className='btn btn-outline-success px-4 rounded-pill mx-2'>{e.technology}</p>
+                                                        <p key={Math.random()} className='btn btn-outline-success px-4 rounded-pill mx-2'>{e.technology}{console.log(e.technology)}</p>
                                                     )
                                                 }
                                                 {/* {e.expertise && e.expertise?.map(i =>
@@ -418,11 +418,13 @@ export default function EmployersSingle() {
                                                                         <img src="http://127.0.0.1:4000/avtar.jpg" alt="avtar" />
                                                                     </div>
                                                                     <div className="box-content">
+                                                                        <Link to={'/job/' + e._id}>
                                                                         <h4><a>{e._id}</a></h4>
                                                                         <h3>
                                                                             <a>{e.title}</a>
                                                                             <span className="icon-bolt"></span>
                                                                         </h3>
+                                                                        </Link>
                                                                         <ul>
                                                                             <li><span className="icon-map-pin"></span>Las Vegas, NV 89107, USA</li>
                                                                             <li><span className="icon-calendar"></span>2 days ago</li>
@@ -438,13 +440,7 @@ export default function EmployersSingle() {
                                                                             <li key={Math.random()}><a href="#">{i.technology}</a></li>
                                                                         )}
                                                                     </ul>
-                                                                    <div className="star">
-                                                                        <span className="icon-star-full"></span>
-                                                                        <span className="icon-star-full"></span>
-                                                                        <span className="icon-star-full"></span>
-                                                                        <span className="icon-star-full"></span>
-                                                                        <span className="icon-star-full"></span>
-                                                                    </div>
+
                                                                 </div>
                                                                 <div className="job-footer-right">
                                                                     <div className="price">
@@ -574,17 +570,7 @@ export default function EmployersSingle() {
                                             <li><a href="#"><i className="icon-youtube"></i></a></li>
                                         </ul>
                                     </div>
-                                    <div className="form-job-single">
-                                        <h6>Contact Us</h6>
-                                        <form action="https://themesflat.co/html/jobtex/post">
-                                            <input type="text" placeholder="Subject" />
-                                            <input type="text" placeholder="Name" />
-                                            <input type="email" placeholder="Email" />
-                                            <textarea placeholder="Message..."></textarea>
-                                            <button>Send Message</button>
-                                        </form>
 
-                                    </div>
                                 </div>
                             </div>
 

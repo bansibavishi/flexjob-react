@@ -272,7 +272,7 @@ export default function JobSingle() {
                                             <li><a href="#"><i className="icon-youtube"></i></a></li>
                                         </ul>
                                     </div>
-                                    <div className="form-job-single">
+                                    {/* <div className="form-job-single">
                                         <h6>Contact Us</h6>
                                         <form action="https://themesflat.co/html/jobtex/post">
                                             <input type="text" placeholder="Subject" />
@@ -282,7 +282,7 @@ export default function JobSingle() {
                                             <button>Send Message</button>
                                         </form>
 
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>

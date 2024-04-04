@@ -114,14 +114,7 @@ export default function Home() {
                                             </div>
                                             <div className="form-group-2">
 
-                                                {/* <select id="select-location" className="select-location">
-                                                    <option value="">All Location</option>
-                                                    <option value="">Singapore</option>
-                                                    <option value="">Japan</option>
-                                                    <option value="">Korea</option>
-                                                    <option value="">Italia</option>
-                                                    <option value="">Canada</option>
-                                                </select> */}
+
                                             </div>
                                             <div className="form-group-4">
                                                 <button className="btn btn-find" onChange={e => setSearch(e.target.value )} value={Search} onClick={() => send('/job?s='+Search)}>Find Jobs</button>
@@ -162,7 +155,7 @@ export default function Home() {
                                 {expertise.map(e =>
                                     <div className="job-category-box" key={Math.random()}>
                                         <div className="job-category-header">
-                                            <h1><a href="find-jobs-list.html">{e.technology}</a></h1>
+                                            <h1>{e.technology}</h1>
                                             {/* <p>120 Jobs available</p> */}
                                         </div>
                                         <Link to={"/job?e=" + e.technology} className="btn-category-job">Explore Jobs <span className="icon-keyboard_arrow_right"></span></Link>

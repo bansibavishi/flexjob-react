@@ -39,39 +39,31 @@ export default function Sidebar() {
                                 <span className="icon-profile dash-icon"></span>
                                 <span className="dash-titles">Profile</span>
                             </Link>
-                            {/* <ul className="sub-menu2" aria-expanded="false">
-                                <li><a href="candidates-overview.html">Overview</a></li>
-                                <li><a href="candidates-profile-setting.html">Profile Setting</a></li>
-                            </ul> */}
+
                         </li>
-{/*
+
                         <li>
-                            <a href="#candidates-resumes.html" className="tf-effect">
+                            <Link to={"/resume"}>
                                 <span className="icon-resumes dash-icon"></span>
                                 <span className="dash-titles">Resumes</span>
-                            </a>
-                        </li> */}
+                            </Link>
+                        </li>
 
                         <li>
                             <Link to={"/myjob"}>
-                                    <span className="icon-my-apply dash-icon"></span>
-                                    <span className="dash-titles">My Applied</span>
+                                <span className="icon-my-apply dash-icon"></span>
+                                <span className="dash-titles">My Applied</span>
                             </Link>
                         </li>
 
                         <li>
                             <Link to={"/savejob-list"}>
-                                    <span className="icon-work dash-icon"></span>
-                                    <span className="dash-titles">Saved Jobs</span>
+                                <span className="icon-work dash-icon"></span>
+                                <span className="dash-titles">Saved Jobs</span>
                             </Link>
                         </li>
 
-                        {/* <li>
-                            <a href="#candidates-alerts-jobs.html" className="tf-effect">
-                                <span className="icon-bell1 dash-icon"></span>
-                                <span className="dash-titles">Alerts Jobs</span>
-                            </a>
-                        </li> */}
+
 
                         <li>
                             <Link to={"/message"} className="tf-effect">
@@ -101,6 +93,7 @@ export default function Sidebar() {
                                 <span className="dash-titles" onClick={logout}>Log out</span>
                             </a>
                         </li>
+
 
                     </ul>
                 </div>

@@ -25,6 +25,7 @@ import ApplicationJob from "./pages/dashboard/applicationJob";
 import Message from "./pages/dashboard/message";
 import CandidateList from "./pages/job/candidateList";
 import CandidateSingle from "./pages/job/candidateSingle";
+import Resume from "./pages/dashboard/resume";
 
 
 
@@ -60,6 +61,7 @@ function App() {
                         <Route path="/savejob-list" element={<RequireAuth><SaveJob /></RequireAuth>} />
                         <Route path="/candidate-list" element={<RequireAuth><CandidateList/></RequireAuth>}/>
                         <Route path="/candidate/:userId" element={<RequireAuth><CandidateSingle/></RequireAuth>}/>
+                        <Route path="/resume/:userId" element={<RequireAuth><Resume/></RequireAuth>}/>
 
                     </Route>
 

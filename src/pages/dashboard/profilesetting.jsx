@@ -5,6 +5,7 @@ import Select from 'react-select'
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux';
 import Multiselect from 'multiselect-react-dropdown';
+import { Link, useParams } from 'react-router-dom'
 // axios.defaults.withCredentials = true
 
 export default function Profile() {
@@ -86,7 +87,7 @@ export default function Profile() {
                 // console.log(res.data);
                 if (res.data?.status) {
                     toast.success(res.data?.message)
-                }else{
+                } else {
                     toast.error(res.data?.message)
                 }
                 if (res.data?.error) {
@@ -237,7 +238,11 @@ export default function Profile() {
                                         </div>
                                         <div>
                                             <button className="tf-button bg-success text-white" type='submit'>Submit</button>
+                                            <Link to={"/resume/" + cUser?._id}>
+                                                <button className="tf-button bg-success text-white" type='submit'>Resume</button>
+                                            </Link>
                                         </div>
+
                                     </form>
                                 </div>
 
