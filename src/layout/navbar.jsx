@@ -130,7 +130,7 @@ export default function Navbar() {
                                             <li className={"menu-item" + (activeMenu == "employers" ? " current-item" : "")} onClick={e => setActiveMenu("employers")}>
                                                 <Link to="/employers-list">Employers</Link>
                                             </li>
-                                            <li className={"menu-item" + (activeMenu == "employers" ? " current-item" : "")} onClick={e => setActiveMenu("candidate")}>
+                                            <li className={"menu-item" + (activeMenu == "candidate" ? " current-item" : "")} onClick={e => setActiveMenu("candidate")}>
                                                 <Link to="/candidate-list">Candidate</Link>
                                             </li>
 
@@ -206,7 +206,7 @@ export default function Navbar() {
                                     <div className="header-customize-item account">
                                         <img src={cUser?.link} alt="" />
                                         <div className="name">
-                                            {cUser?.type}
+                                            {cUser?.firstName}
                                         </div>
                                         <div className="sub-account">
                                             {/* <div className="sub-account-item">
@@ -243,9 +243,9 @@ export default function Navbar() {
                                         </div>
                                     </div>
                                 }
-                                <div className="header-customize-item button">
+                                {/* <div className="header-customize-item button">
                                     <Link to={"/resume"}>Upload Resume</Link>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="nav-filter">
                                 <div className="nav-mobile"><span></span></div>

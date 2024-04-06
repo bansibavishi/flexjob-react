@@ -55,10 +55,10 @@ export default function ForgetPass() {
                 <div className="tf-container">
                     <div className="row">
                         <div className="wd-form-login">
-                            <h4>Forget pass</h4>
+                            <h4>Forgot Password</h4>
                             <form onSubmit={forgetPassword}>
                                 <div className="ip">
-                                    <label>email address<span>*</span></label>
+                                    <label>Email address<span>*</span></label>
                                     <input type="text"   placeholder="Enter Your Email" onChange={e => setForgetPass({ ...forgetPass, email: e.target.value })} value={forgetPass.email} />
                                 </div>
 

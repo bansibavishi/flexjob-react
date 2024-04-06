@@ -41,13 +41,13 @@ export default function Sidebar() {
                             </Link>
 
                         </li>
-
+{/*
                         <li>
                             <Link to={"/resume"}>
                                 <span className="icon-resumes dash-icon"></span>
                                 <span className="dash-titles">Resumes</span>
                             </Link>
-                        </li>
+                        </li> */}
 
                         <li>
                             <Link to={"/myjob"}>

@@ -62,7 +62,7 @@ export default function JobCmp({ e }) {
                 <div className="job-archive-header">
                     <div className="inner-box">
                         <div className="logo-company">
-                            <img src="http://127.0.0.1:4000/avatar.jpg" alt="avtar" />
+                            <img src={process.env.REACT_APP_API + e.user[0].img} alt="avtar" />
                         </div>
                         <div className="box-content">
                             <Link to={"/employers/" +( e?.user &&  e?.user[0]?._id) }>
@@ -74,16 +74,16 @@ export default function JobCmp({ e }) {
                             <Link to={'/job/' + e._id} >
                                 <h3>
                                     {e.title}
-                                    <span className="icon-bolt"></span>
+                                    <span className="icon-bolt ms-2"></span>
                                 </h3>
                             </Link>
                             <ul>
                                 <li>
-                                    <span className="icon-map-pin"></span>
+                                    <span className="icon-map-pin me-2"></span>
                                     {e.description}
                                 </li>
                                 <li>
-                                    <span className="icon-calendar"></span>
+                                    <span className="icon-calendar me-2"></span>
                                     {e.formattedTime}
                                 </li>
                             </ul>

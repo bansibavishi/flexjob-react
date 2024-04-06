@@ -67,7 +67,7 @@ export default function EmployersSingle() {
                 <div className="content">
                     <h6>Apply For This Job</h6>
                     <p>Select A Your CV</p>
-                    <form action="https://themesflat.co/html/jobtex/get">
+                    <form >
                         <div className="group-seclect-file">
                             <div className="group-file">
                                 <div className="inner left">
@@ -348,9 +348,9 @@ export default function EmployersSingle() {
                                     <div className="inner-job-left">
                                         <img src={process.env.REACT_APP_API + employer?.img} alt="" className="logo-company" />
                                         <div className="content">
-                                            <h3><a href="#">{employer?.title}</a><span className="icon-bolt"></span></h3>
+                                            <h3><a href="#">{employer?.title}</a><span className="icon-bolt ms-2"></span></h3>
                                             <div className="job-info">
-                                                <span className="icon-map-pin"></span>
+                                                <span className="icon-map-pin me-2"></span>
                                                 <span>{employer?.location}</span>
                                             </div>
                                             <div className="group-btn">
@@ -360,7 +360,7 @@ export default function EmployersSingle() {
                                         </div>
                                     </div>
                                     <div className="inner-job-right">
-                                        <span className="icon-share2"></span>
+
                                         <div className="group-btn">
                                             <Link to={"/employers-review/" + userId}>
                                                 <button className="tf-btn-submit btn-popup">Write a review</button>
@@ -455,36 +455,8 @@ export default function EmployersSingle() {
 
                                         </div>
                                         <div className={"inner-content" + (activeMenu == "Reviews" ? " " : " d-none")}>
-                                            <h5>Full Reviews</h5>
-                                            <p>Are you a User Experience Designer with a track record of delivering intuitive digital experiences
-                                                that
-                                                drive results? Are you a strategic storyteller and systems thinker who can concept and craft smart.
-                                            </p>
-                                            <div className="video-thumb">
-                                                <div className="content-tab2">
-                                                    <div className="inner">
-                                                        <div className="thumb">
-                                                            <img src="/images/review/thumbv3.jpg" alt="images" />
-                                                            <a href="https://www.youtube.com/watch?v=MLpWrANjFbI" className="lightbox-image">
-                                                                <svg width="56" height="56" viewBox="0 0 56 56" fill="none"
-                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                    <path
-                                                                        d="M27.5795 50.5623C40.2726 50.5623 50.5624 40.2725 50.5624 27.5794C50.5624 14.8863 40.2726 4.59656 27.5795 4.59656C14.8865 4.59656 4.59668 14.8863 4.59668 27.5794C4.59668 40.2725 14.8865 50.5623 27.5795 50.5623Z"
-                                                                        fill="#EB4D4D"></path>
-                                                                    <path
-                                                                        d="M20.9141 27.5794V24.1779C20.9141 19.7882 24.0167 18.0185 27.8089 20.2019L30.7507 21.9026L33.6925 23.6034C37.4847 25.7867 37.4847 29.3721 33.6925 31.5554L30.7507 33.2562L27.8089 34.9569C24.0167 37.1403 20.9141 35.3476 20.9141 30.9809V27.5794Z"
-                                                                        fill="white"></path>
-                                                                </svg>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <ul className="thumb-menu menu-tab2">
-                                                    <li className="ct-tab2"> <a className="lightbox-gallery" href="images/review/thumbv4.jpg"><img src="/images/review/thumbv4.jpg" alt="images" /></a> </li>
-                                                    <li className="ct-tab2"> <a className="lightbox-gallery" href="images/review/thumbv1.jpg"><img src="/images/review/thumbv1.jpg" alt="images" /></a></li>
-                                                    <li className="ct-tab2"><a className="lightbox-gallery" href="images/review/thumbv2.jpg"><img src="/images/review/thumbv2.jpg" alt="images" /></a></li>
-                                                </ul>
-                                            </div>
+
+
                                             <div className="job-rating">
                                                 <h6>reviews</h6>
 

@@ -41,7 +41,7 @@ export default function ContactUs() {
                                             </div>
                                             <div className="content">
                                                 <h6>Email</h6>
-                                                <p><a href="https://themesflat.co/cdn-cgi/l/email-protection" className="__cf_email__" data-cfemail="e48c8dca85928d90819ca48389858d88ca878b89">[email&#160;protected]</a></p>
+                                                <p><a href="#" className="__cf_email__ text-white" >admin@gmail.com</a></p>
                                             </div>
                                         </div>
                                         <div className="icon-inforr">

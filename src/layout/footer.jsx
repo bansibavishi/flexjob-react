@@ -29,7 +29,7 @@ export default function Footer() {
                 </div>
             </div>
             <div className="inner-footer">
-                <div className="tf-container">ūū
+                <div className="tf-container">
                     <div className="row">
                         <div className="col-lg-4 col-md-6">
                             <div className="footer-cl-1">
@@ -73,7 +73,7 @@ export default function Footer() {
                     <div className="row">
                         <div className="col-lg-6 col-md-6">
                             <div className="bt-left">
-                                <div className="copyright">©2023 Themesflat. All Rights Reserved.</div>
+                                <div className="copyright">©2024 Job Place</div>
                                 <span className="select-language">
                                     {/* <select className="image-select">
 												<option data-thumbnail="images/review/flag.png">English</option>

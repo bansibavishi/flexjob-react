@@ -258,7 +258,7 @@ export default function Profile() {
                 <div className="themes-container">
                     <div className="row">
                         <div className="col-lg-12 col-md-12 ">
-                            <h5 className="center">©2023 Jobtex. All Rights Reserved.</h5>
+                            <h5 className="center">©2024 Job Place</h5>
                         </div>
                     </div>
                 </div>

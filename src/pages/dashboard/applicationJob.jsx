@@ -52,7 +52,7 @@ export default function ApplicationJob() {
             attempts: order.data.attempts,
             currency: order.data.currency,
             entity: order.data.entity,
-            name: "Flexjob",
+            name: "Job Place",
             description: "Test Transaction",
             image: "/images/logo.png",
             order_id: order.data.id,

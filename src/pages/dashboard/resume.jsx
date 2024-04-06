@@ -51,220 +51,22 @@ export default function Resume() {
                                     <div className="item-group">
                                         <div className="content-left">
                                             <div className="avatar">
-                                                <img src="http://127.0.0.1:4000/avatar.jpg" alt="images" />
-                                                {/* <img src={process.env.REACT_APP_API + (employer?.user && employer?.user[0]?.img)} alt="logo" /> */}
+                                                <img src={process.env.REACT_APP_API + employer.img} alt="images" />
                                             </div>
-                                            <h6>tools</h6>
-                                            <div className="wd-cv-skill">
-                                                <div className="progress-item">
-                                                    <div className="icon"><span className="icon-logo--premiere"><span className="path1"></span><span className="path2"></span></span></div>
-                                                    <div className="progress-heading">
-                                                        <div className="heading-progress">ADOBE PHOTOSHOP</div>
-                                                        <div className="donat-bg" data-percent="50%">
-                                                            <div className="custom-donat"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <h6>Expertise</h6>
 
-                                            </div>
-                                            <div className="wd-cv-skill">
-                                                <div className="progress-item">
-                                                    <div className="icon"><span className="icon-logo--illustrator"><span className="path1"></span><span className="path2"></span></span></div>
-                                                    <div className="progress-heading">
-                                                        <div className="heading-progress">ADOBE ILLUStrator</div>
-                                                        <div className="donat-bg" data-percent="50%">
-                                                            <div className="custom-donat"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div className="wd-cv-skill">
-                                                <div className="progress-item">
-                                                    <div className="icon"><span className="icon-logo--indesign"><span className="path1"></span><span className="path2"></span></span></div>
-                                                    <div className="progress-heading">
-                                                        <div className="heading-progress">ADOBE INDESIGN</div>
-                                                        <div className="donat-bg" data-percent="50%">
-                                                            <div className="custom-donat"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div className="wd-cv-skill">
-                                                <div className="progress-item">
-                                                    <div className="icon"><span className="icon-logo--aftereffects"><span className="path1"></span><span className="path2"></span></span></div>
-                                                    <div className="progress-heading">
-                                                        <div className="heading-progress">ADOBE AFTER EFFECTS</div>
-                                                        <div className="donat-bg" data-percent="50%">
-                                                            <div className="custom-donat"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div className="wd-cv-skill">
-                                                <div className="progress-item">
-                                                    <div className="icon"><span className="icon-logo--premiere"><span className="path1"></span><span className="path2"></span></span></div>
-                                                    <div className="progress-heading">
-                                                        <div className="heading-progress">ADOBE Premiere</div>
-                                                        <div className="donat-bg" data-percent="50%">
-                                                            <div className="custom-donat"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div className="wd-cv-skill">
-                                                <div className="progress-item">
-                                                    <div className="icon"><span className="icon-logo--xd"><span className="path1"></span><span className="path2"></span><span className="path3"></span></span></div>
-                                                    <div className="progress-heading">
-                                                        <div className="heading-progress">ADOBE XD</div>
-                                                        <div className="donat-bg" data-percent="50%">
-                                                            <div className="custom-donat"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div className="wd-cv-skill">
-                                                <div className="progress-item">
-                                                    <div className="icon"><span className="icon-logo--figma"><span className="path1"></span><span className="path2"></span><span className="path3"></span><span className="path4"></span><span className="path5"></span></span></div>
-                                                    <div className="progress-heading">
-                                                        <div className="heading-progress">Figma</div>
-                                                        <div className="donat-bg" data-percent="50%">
-                                                            <div className="custom-donat"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div className="wd-cv-skill">
-                                                <div className="progress-item">
-                                                    <div className="icon"><span className="icon-logo--sketch"><span className="path1"></span><span className="path2"></span><span className="path3"></span><span className="path4"></span><span className="path5"></span><span className="path6"></span><span className="path7"></span><span className="path8"></span></span></div>
-                                                    <div className="progress-heading">
-                                                        <div className="heading-progress">Sketch</div>
-                                                        <div className="donat-bg" data-percent="50%">
-                                                            <div className="custom-donat"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div className="wd-cv-skill">
-                                                <div className="progress-item">
-                                                    <div className="icon"><span className="icon-logo--zeplin"><span className="path1"></span><span className="path2"></span><span className="path3"></span><span className="path4"></span><span className="path5"></span><span className="path6"></span><span className="path7"></span><span className="path8"></span></span></div>
-                                                    <div className="progress-heading">
-                                                        <div className="heading-progress">ZEPLIN</div>
-                                                        <div className="donat-bg" data-percent="50%">
-                                                            <div className="custom-donat"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div className="wd-cv-skill">
-                                                <div className="progress-item">
-                                                    <div className="icon"><span className="icon-logo--invision"><span className="path1"></span><span className="path2"></span></span></div>
-                                                    <div className="progress-heading">
-                                                        <div className="heading-progress">INVISION</div>
-                                                        <div className="donat-bg" data-percent="50%">
-                                                            <div className="custom-donat"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div className="wd-cv-skill">
-                                                <div className="progress-item">
-                                                    <div className="icon"><span className="icon-logo--abstract"></span></div>
-                                                    <div className="progress-heading">
-                                                        <div className="heading-progress">Abstract</div>
-                                                        <div className="donat-bg" data-percent="50%">
-                                                            <div className="custom-donat"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div className="wd-cv-skill">
-                                                <div className="progress-item">
-                                                    <div className="icon"><span className="icon-logo--principle"></span></div>
-                                                    <div className="progress-heading">
-                                                        <div className="heading-progress">Principle</div>
-                                                        <div className="donat-bg" data-percent="50%">
-                                                            <div className="custom-donat"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div className="wd-cv-skill mg-bt-40">
-                                                <div className="progress-item">
-                                                    <div className="icon"><span className="icon-logo--protopie"><span className="path1"></span><span className="path2"></span><span className="path3"></span></span></div>
-                                                    <div className="progress-heading">
-                                                        <div className="heading-progress">PROTOPIE</div>
-                                                        <div className="donat-bg" data-percent="50%">
-                                                            <div className="custom-donat"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            {/* <h6 className="mg-bt-26">Other Tools</h6>
-                                            <div className="wd-cv-skill">
-                                                <div className="progress-item">
-                                                    <div className="icon"><span className="icon-logo--magento"></span></div>
-                                                    <div className="progress-heading">
-                                                        <div className="heading-progress">MAGENTO / ADOBE </div>
-                                                        <div className="donat-bg" data-percent="50%">
-                                                            <div className="custom-donat"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div> */}
-                                            <div className="wd-cv-skill">
-                                                <div className="progress-item">
-                                                    <div className="icon"><span className="icon-logo--salesforce"><span className="path1"></span><span className="path2"></span><span className="path3"></span><span className="path4"></span><span className="path5"></span><span className="path6"></span><span className="path7"></span><span className="path8"></span><span className="path9"></span><span className="path10"></span><span className="path11"></span></span></div>
-                                                    <div className="progress-heading">
-                                                        <div className="heading-progress">SALESFORCE </div>
-                                                        <div className="donat-bg" data-percent="50%">
-                                                            <div className="custom-donat"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div className="wd-cv-skill">
-                                                <div className="progress-item">
-                                                    <div className="icon"><span className="icon-logo--jira"></span></div>
-                                                    <div className="progress-heading">
-                                                        <div className="heading-progress">ATLASSIAN JIRA </div>
-                                                        <div className="donat-bg" data-percent="50%">
-                                                            <div className="custom-donat"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div className="wd-cv-skill">
-                                                <div className="progress-item">
-                                                    <div className="icon"><span className="icon-logo--slack"><span className="path1"></span><span className="path2"></span><span className="path3"></span><span className="path4"></span></span></div>
-                                                    <div className="progress-heading">
-                                                        <div className="heading-progress">SLACK</div>
-                                                        <div className="donat-bg" data-percent="50%">
-                                                            <div className="custom-donat"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
+                                            <div className='d-flex flex-column'>
+                                                {
+                                                    employer?.expertise && employer?.expertise?.map(e =>
+                                                        <p key={Math.random()} className='btn btn-outline-success rounded-pill m-2'>{e.technology}{console.log(e.technology)}</p>
+                                                    )
+                                                }
                                             </div>
                                         </div>
                                         <div className="content-right">
                                             <div className="profile">
                                                 <h2>{employer.firstName}</h2>
-                                                <h4>{employer.email }</h4>
+                                                <h4>{employer.email}</h4>
                                                 <h6>{employer.title}</h6>
                                                 <p>{employer.description}</p>
                                             </div>

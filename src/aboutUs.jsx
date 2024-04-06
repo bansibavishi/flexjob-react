@@ -33,7 +33,7 @@ export default function AboutUs() {
                                     <div className="trader-box">
                                         <div className="content">
                                             <h3 className="number wrap-counter">
-                                                <span className="number counter-number" data-speed="2000" data-to="25"></span><span>M+</span>
+                                                <span className="number counter-number" data-speed="2000" data-to="25"></span><span>15M+</span>
                                             </h3>
                                             <div className="des">Jobs Available</div>
                                         </div>
@@ -49,7 +49,7 @@ export default function AboutUs() {
                                             </div>
                                             <div className="content">
                                                 <h6 className="number wrap-counter">
-                                                    <span className="number counter-number" data-speed="2000" data-to="480"></span><span>+</span>
+                                                    <span className="number counter-number" data-speed="2000" data-to="480"></span><span>10+</span>
                                                 </h6>
                                                 <div className="des">Happpy Candidates</div>
                                             </div>
@@ -81,7 +81,7 @@ export default function AboutUs() {
                                         opposite far much hypnotically more therefore wasp less that hey apart well like while superbly orca and far hence one.
 
                                     </p>
-                                    <a href="#" className="tf-button style-1">Read more</a>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -103,7 +103,7 @@ export default function AboutUs() {
                                         <div className="col-lg-3 col-md-6">
                                             <div className="wd-counter widget-counter">
                                                 <div className="inner wrap-counter">
-                                                    <h2><span className="counter-number" data-speed="2000" data-to="25"></span><span>M+</span></h2>
+                                                    <h2><span className="counter-number" data-speed="2000" data-to="25"></span><span>20M+</span></h2>
                                                 </div>
                                                 <p className="description">Jobs Available</p>
                                             </div>
@@ -111,7 +111,7 @@ export default function AboutUs() {
                                         <div className="col-lg-3 col-md-6">
                                             <div className="wd-counter widget-counter">
                                                 <div className="inner wrap-counter">
-                                                    <h2><span className="counter-number" data-speed="2000" data-to="177"></span><span>k+</span></h2>
+                                                    <h2><span className="counter-number" data-speed="2000" data-to="177"></span><span>10k+</span></h2>
                                                 </div>
                                                 <p className="description">New Jobs This Week!</p>
                                             </div>
@@ -119,7 +119,7 @@ export default function AboutUs() {
                                         <div className="col-lg-3 col-md-6">
                                             <div className="wd-counter widget-counter">
                                                 <div className="inner wrap-counter">
-                                                    <h2><span className="counter-number" data-speed="2000" data-to="298"></span><span>k+</span></h2>
+                                                    <h2><span className="counter-number" data-speed="2000" data-to="298"></span><span>15k+</span></h2>
                                                 </div>
                                                 <p className="description">Companies Hiring</p>
                                             </div>
@@ -127,7 +127,7 @@ export default function AboutUs() {
                                         <div className="col-lg-3 col-md-6">
                                             <div className="wd-counter widget-counter br-none">
                                                 <div className="inner wrap-counter">
-                                                    <h2><span className="counter-number" data-speed="2000" data-to="5"></span><span>M+</span></h2>
+                                                    <h2><span className="counter-number" data-speed="2000" data-to="5"></span><span>25M+</span></h2>
                                                 </div>
                                                 <p className="description">Candidates</p>
                                             </div>
@@ -234,7 +234,7 @@ export default function AboutUs() {
                                             </div>
                                             <div className="content">
                                                 <h6 className="number wrap-counter">
-                                                    <span className="number counter-number" data-speed="2000" data-to="198"></span><span>+</span>
+                                                    <span className="number counter-number" data-speed="2000" data-to="198"></span><span>15+</span>
                                                 </h6>
                                                 <div className="des">Countries</div>
                                             </div>
@@ -252,7 +252,7 @@ export default function AboutUs() {
                                             </div>
                                             <div className="content">
                                                 <h6 className="number wrap-counter">
-                                                    <span className="number counter-number" data-speed="2000" data-to="350"></span><span>k</span>
+                                                    <span className="number counter-number" data-speed="2000" data-to="350"></span><span>10k</span>
                                                 </h6>
                                                 <div className="des">Job Search Success</div>
                                             </div>

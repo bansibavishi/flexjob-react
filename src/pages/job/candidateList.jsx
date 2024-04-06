@@ -106,11 +106,11 @@ export default function CandidateList() {
                                                                 <Link to={"/candidate/" + e._id}>
                                                                 <h3>
                                                                     <a>{e.firstName}</a>
-                                                                    <span className="icon-bolt"></span>
+                                                                    <span className="icon-bolt ms-2"></span>
                                                                 </h3>
                                                                 </Link>
                                                                 <p className="info">
-                                                                    <span className="icon-map-pin"></span>
+                                                                    <span className="icon-map-pin me-2"></span>
                                                                     {e.location}
                                                                 </p>
                                                             </div>

@@ -186,7 +186,6 @@ export default function JobSingle() {
                                     <ul className="menu-tab">
                                         <li className={"ct-tab" + (activeMenu == "About" ? " active" : "")} onClick={e => setActiveMenu("About")}>About</li>
 
-                                        <li className={"ct-tab" + (activeMenu == "Reviews" ? " active" : "")} onClick={e => setActiveMenu("Reviews")}>Reviews</li>
 
                                     </ul>
                                     <div className="content-tab">
@@ -237,7 +236,6 @@ export default function JobSingle() {
 
 
                                                 </ul>
-                                                <a href="find-jobs-list.html" className="btn-load">See more reviews (719)</a>
                                             </div>
                                         </div>
                                     </div>
@@ -253,36 +251,14 @@ export default function JobSingle() {
 
                                     </div>
                                     <ul className="list-infor">
-                                        <li><div className="category">Website</div><div className="detail"><a href="#">avitex.vn</a></div></li>
-                                        <li><div className="category">Email</div><div className="detail"><a href="https://themesflat.co/cdn-cgi/l/email-protection" className="__cf_email__" data-cfemail="264e4f0847504f52435e66414b474f4a0845494b">[email&#160;protected]</a></div></li>
-                                        <li><div className="category">Industry</div><div className="detail">Internet Publishing</div></li>
-                                        <li><div className="category">Company size</div><div className="detail">51-200 candidates</div></li>
-                                        <li><div className="category">Headquarters</div><div className="detail">3 S Valley , Las Vegas, USA</div></li>
-                                        <li><div className="category">Founded</div><div className="detail">2017</div></li>
+                                        <li><div className="category">Title</div><div className="detail">{job?.user && job?.user[0]?.title}</div></li>
+                                        <li><div className="category">Email</div><div className="detail"><a href="#">{job?.user && job?.user[0]?.email}</a></div></li>
+                                        <li><div className="category">Mobile</div><div className="detail">{job?.user && job?.user[0]?.mobile}</div></li>
+                                        <li><div className="category">Location</div><div className="detail">{job?.user && job?.user[0]?.location}</div></li>
+                                        <li><div className="category">rate</div><div className="detail">{job?.user && job?.user[0]?.rate}</div></li>
                                     </ul>
 
-                                    <div className="wd-social d-flex aln-center">
-                                        <span>Socials:</span>
-                                        <ul className="list-social d-flex aln-center">
-                                            <li><a href="#"><i className="icon-facebook"></i></a></li>
-                                            <li><a href="#"><i className="icon-linkedin2"></i></a></li>
-                                            <li><a href="#"><i className="icon-twitter"></i></a></li>
-                                            <li><a href="#"><i className="icon-pinterest"></i></a></li>
-                                            <li><a href="#"><i className="icon-instagram1"></i></a></li>
-                                            <li><a href="#"><i className="icon-youtube"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    {/* <div className="form-job-single">
-                                        <h6>Contact Us</h6>
-                                        <form action="https://themesflat.co/html/jobtex/post">
-                                            <input type="text" placeholder="Subject" />
-                                            <input type="text" placeholder="Name" />
-                                            <input type="email" placeholder="Email" />
-                                            <textarea placeholder="Message..."></textarea>
-                                            <button>Send Message</button>
-                                        </form>
 
-                                    </div> */}
                                 </div>
                             </div>
                         </div>

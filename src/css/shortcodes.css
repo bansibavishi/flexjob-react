@@ -8145,11 +8145,14 @@ input[type="number"]::-webkit-inner-spin-button {
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
-
+.job-category-box:hover .job-category-box h1{
+    color:white;
+}
 .job-category-box.active a,
 .job-category-box.active p,
 .job-category-box.active .btn-category-job,
 .job-category-box:hover a,
+.job-category-box:hover h1,
 .job-category-box:hover p,
 .job-category-box:hover .btn-category-job,
 .job-category-box {
@@ -8684,6 +8687,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .wd-feature-map {
   position: relative;
+  margin-top: 100px;
 }
 
 .wd-feature-map iframe {

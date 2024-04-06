@@ -92,18 +92,18 @@ export default function EmployerList() {
                                                     <div className="employer-block style-2 cl2" key={Math.random()}>
                                                         <div className="inner-box">
                                                             <div className="logo-company">
-                                                                <img src="http://127.0.0.1:4000/avatar.jpg" alt="avtar" />
+                                                                <img src={process.env.REACT_APP_API + e.img} alt="avtar" />
                                                             </div>
                                                             <div className="box-content">
 
                                                                 <Link to={"/employers/" + e._id}>
                                                                 <h3>
                                                                     <a>{e.title}</a>
-                                                                    <span className="icon-bolt"></span>
+                                                                    <span className="icon-bolt ms-2"></span>
                                                                 </h3>
                                                                 </Link>
                                                                 <p className="info">
-                                                                    <span className="icon-map-pin"></span>
+                                                                    <span className="icon-map-pin me-2"></span>
                                                                     {e.location}
                                                                 </p>
                                                             </div>

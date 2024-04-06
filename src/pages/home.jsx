@@ -144,10 +144,7 @@ export default function Home() {
                                     <h1>Browse by category</h1>
                                     <p>Recruitment Made Easy in 100 seconds</p>
                                 </div>
-                                <a href="find-jobs-list.html" className="tf-button">
-                                    All Categories
-                                    <span className="icon-arrow-right2"></span>
-                                </a>
+
                             </div>
                         </div>
                         <div className="col-md-12" >
@@ -173,7 +170,7 @@ export default function Home() {
                     <div className="tf-title style-2">
                         <div className="group-title ">
                             <h1>Featured Jobs</h1>
-                            <p>Find the job that’s perfect for you. about 800+ new jobs everyday</p>
+
                         </div>
                     </div>
                     <div className="row wow fadeInUp">
@@ -202,7 +199,7 @@ export default function Home() {
             <section className="wd-iconbox flat-row background1">
                 <div className="tf-container">
                     <div className="title-iconbox">
-                        <h1>What can I do with Jobtex?</h1>
+                        <h1>What can I do with Job Place?</h1>
                         <p>Streamline your hiring process with strategic channels to reach qualified candidates</p>
                     </div>
                     <div className="row">
@@ -434,7 +431,7 @@ export default function Home() {
                                                 strokeLinecap="round" strokeLinejoin="round" />
                                             <path d="M30.5254 10.6494L30.6169 11.3444" stroke="#14A077" strokeWidth="2" strokeMiterlimit="10"
                                                 strokeLinecap="round" strokeLinejoin="round" />
-                                            <path d="M35.8086 6.18795V5.14551" stroke="#14A077" strokeWidth="2" strokeMiterlimit="10"
+                                            <path d="M35.8086 6. 18795V5.14551" stroke="#14A077" strokeWidth="2" strokeMiterlimit="10"
                                                 strokeLinecap="round" strokeLinejoin="round" />
                                             <path d="M32.6816 4.10248L35.8078 1.01172V5.14495" stroke="#14A077" strokeWidth="2"
                                                 strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
@@ -470,12 +467,9 @@ export default function Home() {
                         <div className="tf-title">
                             <div className="group-title">
                                 <h1>Top Employers</h1>
-                                <p>Showing companies based on reviews and recent job openings</p>
+
                             </div>
-                            <a href="employers-list.html" className="tf-button">
-                                All Employers
-                                <span className="icon-arrow-right2"></span>
-                            </a>
+
                         </div>
                         <div className="row wow fadeInUp">
                             {
@@ -485,7 +479,7 @@ export default function Home() {
                                         <div className="employer-block">
                                             <div className="inner-box">
                                                 <div className="logo-company">
-                                                    <img src="http://127.0.0.1:4000/avatar.jpg" alt="avtar" />
+                                                    <img src={process.env.REACT_APP_API + e.img} alt="avtar" />
                                                 </div>
                                                 <div className="box-content">
                                                     {/* <div className="star">
@@ -498,16 +492,15 @@ export default function Home() {
                                                     <Link to={'/employers/' + e._id}>
                                                         <h3>
                                                             {e.title}
-                                                            <span className="icon-bolt"></span>
+                                                            <span className="icon-bolt ms-2"></span>
                                                         </h3>
                                                         <p className="info">
-                                                            <span className="icon-map-pin"></span>
-                                                            Las Vegas, NV 89107, USA
+                                                            <span className="icon-map-pin me-2"></span>
+                                                            {e.location}
                                                         </p>
                                                     </Link>
                                                 </div>
                                             </div>
-                                            {/* <a href="employers-single.html" className="jobtex-link-item" tabIndex="0"></a> */}
                                         </div>
                                     </div>
                                 )

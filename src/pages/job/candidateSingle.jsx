@@ -7,7 +7,7 @@ export default function CandidateSingle() {
     const [candidate, setCandidate] = useState({})
     const [review, setReview] = useState([])
     const [activeMenu, setActiveMenu] = useState('About')
-
+    const [jobList, setJobList] = useState([])
     let { userId } = useParams();
 
     function getCandidate() {
@@ -33,10 +33,24 @@ export default function CandidateSingle() {
         })
     }
 
+    function getList() {
+        var token = localStorage.getItem('token')
+        fetch(process.env.REACT_APP_API + "/post-list-by-user-id/" + userId, {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        }).then(e => e.json()).then(res => {
+            console.log(res.userData);
+            setJobList(res.data)
+        }).catch(err => {
+            console.log(err);
+        })
+    }
 
     useEffect(() => {
         getCandidate()
         reviewList()
+        getList()
     }, [])
     return (
         <>
@@ -45,7 +59,7 @@ export default function CandidateSingle() {
                 <div className="content">
                     <h6>Apply For This Job</h6>
                     <p>Select A Your CV</p>
-                    <form action="https://themesflat.co/html/jobtex/get">
+                    <form >
                         <div className="group-seclect-file">
                             <div className="group-file">
                                 <div className="inner left">
@@ -326,9 +340,9 @@ export default function CandidateSingle() {
                                     <div className="inner-job-left">
                                         <img src={process.env.REACT_APP_API + candidate?.img} alt="" className="logo-company" />
                                         <div className="content">
-                                            <h3><a href="#">{candidate?.firstName}</a><span className="icon-bolt"></span></h3>
+                                            <h3><a href="#">{candidate?.firstName}</a><span className="icon-bolt ms-2"></span></h3>
                                             <div className="job-info">
-                                                <span className="icon-map-pin"></span>
+                                                <span className="icon-map-pin me-2"></span>
                                                 <span>{candidate?.location}</span>
                                             </div>
                                             <div className="group-btn">
@@ -337,7 +351,7 @@ export default function CandidateSingle() {
                                         </div>
                                     </div>
                                     <div className="inner-job-right">
-                                        <span className="icon-share2"></span>
+
                                         <div className="group-btn">
                                             <Link to={"/employers-review/" + userId}>
                                                 <button className="tf-btn-submit btn-popup">Write a review</button>
@@ -359,7 +373,7 @@ export default function CandidateSingle() {
                                 <article className="job-article tf-tab single-job single-employer">
                                     <ul className="menu-tab">
                                         <li className={"ct-tab" + (activeMenu == "About" ? " active" : "")} onClick={e => setActiveMenu("About")}>About</li>
-                                        <li className={"ct-tab " + (activeMenu == "Jobs" ? " active" : "")} onClick={e => setActiveMenu("Jobs")}>Jobs (2)</li>
+                                        <li className={"ct-tab " + (activeMenu == "Jobs" ? " active" : "")} onClick={e => setActiveMenu("Jobs")}>Jobs</li>
                                         <li className={"ct-tab" + (activeMenu == "Reviews" ? " active" : "")} onClick={e => setActiveMenu("Reviews")}>Reviews</li>
                                     </ul>
                                     <div className="content-tab">
@@ -385,7 +399,7 @@ export default function CandidateSingle() {
                                         <div className={"inner-content" + (activeMenu == "Jobs" ? " " : " d-none")}>
                                             <h5>Job List</h5>
 
-                                            {/* <div className="related-job">
+                                            { <div className="related-job">
                                                 {
                                                     jobList.map(e =>
                                                         <div className="features-job mg-bt-0" key={Math.random()}>
@@ -398,11 +412,11 @@ export default function CandidateSingle() {
                                                                         <h4><a>{e._id}</a></h4>
                                                                         <h3>
                                                                             <a>{e.title}</a>
-                                                                            <span className="icon-bolt"></span>
+                                                                            <span className="icon-bolt ms-2"></span>
                                                                         </h3>
                                                                         <ul>
-                                                                            <li><span className="icon-map-pin"></span>Las Vegas, NV 89107, USA</li>
-                                                                            <li><span className="icon-calendar"></span>2 days ago</li>
+                                                                            <li><span className="icon-map-pin me-2"></span>Las Vegas, NV 89107, USA</li>
+                                                                            <li><span className="icon-calendar me-2"></span>2 days ago</li>
                                                                         </ul>
                                                                         <span className="icon-heart"></span>
                                                                     </div>
@@ -432,42 +446,13 @@ export default function CandidateSingle() {
                                                             </div>
                                                         </div>
                                                     )}
-                                            </div> */}
+                                            </div> }
 
                                         </div>
                                         <div className={"inner-content" + (activeMenu == "Reviews" ? " " : " d-none")}>
-                                            <h5>Full Reviews</h5>
-                                            <p>Are you a User Experience Designer with a track record of delivering intuitive digital experiences
-                                                that
-                                                drive results? Are you a strategic storyteller and systems thinker who can concept and craft smart.
-                                            </p>
-                                            <div className="video-thumb">
-                                                <div className="content-tab2">
-                                                    <div className="inner">
-                                                        <div className="thumb">
-                                                            <img src="/images/review/thumbv3.jpg" alt="images" />
-                                                            <a href="https://www.youtube.com/watch?v=MLpWrANjFbI" className="lightbox-image">
-                                                                <svg width="56" height="56" viewBox="0 0 56 56" fill="none"
-                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                    <path
-                                                                        d="M27.5795 50.5623C40.2726 50.5623 50.5624 40.2725 50.5624 27.5794C50.5624 14.8863 40.2726 4.59656 27.5795 4.59656C14.8865 4.59656 4.59668 14.8863 4.59668 27.5794C4.59668 40.2725 14.8865 50.5623 27.5795 50.5623Z"
-                                                                        fill="#EB4D4D"></path>
-                                                                    <path
-                                                                        d="M20.9141 27.5794V24.1779C20.9141 19.7882 24.0167 18.0185 27.8089 20.2019L30.7507 21.9026L33.6925 23.6034C37.4847 25.7867 37.4847 29.3721 33.6925 31.5554L30.7507 33.2562L27.8089 34.9569C24.0167 37.1403 20.9141 35.3476 20.9141 30.9809V27.5794Z"
-                                                                        fill="white"></path>
-                                                                </svg>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <ul className="thumb-menu menu-tab2">
-                                                    <li className="ct-tab2"> <a className="lightbox-gallery" href="images/review/thumbv4.jpg"><img src="/images/review/thumbv4.jpg" alt="images" /></a> </li>
-                                                    <li className="ct-tab2"> <a className="lightbox-gallery" href="images/review/thumbv1.jpg"><img src="/images/review/thumbv1.jpg" alt="images" /></a></li>
-                                                    <li className="ct-tab2"><a className="lightbox-gallery" href="images/review/thumbv2.jpg"><img src="/images/review/thumbv2.jpg" alt="images" /></a></li>
-                                                </ul>
-                                            </div>
+
                                             <div className="job-rating">
-                                                <h6>reviews</h6>
+
 
                                                 <ul className="client-review">
                                                     <li className="client-item">
@@ -485,7 +470,7 @@ export default function CandidateSingle() {
                                                                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M0.5 10C0.5 4.47715 4.97715 0 10.5 0C16.0228 0 20.5 4.47715 20.5 10C20.5 15.5228 16.0228 20 10.5 20C4.97715 20 0.5 15.5228 0.5 10Z" fill="#37B853" />
                                                                                     <path d="M8.89644 13.8429L5.64644 10.3563C5.45119 10.1468 5.45119 9.80718 5.64644 9.59769L6.35353 8.8391C6.54879 8.62961 6.86539 8.62961 7.06064 8.8391L9.25 11.1878L13.9394 6.1571C14.1346 5.94763 14.4512 5.94763 14.6465 6.1571L15.3536 6.91569C15.5488 7.12516 15.5488 7.46479 15.3536 7.67428L9.60355 13.8429C9.40828 14.0524 9.0917 14.0524 8.89644 13.8429Z" fill="white" />
                                                                                 </svg></h5>
-                                                                                <a href="#" className="date">August 13, 2023</a>
+
                                                                                 <ReactStars
                                                                                     value={e.star}
                                                                                     count={5}
@@ -540,28 +525,8 @@ export default function CandidateSingle() {
 
                                     </ul>
 
-                                    <div className="wd-social d-flex aln-center">
-                                        <span>Socials:</span>
-                                        <ul className="list-social d-flex aln-center">
-                                            <li><a href="#"><i className="icon-facebook"></i></a></li>
-                                            <li><a href="#"><i className="icon-linkedin2"></i></a></li>
-                                            <li><a href="#"><i className="icon-twitter"></i></a></li>
-                                            <li><a href="#"><i className="icon-pinterest"></i></a></li>
-                                            <li><a href="#"><i className="icon-instagram1"></i></a></li>
-                                            <li><a href="#"><i className="icon-youtube"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div className="form-job-single">
-                                        <h6>Contact Us</h6>
-                                        <form action="https://themesflat.co/html/jobtex/post">
-                                            <input type="text" placeholder="Subject" />
-                                            <input type="text" placeholder="Name" />
-                                            <input type="email" placeholder="Email" />
-                                            <textarea placeholder="Message..."></textarea>
-                                            <button>Send Message</button>
-                                        </form>
 
-                                    </div>
+
                                 </div>
                             </div>
 
