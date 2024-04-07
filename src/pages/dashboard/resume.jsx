@@ -54,24 +54,46 @@ export default function Resume() {
                                                 <img src={process.env.REACT_APP_API + employer.img} alt="images" />
                                             </div>
                                             {/* <h6>Expertise</h6> */}
-
-                                           
                                         </div>
                                         <div className="content-right">
-                                            <div className="profile">
+                                            <div className="profile pb-5">
                                                 <h2>{employer.firstName}</h2>
                                                 <h4>{employer.email}</h4>
                                                 <h6>{employer.title}</h6>
-                                                <p>{employer.description}</p>
+                                                <p className='fs-6'> <span className='fw-bolder' >Address:</span>   {employer.location} </p>
+                                                <p className='fs-6'> <span className='fw-bolder' >Phone:</span>   {employer.mobile} </p>
                                             </div>
-                                            <h6 className="title-cv">Experience</h6>
-                                            
-                                            <div className='d-flex flex-column'>
+
+                                            <h4 className=''>Summary</h4>
+                                            <p className='mb-4'>{employer.description}</p>
+
+                                            <h6 className="title-cv mb-1">Skill</h6>
+                                            <div className='flex-column'>
                                                 {
                                                     employer?.expertise && employer?.expertise?.map(e =>
                                                         <p key={Math.random()} className='btn btn-outline-success rounded-pill m-2'>{e.technology}{console.log(e.technology)}</p>
                                                     )
                                                 }
+                                            </div>
+
+                                            <h6 className="title-cv mb-3 mt-3">Experience</h6>
+                                            <div className="cv-road-map">
+
+                                                {
+                                                    employer.workHistory.map(w =>
+                                                        <div className="inner">
+                                                            <div className="dot-icon"></div>
+                                                            <div className="content">
+                                                                <h6>{w}</h6>
+                                                                {/* <div className="sub-heading">Company name - TOWN</div>
+                                                                <ul className="list-dot">
+                                                                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
+                                                                </ul> */}
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                }
+
                                             </div>
 
                                         </div>
