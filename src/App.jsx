@@ -44,14 +44,14 @@ function App() {
             <BrowserRouter>
                 <Routes>
 
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
                     <Route path="/" element={<Layout />}>
                         <Route path="/" element={<RequireAuth><Home /></RequireAuth>} />
                         <Route path="/employers/:userId" element={<RequireAuth> <EmployersSingle /></RequireAuth>} />
                         <Route path="/employers-review/:userId" element={<RequireAuth><EmployersReview /></RequireAuth>} />
                         <Route path="/employers-list" element={<RequireAuth><EmployerList /></RequireAuth>} />
                         <Route path="/candidate" element={<RequireAuth><Candidate /></RequireAuth>} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
                         <Route path="/forget-pass" element={<ForgetPass />} />
                         <Route path="/job" element={<RequireAuth><JobList /></RequireAuth>} />
                         <Route path="/job/:postId" element={<RequireAuth><JobSingle /></RequireAuth>} />

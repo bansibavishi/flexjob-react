@@ -58,9 +58,14 @@ export default function Login() {
                             <div className="page-title">
                                 <div className="widget-menu-link">
                                     <ul>
-                                        <li><a href="home-01.html">Home</a></li>
-                                        <li><a href="#">Login</a></li>
+
+                                    <li>
+                                        <Link to={"/"}>Home</Link>
+
+                                    </li>
+                                    <li><a href="#">Login</a></li>
                                     </ul>
+
                                 </div>
                             </div>
                         </div>
@@ -84,7 +89,7 @@ export default function Login() {
                                         <input className="input-form password-input" type={showPassword ? "text" : "password"} onChange={e => setUser({ ...user, password: e.target.value })} value={user.password} placeholder="Password"
                                             required="" />
 
-                                        <a className={"password-addon " + (showPassword ? "icon-eye" : "icon-eye-off") } id="password-addon" onClick={e => setShowPassword(!showPassword)} >
+                                        <a className={"password-addon " + (showPassword ? "icon-eye" : "icon-eye-off")} id="password-addon" onClick={e => setShowPassword(!showPassword)} >
 
                                         </a>
                                     </div>

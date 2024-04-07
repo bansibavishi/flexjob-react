@@ -66,7 +66,10 @@ export default function Register() {
                             <div className="page-title">
                                 <div className="widget-menu-link">
                                     <ul>
-                                        <li><a href="home-01.html">Home</a></li>
+                                        <li>
+                                        <Link to={"/"}>Home</Link>
+
+                                        </li>
                                         <li><a href="#">Create Account</a></li>
                                     </ul>
                                 </div>
