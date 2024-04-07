@@ -1,12 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-
+import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 
 export default function Sidebar() {
+
     const send = useNavigate();
+    const cUser = useSelector(state => state.user)
+
     function logout() {
         var token = localStorage.getItem('token')
         fetch(process.env.REACT_APP_API + "/logout", {
@@ -41,7 +44,7 @@ export default function Sidebar() {
                             </Link>
 
                         </li>
-{/*
+                        {/*
                         <li>
                             <Link to={"/resume"}>
                                 <span className="icon-resumes dash-icon"></span>
@@ -49,12 +52,14 @@ export default function Sidebar() {
                             </Link>
                         </li> */}
 
-                        <li>
-                            <Link to={"/myjob"}>
-                                <span className="icon-my-apply dash-icon"></span>
-                                <span className="dash-titles">My Applied</span>
-                            </Link>
-                        </li>
+                        {cUser?.type == "employer" &&
+                            <li>
+                                <Link to={"/myjob"}>
+                                    <span className="icon-my-apply dash-icon"></span>
+                                    <span className="dash-titles">My Jobs</span>
+                                </Link>
+                            </li>
+                        }
 
                         <li>
                             <Link to={"/savejob-list"}>
@@ -72,20 +77,6 @@ export default function Sidebar() {
                             </Link>
                         </li>
 
-
-                        {/* <li>
-                            <a href="#candidates-change-passwords.html" className="tf-effect">
-                                <span className="icon-change-passwords dash-icon"></span>
-                                <span className="dash-titles">Change passwords</span>
-                            </a>
-                        </li> */}
-
-                        {/* <li>
-                            <a href="#candidates-delete-profile.html" className="tf-effect ">
-                                <span className="icon-trash dash-icon"></span>
-                                <span className="dash-titles">Delete Profile</span>
-                            </a>
-                        </li> */}
 
                         <li>
                             <a className="tf-effect">

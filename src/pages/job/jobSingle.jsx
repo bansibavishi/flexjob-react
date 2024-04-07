@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { IoClose } from "react-icons/io5";
 import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
 
 export default function JobSingle() {
 
@@ -10,6 +11,8 @@ export default function JobSingle() {
     const [purposer, setpurposer] = useState([])
     const [activeMenu, setActiveMenu] = useState('About')
     let { postId } = useParams();
+    const cUser = useSelector(state => state.user)
+
     const [applyJob, setApplyJob] = useState(
         {
             postId: postId,
@@ -139,7 +142,7 @@ export default function JobSingle() {
                                             <img src={process.env.REACT_APP_API + (job?.user && job?.user[0]?.img)} alt="logo" />
                                         </div>
                                         <div className="content">
-                                            <Link to={"/employers/" +( job?.user &&  job?.user[0]?._id) }className="category">{job?.user && job?.user[0]?.firstName}</Link>
+                                            <Link to={"/employers/" + (job?.user && job?.user[0]?._id)} className="category">{job?.user && job?.user[0]?.firstName}</Link>
                                             <h6><a href="#">{job.title}<span className="icon-bolt"></span></a></h6>
                                             <ul className="job-info">
                                                 <li>
@@ -158,8 +161,9 @@ export default function JobSingle() {
                                         <div className="top">
                                             <span onClick={(se) => save(job._id, se)} className={"icon-save-candidate wishlist" + (job?.saved ? " text-danger" : "")}></span>
                                             <span onClick={(se) => like(job._id, se)} className={"icon-heart wishlist" + (job?.liked ? " text-danger" : "")}></span>
-
-                                            <a className="btn btn-popup" onClick={e => { setModal(true); }}><i className="icon-send"></i>Apply Now</a>
+                                                {
+                                                    cUser.type != "employer" && <a className="btn btn-popup" onClick={e => { setModal(true); }}><i className="icon-send"></i>Apply Now</a>
+                                                }
 
                                         </div>
                                         <div className="bottom">
