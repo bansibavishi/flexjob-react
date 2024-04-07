@@ -90,15 +90,8 @@ export default function MyJob() {
                                                             <td>
                                                                 <h5>${e.budget}</h5>
                                                             </td>
-                                                            {/* <td>
-                      <h6 className="fw-5">Created: Oct 18, 2022</h6>
-                      <h6 className="fw-5">Expiry date: Sept 5, 2023</h6>
-                    </td> */}
-                                                            <td>
-                                                                {/* <div className="status-wrap">
-                        <div className="button-status color-3"> Published </div>
-                      </div> */}
-                                                            </td>
+
+                                                          
                                                             <td>
                                                                 <div className="action-wrap">
                                                                     <ul className="flex2">

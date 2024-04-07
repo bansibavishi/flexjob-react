@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 export default function MyProposal() {
-    const [myJob, setMyJob] = useState([])
+    const [proposal, setMyJob] = useState([])
     const cUser = useSelector(state => state.user)
     console.log(cUser);
 
@@ -48,19 +48,24 @@ export default function MyProposal() {
                                             <thead>
                                                 <tr>
                                                     <th>My jobs</th>
-                                                    <th>Applicants</th>
+                                                    <th>Amount</th>
                                                 </tr>
+
                                             </thead>
                                             <tbody>
                                                 {
-                                                    myJob.map(e =>
+                                                    proposal.map(e =>
 
                                                         <tr className="file-delete">
                                                             <td>
                                                                 <div className="candidates-wrap flex2">
                                                                     <div className="content">
                                                                         <div className="title-box flex2">
-                                                                            <h3>{e.user[0].title}</h3>
+                                                                          <Link to={'/job/' + e.postId}>
+
+                                                                            <h3>{e.post[0].title}</h3>
+                                                                          </Link>
+
                                                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                                                 xmlns="http://www.w3.org/2000/svg">
                                                                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -78,31 +83,17 @@ export default function MyProposal() {
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <h5>${e.budget}</h5>
+                                                                <h5>${e.post[0].budget}</h5>
                                                             </td>
+
                                                             {/* <td>
-                      <h6 className="fw-5">Created: Oct 18, 2022</h6>
-                      <h6 className="fw-5">Expiry date: Sept 5, 2023</h6>
-                    </td> */}
-                                                            <td>
-                                                                {/* <div className="status-wrap">
-                        <div className="button-status color-3"> Published </div>
-                      </div> */}
-                                                            </td>
-                                                            <td>
                                                                 <div className="action-wrap">
                                                                     <ul className="flex2">
-                                                                        {/* <li className="hv-tool" data-tooltip="Lock"><a className="action-icon icon-lock1"></a></li>
-                          <li className="hv-tool" data-tooltip="Write"><a className="action-icon icon-write1"></a></li> */}
-                                                                        {/* <li><Link to={"/application-job/" + e._id} className="button-cancel fw-7 remove-file me-3">View Application</Link></li> */}
-                                                                        <li>
-                                                                            {/* <a className="button-cancel fw-7 remove-file">Cancel</a> */}
-                                                                        </li>
 
 
                                                                     </ul>
                                                                 </div>
-                                                            </td>
+                                                            </td> */}
                                                         </tr>
                                                     )}
 

@@ -165,7 +165,7 @@ export default function ApplicationJob() {
                                                                         <div className="status-wrap col">
                                                                             <button type='submit' className="button-status color-3" onClick={() => proposalStatus(e._id, "rejected")}> Rejected</button>
                                                                         </div>
-                                                                    </td> :  <button type='submit' className="button-status color-3 mt-5">{e.status}</button>
+                                                                    </td> : <td> <button type='submit' className="button-status color-3 mt-5">{e.status}</button></td>
                                                             }
                                                             {
                                                               e.status == "approved" ?
