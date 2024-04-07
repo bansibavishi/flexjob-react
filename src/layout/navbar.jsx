@@ -158,7 +158,7 @@ export default function Navbar() {
                                             {
                                                 notification.map(n =>
                                                     <div className="sub-notification-item icon-plus">
-                                                        <div className="time">Last day</div>
+                                                        {/* <div className="time">Last day</div> */}
                                                         <div className="content">
                                                             {n.data.message}
                                                             {/* Your submit job <span className="name">Graphic Design</span> is */}
@@ -191,7 +191,7 @@ export default function Navbar() {
                                             <div className="sub-account-item">
                                                 <Link to="/profile"><span className="icon-profile"></span> Profile</Link>
                                             </div>
-                                            {cUser.type == "employer" &&
+                                            {cUser?.type == "employer" &&
                                                 <div className="sub-account-item">
                                                     <Link to="/job/create"><span className="icon-plus"></span>Create Job</Link>
                                                 </div>
@@ -199,7 +199,7 @@ export default function Navbar() {
                                             {/* <div className="sub-account-item">
                                                 <a href="dashboard/candidates-resumes.html"><span className="icon-resumes"></span> Resumes</a>
                                             </div> */}
-                                            {cUser.type == "employer" &&
+                                            {cUser?.type == "employer" &&
                                                 <div className="sub-account-item">
                                                     <Link to={"/myjob"}><span className="icon-my-apply"></span> My Jobs</Link>
                                                 </div>

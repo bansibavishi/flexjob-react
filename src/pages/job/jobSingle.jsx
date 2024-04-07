@@ -51,6 +51,7 @@ export default function JobSingle() {
             if (res.status == true) {
                 toast.success(res.message)
                 setModal(false)
+                getjob()
             }
             else {
                 toast.error(res.message)
@@ -119,6 +120,7 @@ export default function JobSingle() {
             console.log(err);
         })
     }
+    console.log(job);
 
     useEffect(() => {
         getjob()
@@ -161,10 +163,16 @@ export default function JobSingle() {
                                         <div className="top">
                                             <span onClick={(se) => save(job._id, se)} className={"icon-save-candidate wishlist" + (job?.saved ? " text-danger" : "")}></span>
                                             <span onClick={(se) => like(job._id, se)} className={"icon-heart wishlist" + (job?.liked ? " text-danger" : "")}></span>
-                                                {
-                                                    cUser.type != "employer" && <a className="btn btn-popup" onClick={e => { setModal(true); }}><i className="icon-send"></i>Apply Now</a>
+                                            {
+                                                cUser?.type != "employer" &&
+                                                <> {
+                                                    job?.applied ?
+                                                        <a className="btn btn-popup" >Applied</a>
+                                                        :
+                                                        <a className="btn btn-popup" onClick={e => { setModal(true); }}><i className="icon-send"></i>Apply Now</a>
                                                 }
-
+                                                </>
+                                            }
                                         </div>
                                         <div className="bottom">
 
@@ -218,7 +226,7 @@ export default function JobSingle() {
                                                                             </div>
                                                                             <div className="infor">
                                                                                 <h5><a href="#">{e.user[0]?.firstName}</a><svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-                                                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.5 10C0.5 4.47715 4.97715 0 10.5 0C16.0228 0 20.5 4.47715 20.5 10C20.5 15.5228 16.0228 20 10.5 20C4.97715 20 0.5 15.5228 0.5 10Z" fill="#37B853" />
+                                                                                    <path fillRule="evenodd" clipRule="evenodd" d="M0.5 10C0.5 4.47715 4.97715 0 10.5 0C16.0228 0 20.5 4.47715 20.5 10C20.5 15.5228 16.0228 20 10.5 20C4.97715 20 0.5 15.5228 0.5 10Z" fill="#37B853" />
                                                                                     <path d="M8.89644 13.8429L5.64644 10.3563C5.45119 10.1468 5.45119 9.80718 5.64644 9.59769L6.35353 8.8391C6.54879 8.62961 6.86539 8.62961 7.06064 8.8391L9.25 11.1878L13.9394 6.1571C14.1346 5.94763 14.4512 5.94763 14.6465 6.1571L15.3536 6.91569C15.5488 7.12516 15.5488 7.46479 15.3536 7.67428L9.60355 13.8429C9.40828 14.0524 9.0917 14.0524 8.89644 13.8429Z" fill="white" />
                                                                                 </svg></h5>
 
@@ -251,7 +259,7 @@ export default function JobSingle() {
 
                                         <iframe className="map-box"
                                             src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7302.453092836291!2d90.47477022812872!3d23.77494577893369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1627293157601!5m2!1svi!2s"
-                                            allowfullscreen="" loading="lazy"></iframe>
+                                            allowFullScreen="" loading="lazy"></iframe>
 
                                     </div>
                                     <ul className="list-infor">
