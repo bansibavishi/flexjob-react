@@ -225,35 +225,36 @@ export default function Navbar() {
                                                 <a href="dashboard/candidates-resumes.html"><span className="icon-resumes"></span> Resumes</a>
                                             </div> */}
                                             <div className="sub-account-item">
-                                                <Link to={"/myjob"}><span className="icon-my-apply"></span> My Applied</Link>
-                                            </div>
-                                            <div className="sub-account-item">
                                                 <Link to={"/savejob-list"}><span className="icon-work"></span> Saved Jobs</Link>
                                             </div>
                                             <div className="sub-account-item">
                                                 <Link to={"/message"}><span className="icon-chat"></span> Messages</Link>
                                             </div>
 
-                                            <div className="sub-account-item">
-                                                <a><span className="icon-change-passwords"></span><Link to={"/forget-pass"}>Change Passwords</Link></a>
-                                            </div>
-                                            <div className="sub-account-item">
-                                                <a href="#" onClick={logout}><span className="icon-log-out"></span> Log Out</a>
-                                            </div>
+                                            {cUser?.type != 'employer' && <div className="sub-account-item">
+                                                <Link to={"/my-proposal"}><span className="icon-my-apply"></span> My Applied</Link>
+                                                </div>
+                                                }
+                                        <div className="sub-account-item">
+                                            <a><span className="icon-change-passwords"></span><Link to={"/forget-pass"}>Change Passwords</Link></a>
+                                        </div>
+                                        <div className="sub-account-item">
+                                            <a href="#" onClick={logout}><span className="icon-log-out"></span> Log Out</a>
                                         </div>
                                     </div>
+                                    </div>
                                 }
-                                {/* <div className="header-customize-item button">
+                            {/* <div className="header-customize-item button">
                                     <Link to={"/resume"}>Upload Resume</Link>
                                 </div> */}
-                            </div>
-                            <div className="nav-filter">
-                                <div className="nav-mobile"><span></span></div>
-                            </div>
+                        </div>
+                        <div className="nav-filter">
+                            <div className="nav-mobile"><span></span></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
+        </header >
     )
 }

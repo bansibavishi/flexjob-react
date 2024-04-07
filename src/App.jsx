@@ -26,6 +26,7 @@ import Message from "./pages/dashboard/message";
 import CandidateList from "./pages/job/candidateList";
 import CandidateSingle from "./pages/job/candidateSingle";
 import Resume from "./pages/dashboard/resume";
+import MyProposal from "./pages/dashboard/myProposal";
 
 
 
@@ -69,6 +70,7 @@ function App() {
                         <Route path="/profile" element={<RequireAuth> <Profile /></RequireAuth>} />
                         <Route path="/job/create" element={<RequireAuth><JobCreate /></RequireAuth>} />
                         <Route path="/myjob" element={<RequireAuth><MyJob/></RequireAuth>}/>
+                        <Route path="/my-proposal" element={<RequireAuth><MyProposal/></RequireAuth>}/>
                         <Route path="/application-job/:postId" element={<RequireAuth><ApplicationJob/></RequireAuth>}/>
                         <Route path="/message" element={<RequireAuth><Message/></RequireAuth>}/>
                     </Route>
