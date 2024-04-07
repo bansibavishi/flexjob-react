@@ -230,10 +230,14 @@ export default function Profile() {
                                                     <label className="title-user fw-7">Rate</label>
                                                     <input type="number" className="input-form" onChange={e => setUser({ ...user, rate: e.target.value })} value={user.rate} required />
                                                 </fieldset>
-                                                <CreatableSelect
-                                                    isMulti onChange={wHistorySelect}
-                                                    value={user?.workHistory?.map(h => ({ label: h, value: h }))}
-                                                />
+
+                                                <fieldset>
+                                                    <label className="title-user fw-7">Work History</label>
+                                                    <CreatableSelect
+                                                        isMulti onChange={wHistorySelect}
+                                                        value={user?.workHistory?.map(h => ({ label: h, value: h }))}
+                                                    />
+                                                </fieldset>
                                             </div>
                                         </div>
 

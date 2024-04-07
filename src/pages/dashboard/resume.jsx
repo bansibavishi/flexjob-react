@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import ReactToPrint from 'react-to-print';
+import { useReactToPrint } from 'react-to-print';
 
 export default function Resume() {
 
     const [employer, setEmployer] = useState({})
     let { userId } = useParams();
 
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
+    });
 
     function getSingleEmployer() {
 
@@ -42,10 +48,13 @@ export default function Resume() {
                     </div>
                 </section>
                 <section className="candidates-section">
+
                     <div className="tf-container">
 
+                        <button onClick={handlePrint} className="tf-btn me-3 mb-3">Print</button>
 
-                        <div className="row" >
+
+                        <div ref={componentRef} className="row" >
                             <div className="col-lg-12">
                                 <div className="wd-cv-item">
                                     <div className="item-group">
@@ -80,7 +89,7 @@ export default function Resume() {
                                             <div className="cv-road-map">
 
                                                 {
-                                                    employer.workHistory.map(w =>
+                                                    employer?.workHistory?.map(w =>
                                                         <div className="inner">
                                                             <div className="dot-icon"></div>
                                                             <div className="content">
