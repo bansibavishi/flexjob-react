@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { setUser } from '../helper/slice';
 // import icon from '/images/icon.png'
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 import SendbirdProvider from '@sendbird/uikit-react/SendbirdProvider';
 
 export default function Navbar() {
@@ -12,13 +13,12 @@ export default function Navbar() {
     const [activeMenu, setActiveMenu] = useState('home')
     const send = useNavigate();
 
-    const run = useDispatch();
+    const dispatch = useDispatch();
     const cUser = useSelector(state => state.user)
 
 
 
     const [notification, setNotification] = useState([])
-    // console.log(cUser);
 
     function logout() {
         var token = localStorage.getItem('token')
@@ -48,23 +48,25 @@ export default function Navbar() {
                 Authorization: 'Bearer ' + token
             }
         }).then(e => e.json()).then(res => {
-            console.log(res);
-            if (res.status.message === 'Unauthorized: Invalid or expired token') {
-                run(setUser(null))
-                localStorage.setItem('token', null)
+            if (res.message === 'Unauthorized: Invalid or expired token') {
+                dispatch(setUser(null))
+                localStorage.removeItem('token')
+                send('/login')
+            } else {
+                dispatch(setUser(res.userData))
             }
-            run(setUser(res.userData))
         }).catch(err => {
             // localStorage.setItem('token', null)
             console.log(err);
         })
     }
 
-    function getnotification() {
-        fetch(process.env.REACT_APP_API + "/notification-list?" + cUser?._id, {
-
-        }).then(e => e.json()).then(res => {
-            console.log(res);
+    function getNotification() {
+        var token = localStorage.getItem('token')
+        axios.get(process.env.REACT_APP_API + "/notification-list", {
+            headers: { Authorization: 'Bearer ' + token }
+        }).then(res => {
+            setNotification(res.data.data)
         }).catch(err => {
             console.log(err);
         })
@@ -72,12 +74,11 @@ export default function Navbar() {
 
     useEffect(() => {
         getUser()
-        getnotification()
+        getNotification()
     }, [])
 
     const location = useLocation();
 
-    console.log(location);
 
     function headClass() {
         const path = location.pathname
@@ -151,51 +152,26 @@ export default function Navbar() {
                                     <div className="sub-notification">
                                         <div className="sub-notification-heading">
                                             <div className="sub-notification-title">Notification</div>
-                                            <span>5 New</span>
+                                            {/* <span>5 New</span> */}
                                         </div>
                                         <div className="sub-notification-content">
-                                            <div className="sub-notification-item icon-plus">
-                                                <div className="time">Last day</div>
-                                                <div className="content">
-                                                    Your submit job <span className="name">Graphic Design</span> is
-                                                    <span className="status">Success</span>
-                                                </div>
-                                            </div>
-                                            <div className="sub-notification-item icon-plus">
-                                                <div className="time">5 Day ago</div>
-                                                <div className="content">
-                                                    A new application is submitted on your job
-                                                    <span className="name">Graphic Design</span> by
-                                                    <span className="name">Maverick Nguyen</span>
-                                                </div>
-                                            </div>
-                                            <div className="sub-notification-item icon-plus">
-                                                <div className="time">5 Day ago</div>
-                                                <div className="content">
-                                                    A new application is submitted on your job
-                                                    <span className="name">Graphic Design</span> by
-                                                    <span className="name">Maverick Nguyen</span>
-                                                </div>
-                                            </div>
-                                            <div className="sub-notification-item icon-plus">
-                                                <div className="time">Last day</div>
-                                                <div className="content">
-                                                    Your submit job <span className="name">Graphic Design</span> is
-                                                    <span className="status">Success</span>
-                                                </div>
-                                            </div>
-                                            <div className="sub-notification-item icon-plus">
-                                                <div className="time">5 Day ago</div>
-                                                <div className="content">
-                                                    A new application is submitted on your job
-                                                    <span className="name">Graphic Design</span> by
-                                                    <span className="name">Maverick Nguyen</span>
-                                                </div>
-                                            </div>
+                                            {
+                                                notification.map(n =>
+                                                    <div className="sub-notification-item icon-plus">
+                                                        <div className="time">Last day</div>
+                                                        <div className="content">
+                                                            {n.data.message}
+                                                            {/* Your submit job <span className="name">Graphic Design</span> is */}
+                                                            {/* <span className="status">Success</span> */}
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
+
                                         </div>
-                                        <div className="sub-notification-button">
+                                        {/* <div className="sub-notification-button">
                                             <a href="#">Read All</a>
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                                 <div className="header-customize-item help">
@@ -206,7 +182,7 @@ export default function Navbar() {
                                     <div className="header-customize-item account">
                                         <img src={cUser?.link} alt="" />
                                         <div className="name">
-                                            {cUser?.firstName}
+                                            {cUser?.firstName}dddddddddd
                                         </div>
                                         <div className="sub-account">
                                             {/* <div className="sub-account-item">
@@ -215,18 +191,19 @@ export default function Navbar() {
                                             <div className="sub-account-item">
                                                 <Link to="/profile"><span className="icon-profile"></span> Profile</Link>
                                             </div>
-                                            {
-                                                cUser.type == "employer" ?
-                                                    <div className="sub-account-item">
-                                                        <Link to="/job/create"><span className="icon-plus"></span>Create Job</Link>
-                                                    </div> : ""
+                                            {cUser.type == "employer" &&
+                                                <div className="sub-account-item">
+                                                    <Link to="/job/create"><span className="icon-plus"></span>Create Job</Link>
+                                                </div>
                                             }
                                             {/* <div className="sub-account-item">
                                                 <a href="dashboard/candidates-resumes.html"><span className="icon-resumes"></span> Resumes</a>
                                             </div> */}
-                                            <div className="sub-account-item">
-                                                <Link to={"/myjob"}><span className="icon-my-apply"></span> My Applied</Link>
-                                            </div>
+                                            {cUser.type == "employer" &&
+                                                <div className="sub-account-item">
+                                                    <Link to={"/myjob"}><span className="icon-my-apply"></span> My Jobs</Link>
+                                                </div>
+                                            }
                                             <div className="sub-account-item">
                                                 <Link to={"/savejob-list"}><span className="icon-work"></span> Saved Jobs</Link>
                                             </div>
