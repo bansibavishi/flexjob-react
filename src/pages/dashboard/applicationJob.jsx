@@ -68,6 +68,7 @@ export default function ApplicationJob() {
                 ).then(res => {
                     if (res.data.success == true) {
                         toast.success(res.data.message)
+                        getProposal()
                     }
                     else {
                         toast.error(res.data.message)
@@ -176,7 +177,12 @@ export default function ApplicationJob() {
                                                                 e.status == "approved" ?
                                                                     <td>
                                                                         <div className="status-wrap col">
+                                                                        {
+                                                                            e.paymentStatus ? 
+                                                                            <> <span className='badge bg-success'>Completed</span> </>
+                                                                            :
                                                                             <button type='submit' className="button-status color-3" onClick={() => paymentMethod(e._id)}> Payment</button>
+                                                                        }
                                                                         </div>
                                                                     </td>
                                                                     :

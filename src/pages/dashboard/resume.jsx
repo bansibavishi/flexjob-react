@@ -53,15 +53,9 @@ export default function Resume() {
                                             <div className="avatar">
                                                 <img src={process.env.REACT_APP_API + employer.img} alt="images" />
                                             </div>
-                                            <h6>Expertise</h6>
+                                            {/* <h6>Expertise</h6> */}
 
-                                            <div className='d-flex flex-column'>
-                                                {
-                                                    employer?.expertise && employer?.expertise?.map(e =>
-                                                        <p key={Math.random()} className='btn btn-outline-success rounded-pill m-2'>{e.technology}{console.log(e.technology)}</p>
-                                                    )
-                                                }
-                                            </div>
+                                           
                                         </div>
                                         <div className="content-right">
                                             <div className="profile">
@@ -71,44 +65,13 @@ export default function Resume() {
                                                 <p>{employer.description}</p>
                                             </div>
                                             <h6 className="title-cv">Experience</h6>
-                                            <div className="cv-road-map">
-                                                <div className="inner">
-                                                    <div className="history">2020-2021</div>
-                                                    <div className="dot-icon"></div>
-                                                    <div className="content">
-                                                        <h6>At vero eos et accusamus et</h6>
-                                                        <div className="sub-heading">Company name - TOWN</div>
-                                                        <ul className="list-dot">
-                                                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div className="inner">
-                                                    <div className="history">2020-2021</div>
-                                                    <div className="dot-icon"></div>
-                                                    <div className="content">
-                                                        <h6>At vero eos et accusamus et</h6>
-                                                        <div className="sub-heading">Company name - TOWN</div>
-                                                        <ul className="list-dot">
-                                                            <li>Sed ut perspiciatis unde omnis iste natus error sit</li>
-                                                            <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti </li>
-                                                            <li>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div className="inner">
-                                                    <div className="history">2020-2021</div>
-                                                    <div className="dot-icon"></div>
-                                                    <div className="content">
-                                                        <h6>At vero eos et accusamus et</h6>
-                                                        <div className="sub-heading">Company name - TOWN</div>
-                                                        <ul className="list-dot">
-                                                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit elit</li>
-                                                            <li>Excepteur sint occaecat cupidatat non proident</li>
-                                                            <li>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
+                                            
+                                            <div className='d-flex flex-column'>
+                                                {
+                                                    employer?.expertise && employer?.expertise?.map(e =>
+                                                        <p key={Math.random()} className='btn btn-outline-success rounded-pill m-2'>{e.technology}{console.log(e.technology)}</p>
+                                                    )
+                                                }
                                             </div>
 
                                         </div>
