@@ -162,7 +162,7 @@ export default function JobSingle() {
                                             <span onClick={(se) => save(job._id, se)} className={"icon-save-candidate wishlist" + (job?.saved ? " text-danger" : "")}></span>
                                             <span onClick={(se) => like(job._id, se)} className={"icon-heart wishlist" + (job?.liked ? " text-danger" : "")}></span>
                                                 {
-                                                    cUser.type != "employer" && <a className="btn btn-popup" onClick={e => { setModal(true); }}><i className="icon-send"></i>Apply Now</a>
+                                                    cUser?.type != "employer" && <a className="btn btn-popup" onClick={e => { setModal(true); }}><i className="icon-send"></i>Apply Now</a>
                                                 }
 
                                         </div>

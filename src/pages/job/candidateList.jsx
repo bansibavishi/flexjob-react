@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function CandidateList() {
 
-    const[candidateList, setCandidateList] = useState([])
+    const [candidateList, setCandidateList] = useState([])
     // const [page, setPage] = useState(1)
     // const [totalPage, setTotalPage] = useState(1)
 
@@ -49,9 +49,9 @@ export default function CandidateList() {
     useEffect(() => {
         getCandidateList()
     }, [])
-  return (
-    <>
-        <div className="boxed">
+    return (
+        <>
+            <div className="boxed">
                 <section className="bg-f5 breadcrumb-section">
                     <div className="tf-container">
                         <div className="row">
@@ -60,7 +60,7 @@ export default function CandidateList() {
                                     <div className="widget-menu-link">
                                         <ul>
                                             <li><a href="home-01.html">Home</a></li>
-                                            <li><a href="#">Employers</a></li>
+                                            <li><a href="#">Candidates</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -86,7 +86,9 @@ export default function CandidateList() {
                                 <div className="wd-meta-select-job">
 
                                     <div className="wd-findjob-filer">
-                                        <h5>Employers</h5>
+                                        <h5>
+                                            Candidates
+                                        </h5>
 
                                     </div>
                                 </div>
@@ -99,15 +101,15 @@ export default function CandidateList() {
                                                     <div className="employer-block style-2 cl2" key={Math.random()}>
                                                         <div className="inner-box">
                                                             <div className="logo-company">
-                                                                <img src="http://127.0.0.1:4000/avatar.jpg"  alt="images/logo-company/cty17.png" />
+                                                                <img src="http://127.0.0.1:4000/avatar.jpg" alt="images/logo-company/cty17.png" />
                                                             </div>
                                                             <div className="box-content">
 
                                                                 <Link to={"/candidate/" + e._id}>
-                                                                <h3>
-                                                                    <a>{e.firstName}</a>
-                                                                    <span className="icon-bolt ms-2"></span>
-                                                                </h3>
+                                                                    <h3>
+                                                                        <a>{e.firstName}</a>
+                                                                        <span className="icon-bolt ms-2"></span>
+                                                                    </h3>
                                                                 </Link>
                                                                 <p className="info">
                                                                     <span className="icon-map-pin me-2"></span>
@@ -141,6 +143,6 @@ export default function CandidateList() {
 
 
             </div>
-    </>
-  )
+        </>
+    )
 }

@@ -158,7 +158,7 @@ export default function Navbar() {
                                             {
                                                 notification.map(n =>
                                                     <div className="sub-notification-item icon-plus">
-                                                        <div className="time">Last day</div>
+                                                        <div className="time">Now</div>
                                                         <div className="content">
                                                             {n.data.message}
                                                             {/* Your submit job <span className="name">Graphic Design</span> is */}

@@ -382,7 +382,7 @@ export default function EmployersSingle() {
                                 <article className="job-article tf-tab single-job single-employer">
                                     <ul className="menu-tab">
                                         <li className={"ct-tab" + (activeMenu == "About" ? " active" : "")} onClick={e => setActiveMenu("About")}>About</li>
-                                        <li className={"ct-tab " + (activeMenu == "Jobs" ? " active" : "")} onClick={e => setActiveMenu("Jobs")}>Jobs (2)</li>
+                                        <li className={"ct-tab " + (activeMenu == "Jobs" ? " active" : "")} onClick={e => setActiveMenu("Jobs")}>Jobs </li>
                                         <li className={"ct-tab" + (activeMenu == "Reviews" ? " active" : "")} onClick={e => setActiveMenu("Reviews")}>Reviews</li>
                                     </ul>
                                     <div className="content-tab">
