@@ -305,9 +305,9 @@ export default function EmployersSingle() {
 
 
 
-                    <div className="header-customize-item button">
+                    {/* <div className="header-customize-item button">
                         <a href="dashboard/candidates-resumes.html">Upload Resume</a>
-                    </div>
+                    </div> */}
 
                     <div className="mobile-footer">
                         <div className="icon-infor d-flex aln-center">

@@ -2957,7 +2957,7 @@
   margin-right: 25px;
   margin-bottom: 50px;
 }
-
+/* 
 .cv-road-map::after {
   content: "";
   position: absolute;
@@ -2966,7 +2966,7 @@
   height: 95%;
   width: 1px;
   background: #14a077;
-}
+} */
 
 .cv-road-map .inner {
   display: flex;

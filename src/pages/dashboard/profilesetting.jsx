@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Multiselect from 'multiselect-react-dropdown';
 import { Link, useParams } from 'react-router-dom'
 // axios.defaults.withCredentials = true
+import CreatableSelect from 'react-select/creatable';
 
 export default function Profile() {
 
@@ -17,9 +18,9 @@ export default function Profile() {
         firstName: cUser?.firstName,
         lastName: cUser?.lastName,
         email: cUser?.email,
-        password: cUser?.password,
         mobile: cUser?.mobile,
         expertise: cUser?.expertise,
+        workHistory: cUser?.workHistory,
         title: cUser?.title,
         description: cUser?.description,
         location: cUser?.location,
@@ -32,9 +33,9 @@ export default function Profile() {
             firstName: cUser?.firstName,
             lastName: cUser?.lastName,
             email: cUser?.email,
-            password: cUser?.password,
             mobile: cUser?.mobile,
             expertise: cUser?.expertise,
+            workHistory: cUser?.workHistory,
             title: cUser?.title,
             description: cUser?.description,
             location: cUser?.location,
@@ -70,8 +71,8 @@ export default function Profile() {
 
         var pData = new FormData()
         for (const k in user) {
-            if (k != '_id' && k != 'email' && k != 'savedJob' && k != 'workHistory')
-                if (k == "expertise") {
+            if (k != '_id' && k != 'email' && k != 'savedJob')
+                if (k == "expertise" || k == 'workHistory') {
                     user[k].map(e => {
                         pData.append(k, e)
                     })
@@ -95,6 +96,12 @@ export default function Profile() {
                 }
             })
 
+    }
+
+
+    function wHistorySelect(ex) {
+        console.log(ex);
+        setUser({ ...user, workHistory: ex.map(e => e.value) })
     }
 
 
@@ -223,6 +230,14 @@ export default function Profile() {
                                                     <label className="title-user fw-7">Rate</label>
                                                     <input type="number" className="input-form" onChange={e => setUser({ ...user, rate: e.target.value })} value={user.rate} required />
                                                 </fieldset>
+
+                                                <fieldset>
+                                                    <label className="title-user fw-7">Work History</label>
+                                                    <CreatableSelect
+                                                        isMulti onChange={wHistorySelect}
+                                                        value={user?.workHistory?.map(h => ({ label: h, value: h }))}
+                                                    />
+                                                </fieldset>
                                             </div>
                                         </div>
 
@@ -238,9 +253,6 @@ export default function Profile() {
                                         </div>
                                         <div>
                                             <button className="tf-button bg-success text-white" type='submit'>Submit</button>
-                                            <Link to={"/resume/" + cUser?._id}>
-                                                <button className="tf-button bg-success text-white" type='submit'>Resume</button>
-                                            </Link>
                                         </div>
 
                                     </form>

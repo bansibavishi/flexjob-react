@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import ReactToPrint from 'react-to-print';
+import { useReactToPrint } from 'react-to-print';
 
 export default function Resume() {
 
     const [employer, setEmployer] = useState({})
     let { userId } = useParams();
 
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
+    });
 
     function getSingleEmployer() {
 
@@ -42,10 +48,13 @@ export default function Resume() {
                     </div>
                 </section>
                 <section className="candidates-section">
+
                     <div className="tf-container">
 
+                        <button onClick={handlePrint} className="tf-btn me-3 mb-3">Print</button>
 
-                        <div className="row" >
+
+                        <div ref={componentRef} className="row" >
                             <div className="col-lg-12">
                                 <div className="wd-cv-item">
                                     <div className="item-group">
@@ -53,62 +62,47 @@ export default function Resume() {
                                             <div className="avatar">
                                                 <img src={process.env.REACT_APP_API + employer.img} alt="images" />
                                             </div>
-                                            <h6>Expertise</h6>
+                                            {/* <h6>Expertise</h6> */}
+                                        </div>
+                                        <div className="content-right">
+                                            <div className="profile pb-5">
+                                                <h2>{employer.firstName}</h2>
+                                                <h4>{employer.email}</h4>
+                                                <h6>{employer.title}</h6>
+                                                <p className='fs-6'> <span className='fw-bolder' >Address:</span>   {employer.location} </p>
+                                                <p className='fs-6'> <span className='fw-bolder' >Phone:</span>   {employer.mobile} </p>
+                                            </div>
 
-                                            <div className='d-flex flex-column'>
+                                            <h4 className=''>Summary</h4>
+                                            <p className='mb-4'>{employer.description}</p>
+
+                                            <h6 className="title-cv mb-1">Skill</h6>
+                                            <div className='flex-column'>
                                                 {
                                                     employer?.expertise && employer?.expertise?.map(e =>
                                                         <p key={Math.random()} className='btn btn-outline-success rounded-pill m-2'>{e.technology}{console.log(e.technology)}</p>
                                                     )
                                                 }
                                             </div>
-                                        </div>
-                                        <div className="content-right">
-                                            <div className="profile">
-                                                <h2>{employer.firstName}</h2>
-                                                <h4>{employer.email}</h4>
-                                                <h6>{employer.title}</h6>
-                                                <p>{employer.description}</p>
-                                            </div>
-                                            <h6 className="title-cv">Experience</h6>
+
+                                            <h6 className="title-cv mb-3 mt-3">Experience</h6>
                                             <div className="cv-road-map">
-                                                <div className="inner">
-                                                    <div className="history">2020-2021</div>
-                                                    <div className="dot-icon"></div>
-                                                    <div className="content">
-                                                        <h6>At vero eos et accusamus et</h6>
-                                                        <div className="sub-heading">Company name - TOWN</div>
-                                                        <ul className="list-dot">
-                                                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div className="inner">
-                                                    <div className="history">2020-2021</div>
-                                                    <div className="dot-icon"></div>
-                                                    <div className="content">
-                                                        <h6>At vero eos et accusamus et</h6>
-                                                        <div className="sub-heading">Company name - TOWN</div>
-                                                        <ul className="list-dot">
-                                                            <li>Sed ut perspiciatis unde omnis iste natus error sit</li>
-                                                            <li>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti </li>
-                                                            <li>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div className="inner">
-                                                    <div className="history">2020-2021</div>
-                                                    <div className="dot-icon"></div>
-                                                    <div className="content">
-                                                        <h6>At vero eos et accusamus et</h6>
-                                                        <div className="sub-heading">Company name - TOWN</div>
-                                                        <ul className="list-dot">
-                                                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit elit</li>
-                                                            <li>Excepteur sint occaecat cupidatat non proident</li>
-                                                            <li>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
+
+                                                {
+                                                    employer?.workHistory?.map(w =>
+                                                        <div className="inner">
+                                                            <div className="dot-icon"></div>
+                                                            <div className="content">
+                                                                <h6>{w}</h6>
+                                                                {/* <div className="sub-heading">Company name - TOWN</div>
+                                                                <ul className="list-dot">
+                                                                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
+                                                                </ul> */}
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                }
+
                                             </div>
 
                                         </div>

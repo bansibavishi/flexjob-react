@@ -56,19 +56,19 @@ export default function ApplicationJob() {
             description: "Test Transaction",
             image: "/images/logo.png",
             order_id: order.data.id,
-            handler:  async function (response) {
+            handler: async function (response) {
                 console.log(response.razorpay_payment_id);
                 console.log(response.razorpay_order_id);
                 console.log(response.razorpay_signature);
                 axios.post(process.env.REACT_APP_API + "/verify-order", {
-                    payment_id:response.razorpay_payment_id,
-                    order_id:response.razorpay_order_id,
-                    razorpay_signature:response.razorpay_signature
+                    payment_id: response.razorpay_payment_id,
+                    order_id: response.razorpay_order_id,
+                    razorpay_signature: response.razorpay_signature
                 }
                 ).then(res => {
-                    if(res.data.success == true)
-                    {
+                    if (res.data.success == true) {
                         toast.success(res.data.message)
+                        getProposal()
                     }
                     else {
                         toast.error(res.data.message)
@@ -138,7 +138,6 @@ export default function ApplicationJob() {
 
                                                         <tr className="file-delete">
                                                             <td>
-
                                                                 <div className="candidates-wrap flex2">
                                                                     <div className="images">
                                                                         <img src="http://127.0.0.1:4000/avatar.jpg" alt="" />
@@ -158,24 +157,36 @@ export default function ApplicationJob() {
                                                             </td>
                                                             {
                                                                 e?.status == "pending" || !e?.status ?
-                                                                    <td className='row'>
-                                                                        <div className="status-wrap col">
-                                                                            <button type='submit' className="button-status color-3" onClick={() => proposalStatus(e._id, "approved")}> Approved</button>
+                                                                    <td>
+                                                                        <div className='row'>
+                                                                            <div className="status-wrap col">
+                                                                                <button type='submit' className="button-status color-3" onClick={() => proposalStatus(e._id, "approved")}> Approve</button>
+                                                                            </div>
+                                                                            <div className="status-wrap col">
+                                                                                <button type='submit' className="button-status color-3" onClick={() => proposalStatus(e._id, "rejected")}> Reject</button>
+                                                                            </div>
                                                                         </div>
-                                                                        <div className="status-wrap col">
-                                                                            <button type='submit' className="button-status color-3" onClick={() => proposalStatus(e._id, "rejected")}> Rejected</button>
-                                                                        </div>
-                                                                    </td> : <td> <button type='submit' className="button-status color-3 mt-5">{e.status}</button></td>
+                                                                    </td>
+                                                                    :
+                                                                    <td><div>
+                                                                        <button type='submit' className="button-status color-3 mt-5">{e.status}</button>
+                                                                    </div>
+                                                                    </td>
                                                             }
                                                             {
-                                                              e.status == "approved" ?
-
-                                                            <td>
-
-                                                                <div className="status-wrap col">
-                                                                    <button type='submit' className="button-status color-3" onClick={() => paymentMethod(e._id)}> Payment</button>
-                                                                </div>
-                                                            </td> :""
+                                                                e.status == "approved" ?
+                                                                    <td>
+                                                                        <div className="status-wrap col">
+                                                                        {
+                                                                            e.paymentStatus ? 
+                                                                            <> <span className='badge bg-success'>Completed</span> </>
+                                                                            :
+                                                                            <button type='submit' className="button-status color-3" onClick={() => paymentMethod(e._id)}> Payment</button>
+                                                                        }
+                                                                        </div>
+                                                                    </td>
+                                                                    :
+                                                                    <td></td>
                                                             }
 
                                                         </tr>
